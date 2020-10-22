@@ -61,7 +61,7 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
         },
-        addJob: async (parent, args, context) => {
+        saveJob: async (parent, args, context) => {
             if (context.user) {
                 const job = await Job.create({ ...args, username: context.user.username });
 
@@ -76,7 +76,7 @@ const resolvers = {
 
             throw new AuthenticationError('You need to be logged in!');
         },
-        addApplication: async (parent, args, context) => {
+        saveApplication: async (parent, args, context) => {
             if (context.user) {
                 const application = await Application.create({ ...args, username: context.user.username });
 

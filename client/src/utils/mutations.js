@@ -24,9 +24,9 @@ mutation addUser($username: String!, $email: String!, $password: String!, $emplo
  }
 `;
 
-export const ADD_JOB = gql`
-    mutation addJob($jobId: ID!){
-        addJob(jobId: $jobId){
+export const SAVE_JOB = gql`
+    mutation saveJob($jobId: ID!){
+        saveJob(jobId: $jobId){
             _id
             username
             email
@@ -35,9 +35,9 @@ export const ADD_JOB = gql`
     }
 `;
 
-export const ADD_APPLICATION = gql`
-    mutation addApplication($applicationId: ID!){
-        addApplication(applicationId: $applicationId){
+export const SAVE_APPLICATION = gql`
+    mutation saveApplication($applicationId: ID!){
+        saveApplication(applicationId: $applicationId){
             _id
             username
             email
