@@ -89,6 +89,14 @@ query applications($username: String!) {
     }
 }
 
+query me {
+  me {
+    _id
+    username
+    email
+  }
+}
+
 
 don't forget your query variables and http headers when necessary
 don't forget your query variables and http headers when necessary
