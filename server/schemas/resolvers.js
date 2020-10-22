@@ -61,7 +61,7 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
         },
-        saveJob: async (parent, args, context) => {
+        addJob: async (parent, args, context) => {
             if (context.user) {
                 const job = await Job.create({ ...args, username: context.user.username });
 
@@ -76,7 +76,7 @@ const resolvers = {
 
             throw new AuthenticationError('You need to be logged in!');
         },
-        saveApplication: async (parent, args, context) => {
+        addApplication: async (parent, args, context) => {
             if (context.user) {
                 const application = await Application.create({ ...args, username: context.user.username });
 
@@ -91,6 +91,32 @@ const resolvers = {
 
             throw new AuthenticationError('You need to be logged in!');
         },
+        saveJob: async (parent, { jobId }, context) => {
+            if (context.user) {
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { jobs: jobId } },
+                    { new: true }
+                ).populate('jobs');
+
+                return updatedUser;
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
+        },
+        saveApplication: async (parent, { applicationId }, context) => {
+            if (context.user) {
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { applications: applicationId } },
+                    { new: true }
+                ).populate('applications');
+
+                return updatedUser;
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
+        }
     }
 };
 
