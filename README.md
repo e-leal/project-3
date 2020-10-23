@@ -18,8 +18,8 @@ mutation login($email: String!, $password: String!) {
   }
 }
 
-mutation addJob($company: String!, $contact: String!, $description: String!, $requirements: String!) {
-  addJob(company: $company, contact: $contact, description: $description, requirements: $requirements) {
+mutation createJob($company: String!, $contact: String!, $description: String!, $requirements: String!) {
+  createJob(company: $company, contact: $contact, description: $description, requirements: $requirements) {
     	company
     	contact
     	description

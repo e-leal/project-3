@@ -46,8 +46,8 @@ export const SAVE_APPLICATION = gql`
     }
 `;
 
-export const ADD_JOB = gql`
-mutation addJob($company: String!, $contact: String!, $description: String!, $requirements: String!){
+export const CREATE_JOB = gql`
+mutation createJob($company: String!, $contact: String!, $description: String!, $requirements: String!){
     addJob(company: $company, contact: $contact, description: $description, requirements: $requirements){
         _id
         company
@@ -59,8 +59,8 @@ mutation addJob($company: String!, $contact: String!, $description: String!, $re
 }
 `;
 
-export const ADD_APP = gql`
-mutation addApplication($resume: String!, $company: String!){
+export const CREATE_APP = gql`
+mutation createApplication($resume: String!, $company: String!){
     addApplication(resume: $resumt, company: $company){
         _id
         resume
