@@ -10,13 +10,15 @@ const typeDefs = gql`
         applications: [Application]
     }
 
-    type Job {
+    type Listing {
         _id: ID
         company: String
         createdAt: String
         contact: String
         description: String
         requirements: String
+        applications: [applications]
+        comments: [comments]
     }
 
     type Application {
@@ -24,7 +26,9 @@ const typeDefs = gql`
         resume: String
         createdAt: String
         company: String
+        contact: String
         jobs: [Job]
+        comments: [comments]
     }
 
     type Auth {
@@ -44,7 +48,7 @@ const typeDefs = gql`
         login(email: String!, password: String!): Auth
         addUser(username: String!, email: String!, password: String!, employer: Boolean!): Auth
         addJob(company: String!, contact: String!, description: String!, requirements: String!): Job
-        addApplication(resume: String!, company: String!): User
+        addApplication(resume: String!, company: String!, contact: String!): Application
         saveJob(jobId: ID!): User
         saveApplication(applicationId: ID!): User
     }
