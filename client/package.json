@@ -7,16 +7,11 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "apollo-server-express": "^2.18.2",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
     "if-env": "^1.0.4",
-    "jest": "^26.6.0",
-    "moment": "^2.29.1",
-    "mongoose": "^5.10.9",
     "nodemon": "^2.0.4",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
-    "react-scripts": "3.4.4"
+    "react-scripts": "^3.4.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -38,17 +33,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "description": "",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/e-leal/project-3.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/e-leal/project-3/issues"
-  },
-  "homepage": "https://github.com/e-leal/project-3#readme"
+  }
 }
