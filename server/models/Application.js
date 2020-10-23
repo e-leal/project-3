@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const commentSchema = require('./Comment');
 const moment = require('moment');
 
 const applicationSchema = new Schema(
@@ -25,12 +26,14 @@ const applicationSchema = new Schema(
               type: Schema.Types.ObjectId,
               ref: 'Job'
             }
-        ]
+        ],
+        comments: [commentSchema]
 
     },
     {
         toJSON: {
-            virtuals: true
+            virtuals: true,
+            getters: true
         }
     }
 );

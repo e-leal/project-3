@@ -5,43 +5,42 @@ const typeDefs = gql`
         _id: ID
         username: String
         email: String
+        resume: String
         employer: Boolean
         jobs: [Job]
         applications: [Application]
     }
 
-    type Listing {
+    type Job {
         _id: ID
         company: String
+        title: String
         createdAt: String
         contact: String
         description: String
         requirements: String
-        applications: [applications]
-        comments: [comments]
+        applications: [Application]
     }
 
     type Application {
         _id: ID
-        resume: String
         createdAt: String
-        company: String
-        contact: String
-        jobs: [Job]
-        comments: [comments]
+        email: String
+        resume: String
+        status: String
+        comments: [Comment]
+    }
+
+    type Comment {
+        _id: ID
+        body: String
+        createdAt: String
+        username: String
     }
 
     type Auth {
         token: ID!
         user: User
-    }
-
-    input JobInput {
-        jobId: String!
-        company: String
-        contact: String
-        description: String
-        requirements: String
     }
 
     type Query {
