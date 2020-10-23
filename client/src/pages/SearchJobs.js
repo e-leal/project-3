@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 import Auth from '../utils/auth';
-// import { searchGoogleBooks } from '../utils/API';
+import { searchCareerJobs } from '../utils/API';
 import { saveJobIds, getSavedJobIds } from '../utils/localStorage';
 //import {REMOVE_BOOK, SAVE_BOOK, ADD_USER, LOGIN_USER} from '../utils/mutations';
 import { useMutation, useQuery } from '@apollo/react-hooks';
@@ -32,20 +32,20 @@ const SearchJobs = () => {
     }
 
     try {
-      //const response = await searchGoogleBooks(searchInput);
+      const response = await searchCareerJobs(searchInput);
 
-      //if (!response.ok) {
-      //  throw new Error('something went wrong!');
-      //}
+      if (!response.ok) {
+        throw new Error('something went wrong!');
+      }
 
-      //const { items } = await response.json();
+      const { items } = await response.json();
 
       const JobData = items.map((job) => ({
         JobId: job.id,
-        authors: job.volumeInfo.authors || ['No author to display'],
-        title: job.volumeInfo.title,
-        description: job.volumeInfo.description,
-        image: job.volumeInfo.imageLinks?.thumbnail || '',
+        authors: job.title || ['No author to display'],
+        company: job.company,
+        description: job.description//,
+        //image: job.volumeInfo.imageLinks?.thumbnail || '',
       }));
 
       setSearchedJobs(jobData);
