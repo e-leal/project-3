@@ -4,7 +4,7 @@ const secret = 'superdupersecret';
 const expiration = '2h';
 
 module.exports = {
-  authMiddleware: function({ req }) {
+  authMiddleware: function( {req} ) {
     // allows token to be sent via req.body, req.query, or headers
     let token = req.body.token || req.query.token || req.headers.authorization;
 
@@ -15,7 +15,7 @@ module.exports = {
         .pop()
         .trim();
     }
-
+   // console.log("token is: ", token)
     if (!token) {
       return req;
     }
