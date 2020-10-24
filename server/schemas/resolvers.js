@@ -81,7 +81,7 @@ const resolvers = {
         },
         createApplication: async (parent, args, context) => {
             if (context.user) {
-                const application = await Application.create({ ...args, email: context.user.email, resume: context.user.resume });
+                const application = await Application.create({ ...args, email: context.user.email, resume: context.user.resume, job: context.job });
 
                 await User.findByIdAndUpdate(
                     { _id: context.user._id },
