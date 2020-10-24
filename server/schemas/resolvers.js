@@ -70,7 +70,7 @@ const resolvers = {
 
                 await User.findByIdAndUpdate(
                     { _id: context.user._id },
-                    { $push: { jobs: {job} } },
+                    { $push: { jobs: job._id } },
                     { new: true }
                 );
 
