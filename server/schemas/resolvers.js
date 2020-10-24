@@ -29,7 +29,7 @@ const resolvers = {
                 .populate('applications');
         },
         jobs: async (parent, { username }) => {
-            const params = username ? { username } : {};
+            const params = email ? { username } : {};
             return Job.find(params).sort({ createdAt: -1 });
         },
         applications: async (parent, { username }) => {
@@ -66,7 +66,7 @@ const resolvers = {
         //addJob: async (parent, {jobData}, context) => {
             console.log("user information is: ", context);
             if (context.user) {
-                const job = await Job.create({ ...args, contact: context.user.username });
+                const job = await Job.create({ ...args, contact: context.user.email });
 
                 await User.findByIdAndUpdate(
                     { _id: context.user._id },
@@ -81,11 +81,17 @@ const resolvers = {
         },
         createApplication: async (parent, args, context) => {
             if (context.user) {
-                const application = await Application.create({ ...args, username: context.user.username });
+                const application = await Application.create({ ...args, email: context.user.email, resume: context.user.resume });
 
                 await User.findByIdAndUpdate(
                     { _id: context.user._id },
-                    { $push: { applications: application._id } },
+                    { $push: { applications: { application } } },
+                    { new: true }
+                );
+
+                await Job.findByIdAndUpdate(
+                    { _id: context.job._id},
+                    { $push: {applications: {application}}},
                     { new: true }
                 );
 
