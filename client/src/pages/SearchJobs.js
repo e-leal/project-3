@@ -41,7 +41,7 @@ const SearchJobs = () => {
       const { items } = await response.json();
 
       const JobData = items.map((job) => ({
-        JobId: job.id,
+        JobId: job._id,
         authors: job.title || ['No author to display'],
         company: job.company,
         description: job.description//,
