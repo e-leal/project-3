@@ -7,6 +7,10 @@ const jobSchema = new Schema(
             type: String,
             required: true
         },
+        title: {
+            type: String,
+            required: true
+        },
         createdAt: {
             type: Date,
             default: Date.now,
@@ -23,8 +27,14 @@ const jobSchema = new Schema(
         requirements: {
             type: String,
             required: true
-        }
-
+        },
+        JobApplications: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Application'
+              }
+        
+        ]
     },
     {
         toJSON: {
