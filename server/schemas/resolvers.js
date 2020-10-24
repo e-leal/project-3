@@ -57,17 +57,20 @@ const resolvers = {
             if (!correctPw) {
                 throw new AuthenticationError('Incorrect credentials');
             }
+            console.log("user information is: ", user);
 
             const token = signToken(user);
             return { token, user };
         },
-        saveJob: async (parent, args, context) => {
+        createJob: async (parent, args, context) => {
+        //addJob: async (parent, {jobData}, context) => {
+            console.log("user information is: ", context);
             if (context.user) {
-                const job = await Job.create({ ...args, username: context.user.username });
+                const job = await Job.create({ ...args, contact: context.user.username });
 
                 await User.findByIdAndUpdate(
                     { _id: context.user._id },
-                    { $push: { jobs: job._id } },
+                    { $push: { jobs: {job} } },
                     { new: true }
                 );
 
@@ -76,7 +79,7 @@ const resolvers = {
 
             throw new AuthenticationError('You need to be logged in!');
         },
-        saveApplication: async (parent, args, context) => {
+        createApplication: async (parent, args, context) => {
             if (context.user) {
                 const application = await Application.create({ ...args, username: context.user.username });
 
@@ -91,6 +94,54 @@ const resolvers = {
 
             throw new AuthenticationError('You need to be logged in!');
         },
+        saveJob: async (parent, { jobId }, context) => {
+            if (context.user) {
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { jobs: jobId } },
+                    { new: true }
+                ).populate('jobs');
+
+                return updatedUser;
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
+        },
+        saveApplication: async (parent, { applicationId }, context) => {
+            if (context.user) {
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { applications: applicationId } },
+                    { new: true }
+                ).populate('applications');
+
+                return updatedUser;
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
+        },
+        removeJob: async (parent, {jobId}, context) => {
+            if(context.user){
+                const updatedUser = await User.findOneAndUpdate(
+                    {_id: context.user._id},
+                    {$pull: {jobs: {jobId}}},
+                    {new: true}
+                );
+                return updatedUser;
+            }
+            throw new AuthenticationError('Please log in before removing a job');
+        },
+        removeApplication: async (parent, {applicationId}, context) => {
+            if(context.user){
+                const updatedUser = await User.findOneAndUpdate(
+                    {_id: context.user._id},
+                    {$pull: {applications: {applicationId}}},
+                    {new: true}
+                );
+                return updatedUser;
+            }
+            throw new AuthenticationError("Please log in before removing an appliation");
+        }
     }
 };
 

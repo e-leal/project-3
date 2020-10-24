@@ -45,3 +45,35 @@ export const SAVE_APPLICATION = gql`
         }
     }
 `;
+
+export const CREATE_JOB = gql`
+mutation createJob($company: String!, $contact: String!, $description: String!, $requirements: String!){
+    addJob(company: $company, contact: $contact, description: $description, requirements: $requirements){
+        _id
+        company
+        createdAt
+        contact
+        description
+        requirements
+    }
+}
+`;
+
+export const CREATE_APP = gql`
+mutation createApplication($resume: String!, $company: String!){
+    addApplication(resume: $resumt, company: $company){
+        _id
+        resume
+        createdAt
+        company
+        jobs{
+            _id
+            company
+            createdAt
+            contact
+            description
+            requirements
+        }
+    }
+}
+`;
