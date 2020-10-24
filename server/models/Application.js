@@ -13,11 +13,20 @@ const applicationSchema = new Schema(
             default: Date.now,
             get: timestamp => moment(timestamp).format('MMM Do, YYYY [at] hh:mm a')
         },
-        company: {
+        email:{
             type: String,
-            required: true
+            required: true,
+            match: [/.+@.+\..+/, 'Must match an email address!']
         },
-        contact: {
+        // company: {
+        //     type: String,
+        //     required: true
+        // },
+        // contact: {
+        //     type: String,
+        //     required: true
+        // },
+        status: {
             type: String,
             required: true
         },
