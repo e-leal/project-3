@@ -20,25 +20,25 @@ mutation login($email: String!, $password: String!) {
   }
 }
 
-mutation addJob($company: String!, $contact: String!, $description: String!, $requirements: String!) {
-  addJob(company: $company, contact: $contact, description: $description, requirements: $requirements) {
+mutation createJob($company: String!, $contact: String!, $title: String!, $description: String!, $requirements: String!) {
+  createJob(company: $company, contact: $contact, title: $title, description: $description, requirements: $requirements) {
     	company
     	contact
     	description
     	requirements
     }
-}
+  }
 
 query {
   users {
     username
     email
     employer
-    jobs { 
+    createdJobs { 
     	_id
       description
     }
-    applications {
+    createdApplications {
       _id
       resume
     }
@@ -50,20 +50,20 @@ query user($username: String!) {
     username
     email
     employer
-    jobs { 
+    createdJobs { 
     	_id
       description
     }
-    applications {
+    createdApplications {
       _id
       resume
     }
     }
 }
 
-query jobs($username: String!) {
+query createdJobs($username: String!) {
   user(username: $username) {
-    jobs { 
+    createdJobs { 
     	_id
       company
       createdAt
@@ -74,16 +74,20 @@ query jobs($username: String!) {
     }
 }
 
-query applications($username: String!) {
+query createdApplications($username: String!) {
   user(username: $username) {
-    applications { 
+    createdApplications { 
     	_id
       resume
       createdAt
-      company
-      jobs {
-        company
-        description
+      email
+      resume
+      status
+      appliedJob {
+        title
+      }
+      comments {
+        body
       }
     }
     }

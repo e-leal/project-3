@@ -28,11 +28,11 @@ const resolvers = {
                 .populate('jobs')
                 .populate('applications');
         },
-        jobs: async (parent, { username }) => {
+        createdJobs: async (parent, { username }) => {
             const params = email ? { username } : {};
             return Job.find(params).sort({ createdAt: -1 });
         },
-        applications: async (parent, { username }) => {
+        createdApplications: async (parent, { username }) => {
             const params = username ? { username } : {};
             return Application.find(params).sort({ createdAt: -1 });
         },
