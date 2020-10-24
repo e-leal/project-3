@@ -1,12 +1,10 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import SignupForm from '../components/SignupForm.js'
 import SearchJobs from './pages/SearchJobs';
-//import SavedBooks from './pages/SavedBooks';
 import {ApolloProvider} from '@apollo/react-hooks';
 import ApolloClient from 'apollo-boost';
-
+import LoginForm from './components/LoginForm.js';
 
 const client = new ApolloClient({
   request: (operation) => {
@@ -22,25 +20,20 @@ const client = new ApolloClient({
   uri: '/graphql'
 });
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return(
+      <view style={styles.container}>
+       <text>Code test</text>
+      </view>
+    )
+  }
 }
+
+const styles =StyleSheet.create({
+    container: {
+      backgroundColor: '#ff7550'
+    },
+});
 
 export default App;
