@@ -70,7 +70,7 @@ const resolvers = {
 
                 await User.findByIdAndUpdate(
                     { _id: context.user._id },
-                    { $push: { jobs: {job} } },
+                    { $push: { createdJobs: job._id } },
                     { new: true }
                 );
 
@@ -85,13 +85,13 @@ const resolvers = {
 
                 await User.findByIdAndUpdate(
                     { _id: context.user._id },
-                    { $push: { applications: { application } } },
+                    { $push: { createdApplications: application._id } },
                     { new: true }
                 );
 
                 await Job.findByIdAndUpdate(
                     { _id: context.job._id},
-                    { $push: {applications: {application}}},
+                    { $push: {jobapplications: application._id }},
                     { new: true }
                 );
 
@@ -104,7 +104,7 @@ const resolvers = {
             if (context.user) {
                 const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
-                    { $addToSet: { jobs: jobId } },
+                    { $addToSet: { createdJobs: jobId } },
                     { new: true }
                 ).populate('jobs');
 
@@ -117,7 +117,7 @@ const resolvers = {
             if (context.user) {
                 const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
-                    { $addToSet: { applications: applicationId } },
+                    { $addToSet: { createdApplications: applicationId } },
                     { new: true }
                 ).populate('applications');
 
@@ -130,7 +130,7 @@ const resolvers = {
             if(context.user){
                 const updatedUser = await User.findOneAndUpdate(
                     {_id: context.user._id},
-                    {$pull: {jobs: {jobId}}},
+                    {$pull: {createdJobs: {jobId}}},
                     {new: true}
                 );
                 return updatedUser;
@@ -141,7 +141,7 @@ const resolvers = {
             if(context.user){
                 const updatedUser = await User.findOneAndUpdate(
                     {_id: context.user._id},
-                    {$pull: {applications: {applicationId}}},
+                    {$pull: {createdApplications: {applicationId}}},
                     {new: true}
                 );
                 return updatedUser;

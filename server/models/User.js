@@ -28,13 +28,13 @@ const userSchema = new Schema (
             type: Boolean,
             required: true
         },
-        applications: [
+        createdApplications: [
             {
                 type: Schema.Types.ObjectId,
                 ref: 'Application'
             }
         ],
-        jobs: [
+        createdJobs: [
             {
                 type: Schema.Types.ObjectId,
                 ref: 'Job'
