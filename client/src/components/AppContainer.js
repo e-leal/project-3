@@ -14,8 +14,6 @@ function Homepage() {
         return <SearchJobs />;
       case 'User Profile':
         return <UserProfile />;
-      case 'Resume':
-        return <Resume />;
         default:
           return <Homepage />;
     }
