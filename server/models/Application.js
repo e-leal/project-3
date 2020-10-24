@@ -19,8 +19,7 @@ const applicationSchema = new Schema(
             match: [/.+@.+\..+/, 'Must match an email address!']
         },
         resume: {
-            type: String,
-            required: true
+            type: String
         },
         // company: {
         //     type: String,

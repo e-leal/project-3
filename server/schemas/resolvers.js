@@ -79,9 +79,23 @@ const resolvers = {
 
             throw new AuthenticationError('You need to be logged in!');
         },
+        createResume: async (parent, {resume}, context) => {
+            if(context.user){
+                const updatedUser = await User.findByIdAndUpdate(
+                    {_id: context.user._id},
+                    {resume: resume},
+                    {nrew: true}
+                )
+                return updatedUser;
+            }
+            throw new AuthenticationError("Please log in before creating a resume");
+        },
         createApplication: async (parent, args, context) => {
             if (context.user) {
-                const application = await Application.create({ ...args, email: context.user.email, resume: context.user.resume, job: context.job });
+                const job = await Job.findById({
+                    _id: args.jobId
+                })
+                const application = await Application.create({ ...args, email: context.user.email, resume: context.user.resume, job: job._id });
 
                 await User.findByIdAndUpdate(
                     { _id: context.user._id },
@@ -90,8 +104,8 @@ const resolvers = {
                 );
 
                 await Job.findByIdAndUpdate(
-                    { _id: context.job._id},
-                    { $push: {jobapplications: application._id }},
+                    { _id: args.jobId},
+                    { $push: {jobApplications: application._id }},
                     { new: true }
                 );
 
