@@ -18,6 +18,10 @@ const applicationSchema = new Schema(
             required: true,
             match: [/.+@.+\..+/, 'Must match an email address!']
         },
+        resume: {
+            type: String,
+            required: true
+        },
         // company: {
         //     type: String,
         //     required: true
@@ -30,7 +34,7 @@ const applicationSchema = new Schema(
             type: String,
             required: true
         },
-        job: [
+        appliedJob: [
             {
               type: Schema.Types.ObjectId,
               ref: 'Job'
