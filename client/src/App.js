@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
-import SignupForm from '../components/SignupForm.js'
-import SearchJobs from './pages/SearchJobs';
 import {ApolloProvider} from '@apollo/react-hooks';
 import ApolloClient from 'apollo-boost';
-import LoginForm from './components/LoginForm.js';
+import AppContainer from "./components/AppContainer";
+
+const App = () => <AppContainer />;
 
 const client = new ApolloClient({
   request: (operation) => {
@@ -18,22 +18,6 @@ const client = new ApolloClient({
     });
   },
   uri: '/graphql'
-});
-
-class App extends Component {
-  render() {
-    return(
-      <view style={styles.container}>
-       <text>Code test</text>
-      </view>
-    )
-  }
-}
-
-const styles =StyleSheet.create({
-    container: {
-      backgroundColor: '#ff7550'
-    },
 });
 
 export default App;
