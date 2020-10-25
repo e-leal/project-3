@@ -19,14 +19,14 @@ const resolvers = {
         users: async () => {
             return User.find()
                 .select('-__v -password')
-                .populate('jobs')
-                .populate('applications');
+                .populate('createdJobs')
+                .populate('createdApplications');
         },
         user: async (parent, { username }) => {
             return User.findOne({ username })
                 .select('-__v -password')
-                .populate('jobs')
-                .populate('applications');
+                .populate('createdJobs')
+                .populate('createdApplications');
         },
         createdJobs: async (parent, { username }) => {
             const params = email ? { username } : {};
@@ -96,7 +96,7 @@ const resolvers = {
                     _id: args.jobId
                 });
                 console.log("my job: ", job)
-                const application = await Application.create({ ...args, email: context.user.email, appliedJob: job });
+                const application = await Application.create({ email: context.user.email, appliedJob: [job], ...args });
                 console.log(application)
                 await User.findByIdAndUpdate(
                     { _id: context.user._id },
@@ -104,12 +104,12 @@ const resolvers = {
                     { new: true }
                 );
 
-                await Job.findByIdAndUpdate(
+                const updatedJob = await Job.findByIdAndUpdate(
                     { _id: args.jobId},
                     { $push: {jobApplications: application._id }},
                     { new: true }
                 );
-
+                    console.log("my updatedJob is: ",updatedJob)
                 return application;
             }
 
