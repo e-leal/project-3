@@ -11,3 +11,26 @@ export const LOGIN_USER = gql`
     }
   }
 `;
+
+export const ADD_USER = gql`
+mutation addUser($username: String!, $email: String!, $password: String!, $employer: Boolean!) {
+  addUser(username: $username, email: $email, password: $password, employer: $employer) {
+    token
+    user {
+      _id
+    }
+  }
+}
+`;
+
+export const CREATE_JOB = gql`
+mutation createJob($company: String!, $contact: String!, $title: String!, $description: String!, $requirements: String!) {
+  createJob(company: $company, contact: $contact, title: $title, description: $description, requirements: $requirements) {
+    	company
+    	contact
+    	description
+    	requirements
+    }
+  }
+
+`;

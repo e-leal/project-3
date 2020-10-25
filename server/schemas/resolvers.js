@@ -1,5 +1,6 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Job, Application } = require('../models');
+const { pathType } = require('../models/Comment');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -8,9 +9,15 @@ const resolvers = {
             if (context.user) {
                 const userData = await User.findOne({ _id: context.user._id })
                     .select('-__v -password')
-                    .populate('jobs')
-                    .populate('applications');
-
+                    .populate('createdJobs')
+                    .populate({
+                        path: 'createdApplications',
+                        model: 'Application',
+                        populate: {
+                          path: 'appliedJob',
+                          model: 'Job'
+                        }
+                    });
                 return userData;
             }
 
@@ -19,22 +26,41 @@ const resolvers = {
         users: async () => {
             return User.find()
                 .select('-__v -password')
-                .populate('jobs')
-                .populate('applications');
+                .populate('createdJobs')
+                //.populate('createdApplications')
+                .populate({
+                    path: 'createdApplications',
+                    model: 'Application',
+                    populate: {
+                      path: 'appliedJob',
+                      model: 'Job'
+                    }
+                });
+        },
+        applications: async () => {
+            return Application.find()
+            .populate('appliedJob')
         },
         user: async (parent, { username }) => {
             return User.findOne({ username })
                 .select('-__v -password')
-                .populate('jobs')
-                .populate('applications');
+                .populate('createdJobs')
+                .populate({
+                    path: 'createdApplications',
+                    model: 'Application',
+                    populate: {
+                      path: 'appliedJob',
+                      model: 'Job'
+                    }
+                });
         },
         createdJobs: async (parent, { username }) => {
             const params = email ? { username } : {};
-            return Job.find(params).sort({ createdAt: -1 });
+            return Job.find(params).populate('jobApplications').sort({ createdAt: -1 });
         },
         createdApplications: async (parent, { username }) => {
             const params = username ? { username } : {};
-            return Application.find(params).sort({ createdAt: -1 });
+            return Application.find(params).populate('appliedJob').sort({ createdAt: -1 });
         },
     },
 
@@ -79,22 +105,37 @@ const resolvers = {
 
             throw new AuthenticationError('You need to be logged in!');
         },
+        createResume: async (parent, {resume}, context) => {
+            if(context.user){
+                const updatedUser = await User.findByIdAndUpdate(
+                    {_id: context.user._id},
+                    {resume: resume},
+                    {nrew: true}
+                )
+                return updatedUser;
+            }
+            throw new AuthenticationError("Please log in before creating a resume");
+        },
         createApplication: async (parent, args, context) => {
             if (context.user) {
-                const application = await Application.create({ ...args, email: context.user.email, resume: context.user.resume, job: context.job });
-
+                const job = await Job.findById({
+                    _id: args.jobId
+                });
+                console.log("my job: ", job)
+                const application = await Application.create({ email: context.user.email, appliedJob: [job], ...args });
+                console.log(application)
                 await User.findByIdAndUpdate(
                     { _id: context.user._id },
                     { $push: { createdApplications: application._id } },
                     { new: true }
                 );
 
-                await Job.findByIdAndUpdate(
-                    { _id: context.job._id},
-                    { $push: {jobapplications: application._id }},
+                const updatedJob = await Job.findByIdAndUpdate(
+                    { _id: args.jobId},
+                    { $push: {jobApplications: application._id }},
                     { new: true }
                 );
-
+                    console.log("my updatedJob is: ",updatedJob)
                 return application;
             }
 

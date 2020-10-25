@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import NavTabs from './NavTabs';
-import Signup from './Signup';
-import SearchJobs from './pages';
+import Signup from '../components/Signup';
+import SearchJobs from '../pages/SearchJobs';
 
 function Homepage() {
   const [currentPage, handlePageChange] = useState('Home');
@@ -12,8 +12,8 @@ function Homepage() {
         return <Signup />;
       case 'Search Jobs':
         return <SearchJobs />;
-      case 'User Profile':
-        return <UserProfile />;
+//      case 'User Profile':
+//        return <UserProfile />;
         default:
           return <Homepage />;
     }

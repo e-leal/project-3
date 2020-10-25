@@ -29,7 +29,7 @@ const typeDefs = gql`
         email: String
         resume: String
         status: String
-        appliedJob: Job
+        appliedJob: [Job]
         comments: [Comment]
     }
 
@@ -48,20 +48,32 @@ const typeDefs = gql`
     type Query {
         me: User
         users: [User]
+        applications: [Application]
         user(username: String!): User
         createdJobs(username: String!): [Job]
         createdApplications(username: String!): [Application]
+    }
+
+    input jobInput {
+        _id: ID
+        company: String
+        title: String
+        createdAt: String
+        contact: String
+        description: String
+        requirements: String
     }
 
     type Mutation {
         login(email: String!, password: String!): Auth
         addUser(username: String!, email: String!, password: String!, employer: Boolean!): Auth
         createJob(company: String!, contact: String!, title: String!, description: String!, requirements: String!): Job
-        createApplication(resume: String!, company: String!, status: String!): Application
+        createApplication(resume: String!, company: String!, status: String!, jobId: ID): Application
         saveJob(jobId: ID!): User
         saveApplication(applicationId: ID!): User
         removeJob(jobId: ID!): User
         removeApplication(applicationId: ID!): User
+        createResume(resume: String!): User
     }
 
 
