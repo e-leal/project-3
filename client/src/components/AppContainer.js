@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import NavTabs from './NavTabs';
-import Signup from './Signup';
+import Signup from '../components/Signup';
 import SearchJobs from './pages';
 
 function Homepage() {
@@ -12,8 +12,8 @@ function Homepage() {
         return <Signup />;
       case 'Search Jobs':
         return <SearchJobs />;
-      case 'User Profile':
-        return <UserProfile />;
+//      case 'User Profile':
+//        return <UserProfile />;
         default:
           return <Homepage />;
     }
