@@ -95,7 +95,7 @@ const resolvers = {
                 const job = await Job.findById({
                     _id: args.jobId
                 })
-                const application = await Application.create({ ...args, email: context.user.email, resume: context.user.resume, job: job._id });
+                const application = await Application.create({ ...args, email: context.user.email, resume: context.user.resume, appliedJob: job._id });
 
                 await User.findByIdAndUpdate(
                     { _id: context.user._id },
