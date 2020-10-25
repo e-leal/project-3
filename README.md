@@ -62,6 +62,7 @@ If you want us to answer any of your questions, follow our Githubs:
 [Ceven8498](https://github.com/Ceven8498)
 [ctyrone123](https://github.com/ctyrone123)
 [Ottiemobile](https://github.com/Ottiemobile)
+-----------------------------------------------------------------------------------------------------
 
 mutation addUser($username: String!, $email: String!, $password: String!, $employer: Boolean!) {
   addUser(username: $username, email: $email, password: $password, employer: $employer) {
