@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const commentSchema = require('./Comment');
 const moment = require('moment');
 
 const applicationSchema = new Schema(
@@ -12,25 +13,40 @@ const applicationSchema = new Schema(
             default: Date.now,
             get: timestamp => moment(timestamp).format('MMM Do, YYYY [at] hh:mm a')
         },
-        company: {
+        email:{
+            type: String,
+            required: true,
+            match: [/.+@.+\..+/, 'Must match an email address!']
+        },
+        resume: {
             type: String,
             required: true
         },
-        contact: {
+        // company: {
+        //     type: String,
+        //     required: true
+        // },
+        // contact: {
+        //     type: String,
+        //     required: true
+        // },
+        status: {
             type: String,
             required: true
         },
-        job: [
+        appliedJob: [
             {
               type: Schema.Types.ObjectId,
               ref: 'Job'
             }
-        ]
+        ],
+        comments: [commentSchema]
 
     },
     {
         toJSON: {
-            virtuals: true
+            virtuals: true,
+            getters: true
         }
     }
 );

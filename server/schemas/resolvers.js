@@ -28,11 +28,11 @@ const resolvers = {
                 .populate('jobs')
                 .populate('applications');
         },
-        jobs: async (parent, { username }) => {
-            const params = username ? { username } : {};
+        createdJobs: async (parent, { username }) => {
+            const params = email ? { username } : {};
             return Job.find(params).sort({ createdAt: -1 });
         },
-        applications: async (parent, { username }) => {
+        createdApplications: async (parent, { username }) => {
             const params = username ? { username } : {};
             return Application.find(params).sort({ createdAt: -1 });
         },
@@ -66,11 +66,11 @@ const resolvers = {
         //addJob: async (parent, {jobData}, context) => {
             console.log("user information is: ", context);
             if (context.user) {
-                const job = await Job.create({ ...args, contact: context.user.username });
+                const job = await Job.create({ ...args, contact: context.user.email });
 
                 await User.findByIdAndUpdate(
                     { _id: context.user._id },
-                    { $push: { jobs: {job} } },
+                    { $push: { createdJobs: job._id } },
                     { new: true }
                 );
 
@@ -81,11 +81,17 @@ const resolvers = {
         },
         createApplication: async (parent, args, context) => {
             if (context.user) {
-                const application = await Application.create({ ...args, username: context.user.username });
+                const application = await Application.create({ ...args, email: context.user.email, resume: context.user.resume, job: context.job });
 
                 await User.findByIdAndUpdate(
                     { _id: context.user._id },
-                    { $push: { applications: application._id } },
+                    { $push: { createdApplications: application._id } },
+                    { new: true }
+                );
+
+                await Job.findByIdAndUpdate(
+                    { _id: context.job._id},
+                    { $push: {jobapplications: application._id }},
                     { new: true }
                 );
 
@@ -98,7 +104,7 @@ const resolvers = {
             if (context.user) {
                 const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
-                    { $addToSet: { jobs: jobId } },
+                    { $addToSet: { createdJobs: jobId } },
                     { new: true }
                 ).populate('jobs');
 
@@ -111,7 +117,7 @@ const resolvers = {
             if (context.user) {
                 const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
-                    { $addToSet: { applications: applicationId } },
+                    { $addToSet: { createdApplications: applicationId } },
                     { new: true }
                 ).populate('applications');
 
@@ -124,7 +130,7 @@ const resolvers = {
             if(context.user){
                 const updatedUser = await User.findOneAndUpdate(
                     {_id: context.user._id},
-                    {$pull: {jobs: {jobId}}},
+                    {$pull: {createdJobs: {jobId}}},
                     {new: true}
                 );
                 return updatedUser;
@@ -135,7 +141,7 @@ const resolvers = {
             if(context.user){
                 const updatedUser = await User.findOneAndUpdate(
                     {_id: context.user._id},
-                    {$pull: {applications: {applicationId}}},
+                    {$pull: {createdApplications: {applicationId}}},
                     {new: true}
                 );
                 return updatedUser;

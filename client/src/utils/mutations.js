@@ -51,6 +51,7 @@ mutation createJob($company: String!, $contact: String!, $description: String!, 
     addJob(company: $company, contact: $contact, description: $description, requirements: $requirements){
         _id
         company
+        title
         createdAt
         contact
         description
@@ -61,14 +62,70 @@ mutation createJob($company: String!, $contact: String!, $description: String!, 
 
 export const CREATE_APP = gql`
 mutation createApplication($resume: String!, $company: String!){
-    addApplication(resume: $resumt, company: $company){
+    createApplication(resume: $resume, company: $company){
         _id
         resume
+        email
         createdAt
-        company
-        jobs{
+        status
+        appliedJob{
             _id
             company
+            createdAt
+            contact
+            description
+            requirements
+        }
+        comments {
+            username
+            createdAt
+            body
+        }
+    }
+}
+`;
+
+export const REMOVE_APP = gql`
+mutation removeApplication($appplicationId: ID){
+    removeApplication(applicationId: $applicationId){
+        _id
+        username
+        email
+        employer
+        createdApplications{
+            resume
+            email
+            createdAt
+            status
+            appliedJob{
+                _id
+                company
+                createdAt
+                contact
+                description
+                requirements
+            }
+            comments {
+                username
+                createdAt
+                body
+            }
+        }
+    }
+}
+`;
+
+
+export const REMOVE_JOB = gql`
+mutation removeJob($jobId: ID){
+    removeJob(jobId: $jobId){
+        _id
+        username
+        email
+        employer
+        createdJobs{
+            company
+            title
             createdAt
             contact
             description
