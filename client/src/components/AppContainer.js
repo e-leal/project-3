@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import NavTabs from './NavTabs';
 import Signup from '../components/Signup';
-import SearchJobs from './pages';
+import SearchJobs from '../pages/SearchJobs';
 
 function Homepage() {
   const [currentPage, handlePageChange] = useState('Home');
