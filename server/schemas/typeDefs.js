@@ -29,7 +29,7 @@ const typeDefs = gql`
         email: String
         resume: String
         status: String
-        appliedJob: Job
+        appliedJob: [Job]
         comments: [Comment]
     }
 
