@@ -1,5 +1,6 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Job, Application } = require('../models');
+const { pathType } = require('../models/Comment');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -9,8 +10,14 @@ const resolvers = {
                 const userData = await User.findOne({ _id: context.user._id })
                     .select('-__v -password')
                     .populate('createdJobs')
-                    .populate('createdApplications');
-
+                    .populate({
+                        path: 'createdApplications',
+                        model: 'Application',
+                        populate: {
+                          path: 'appliedJob',
+                          model: 'Job'
+                        }
+                    });
                 return userData;
             }
 
@@ -20,21 +27,40 @@ const resolvers = {
             return User.find()
                 .select('-__v -password')
                 .populate('createdJobs')
-                .populate('createdApplications');
+                //.populate('createdApplications')
+                .populate({
+                    path: 'createdApplications',
+                    model: 'Application',
+                    populate: {
+                      path: 'appliedJob',
+                      model: 'Job'
+                    }
+                });
+        },
+        applications: async () => {
+            return Application.find()
+            .populate('appliedJob')
         },
         user: async (parent, { username }) => {
             return User.findOne({ username })
                 .select('-__v -password')
                 .populate('createdJobs')
-                .populate('createdApplications');
+                .populate({
+                    path: 'createdApplications',
+                    model: 'Application',
+                    populate: {
+                      path: 'appliedJob',
+                      model: 'Job'
+                    }
+                });
         },
         createdJobs: async (parent, { username }) => {
             const params = email ? { username } : {};
-            return Job.find(params).sort({ createdAt: -1 });
+            return Job.find(params).populate('jobApplications').sort({ createdAt: -1 });
         },
         createdApplications: async (parent, { username }) => {
             const params = username ? { username } : {};
-            return Application.find(params).sort({ createdAt: -1 });
+            return Application.find(params).populate('appliedJob').sort({ createdAt: -1 });
         },
     },
 

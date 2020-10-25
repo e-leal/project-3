@@ -48,6 +48,7 @@ const typeDefs = gql`
     type Query {
         me: User
         users: [User]
+        applications: [Application]
         user(username: String!): User
         createdJobs(username: String!): [Job]
         createdApplications(username: String!): [Application]
