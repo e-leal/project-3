@@ -94,16 +94,10 @@ const resolvers = {
             if (context.user) {
                 const job = await Job.findById({
                     _id: args.jobId
-<<<<<<< HEAD
-                })
-                const application = await Application.create({ ...args, email: context.user.email, resume: context.user.resume, appliedJob: job._id });
-
-=======
                 });
                 console.log("my job: ", job)
                 const application = await Application.create({ ...args, email: context.user.email, appliedJob: job });
                 console.log(application)
->>>>>>> 3cfe8e42e2d41371be3361f4f575fbdbe6bc820f
                 await User.findByIdAndUpdate(
                     { _id: context.user._id },
                     { $push: { createdApplications: application._id } },
