@@ -48,9 +48,20 @@ const typeDefs = gql`
     type Query {
         me: User
         users: [User]
+        applications: [Application]
         user(username: String!): User
         createdJobs(username: String!): [Job]
         createdApplications(username: String!): [Application]
+    }
+
+    input jobInput {
+        _id: ID
+        company: String
+        title: String
+        createdAt: String
+        contact: String
+        description: String
+        requirements: String
     }
 
     type Mutation {

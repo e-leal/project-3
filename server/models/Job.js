@@ -28,7 +28,7 @@ const jobSchema = new Schema(
             type: String,
             required: true
         },
-        JobApplications: [
+        jobApplications: [
             {
                 type: Schema.Types.ObjectId,
                 ref: 'Application'

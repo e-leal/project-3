@@ -40,7 +40,7 @@ const SearchJobs = () => {
 
       const { items } = await response.json();
 
-      const JobData = items.map((job) => ({
+      const jobData = items.map((job) => ({
         JobId: job._id,
         authors: job.title || ['No author to display'],
         company: job.company,
@@ -56,7 +56,7 @@ const SearchJobs = () => {
   };
 
   // create function to handle saving a book to our database
-  const handleSaveJob = async (jobd) => {
+  const handleSaveJob = async (jobId) => {
     // find the book in `searchedBooks` state by the matching id
     const jobToSave = searchedJobs.find((job) => job.jobId === jobId);
     console.log("Job to save: ", jobToSave);
