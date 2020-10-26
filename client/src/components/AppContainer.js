@@ -12,8 +12,8 @@ function Homepage() {
         return <Signup />;
       case 'Search Jobs':
         return <SearchJobs />;
-      case 'User Profile':
-        return <UserProfile />;
+      // case 'User Profile':
+      //   return <UserProfile />;
         default:
           return <Homepage />;
     }
