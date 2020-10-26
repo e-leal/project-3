@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import ApolloClient from '@apollo/react-hooks';
+import { ApolloClient } from '@apollo/client'
 import AppContainer from "./components/AppContainer";
 
 const App = () => <AppContainer />;
