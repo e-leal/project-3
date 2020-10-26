@@ -1,7 +1,7 @@
 # project-3
 
 ## Description
-Certaintly is a Job Search tool that 
+Certainly is a Job Search tool that helps Employers and Job Seekers keep track of their applications and listings.
 
 
 ## Table of Contents
@@ -17,20 +17,34 @@ Certaintly is a Job Search tool that
 ## Features
 
 * New Users:
-  * Are able to create an account either as an employer or an employee
+  * CREATE NEW account
+  * WHEN users SIGN UP, they are prompted to either having an employer account or an employee account.
 
 * Employers (Job Creator):
-  * Are able to create Jobs/Listings
-  * View Applications made by Employees to Jobs created by the Employers (Only the Employers are able to view the application)
-  * Are able to Remove Job listings created by said Employer
+  * WHEN employers LOG IN, they are prompted to a 
+
 
 * Employees (Job Seeker):
-  * Are capable to create Applications that will tie to a Job
-  * Are able to view their Applications that was created by themselves
+  * WHEN employees LOG IN, they are prompted to a QUERY of jobs and listings 
+  * WHEN employees LOG IN, they can POST applications to a job
+  * WHEN employees LOG IN, they can create and update their resume
+  * WHEN employees LOG IN, they can comment on their own applications
+  * WHEN employees LOG IN, they can add their resume to their applications.
+  * WHEN employees LOG OUT, they are logged out with the option to log back in.  
+
+* Applications
+  * WHEN application is posted, the employer is notified 
 
 
 ## Installation
 
+Commence creating a clone or pulling from the Project repository into your local machine, then navigate the directories to the project-3 directory folder through the terminal
+
+In the project-3 directory, there are two folders, the "client" folder and the "server" folder. you must use the terminal to go into those folders and install the "node_modules" folder as well as the dependencies that is needed to run this application in those folders as well as the root folder by using the following command: 
+
+> npm install
+
+The dependencies should automatically be installed, however, you still need to set up the .env file, which will be covered in the Usage section.  
 
 ## Usage
 
