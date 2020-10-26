@@ -10,7 +10,6 @@ import $ from 'jquery';
 import { Link } from 'react-router-dom';
 import JobDetailedView from "./JobDetailedView";
 import { api , printError, printMessage} from '../../services/';
-import { IMAGE_PATHS, S3_URL } from '../../constants/routes';
 import RecruiterHeader from "../Common/RecruiterHeader";
 
 

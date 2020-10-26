@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import NavTabs from './NavTabs';
+import NavBar from '../components/Nav';
 import Signup from '../components/Signup';
 import SearchJobs from '../pages/SearchJobs';
 
@@ -21,7 +21,7 @@ function Homepage() {
 
   return (
     <div>
-      <NavTabs currentPage={currentPage} handlePageChange={handlePageChange} />
+      <NavBar currentPage={currentPage} handlePageChange={handlePageChange} />
       <div>{renderPage(currentPage)}</div>
     </div>
   );
