@@ -7,7 +7,7 @@ export const GET_ME = gql`
         username
         email
         employer
-        jobs {
+        createdJobs {
             _id
             company
             createdAt
@@ -15,12 +15,12 @@ export const GET_ME = gql`
             description
             requirements
         }
-        applications {
+        createdApplications {
             _id
             resume
             createdAt
             company
-            jobs {
+            appliedJob {
                 _id
                 company
             }

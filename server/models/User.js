@@ -16,6 +16,9 @@ const userSchema = new Schema (
             unique: true,
             match: [/.+@.+\..+/, 'Must match an email address!']
         },
+        resume: {
+            type: String
+        },
         password: {
             type: String,
             required: true,
@@ -25,13 +28,13 @@ const userSchema = new Schema (
             type: Boolean,
             required: true
         },
-        applications: [
+        createdApplications: [
             {
                 type: Schema.Types.ObjectId,
                 ref: 'Application'
             }
         ],
-        jobs: [
+        createdJobs: [
             {
                 type: Schema.Types.ObjectId,
                 ref: 'Job'
