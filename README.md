@@ -16,24 +16,31 @@ Certainly is a Job Search tool that helps Employers and Job Seekers keep track o
 
 ## Features
 
+### MINIMAL VIABLE PRODUCT (MVP):
+
 * New Users:
   * CREATE NEW account
   * WHEN users SIGN UP, they are prompted to either having an employer account or an employee account.
 
 * Employers (Job Creator):
-  * WHEN employers LOG IN, they are prompted to a 
+  * WHEN employers LOG IN, they can CREATE a job
+  * WHEN employers LOG IN, they can UPDATE or DELETE a job
+  * WHEN employers LOG IN, they can CREATE a comment on an employee's application
 
 
 * Employees (Job Seeker):
-  * WHEN employees LOG IN, they are prompted to a QUERY of jobs and listings 
+  * WHEN employees LOG IN, they are prompted to a QUERY of jobs and listings created recently by employers
   * WHEN employees LOG IN, they can POST applications to a job
-  * WHEN employees LOG IN, they can create and update their resume
+  * WHEN employees LOG IN, they can look over all of their applications they had made.
+  * WHEN employees LOG IN, they can CREATE and UPDATE their resume
   * WHEN employees LOG IN, they can comment on their own applications
-  * WHEN employees LOG IN, they can add their resume to their applications.
-  * WHEN employees LOG OUT, they are logged out with the option to log back in.  
+  * WHEN employees LOG IN, they can add their resume to their applications
+  * WHEN employees LOG OUT, they are logged out with the option to log back in
 
 * Applications
-  * WHEN application is posted, the employer is notified 
+  * WHEN application is posted, the employer is notified when he/she is logged in
+  * WHEN application is posted, COMMENTS are enabled
+  * WHEN comments are enabled, both employers and employees can comment.
 
 
 ## Installation
@@ -47,6 +54,10 @@ In the project-3 directory, there are two folders, the "client" folder and the "
 The dependencies should automatically be installed, however, you still need to set up the .env file, which will be covered in the Usage section.  
 
 ## Usage
+
+In the client folder, you need to create a .env file and within that file, you need to type in this:
+
+> SKIP_PREFLIGHT_CHECK=true
 
 
 ## License
