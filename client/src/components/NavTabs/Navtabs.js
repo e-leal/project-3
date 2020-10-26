@@ -1,5 +1,4 @@
 import React from 'react';
-import "../index.css"
 function NavTabs(props) {
   const tabs = [ 'Job Search', 'User-Profile', 'Sign In'];
   return (

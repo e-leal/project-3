@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import {ApolloProvider} from '@apollo/react-hooks';
-import ApolloClient from 'apollo-boost';
+import ApolloClient from '@apollo/react-hooks';
 import AppContainer from "./components/AppContainer";
 
 const App = () => <AppContainer />;
