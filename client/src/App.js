@@ -3,10 +3,9 @@ import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/react-hooks';
 import  ApolloClient from 'apollo-boost';
-import AppContainer from "./components/AppContainer";
-import Homepage from './components/AppContainer';
+import AppContainer from './components/AppContainer';
+import SearchJobs from '../src/pages/SearchJobs';
 
-// const App = () => <AppContainer />;
 
 const client = new ApolloClient({
   request: (operation) => {
@@ -26,13 +25,14 @@ function App (){
   return (
     <ApolloProvider client={client}>
       <Router>
-      
-      <div className="flex-column justify-flex-start min-100-vh">
-        Will this work?
-        </div>
+      <Switch>
+              <Route exact path="/" component={SearchJobs} />
+              {/* <Route exact path="/signup" component={Signup} /> */}
+              {/* <Route component={NoMatch} /> */}
+            </Switch>
       </Router>
       </ApolloProvider>
   );
-}
+} 
 
 export default App;
