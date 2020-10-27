@@ -1,16 +1,81 @@
-import React from 'react';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import React, { Component } from 'react'
+import PLACES from '../Common/Places';
 
-const searchbar = (props) => {
-  return (
-    <Form inline>
-      <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-        <Label for="exampleEmail" className="mr-sm-2">Search Jobs</Label>
-        <Input type="text" name="searcg" id="Searcgh" placeholder="Find your next Career" />
-      </FormGroup>
-      <Button>Search</Button>
-    </Form>
-  );
+
+class JobSearchBar extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state ={
+      searchJobName : "",
+      latitude: "",
+      longitude:""
+
+    }
+    this.onChangeSearchJob = this.onChangeSearchJob.bind(this)
+    this.onChangeLocation = this.onChangeLocation.bind(this)
+    this.checkret = this.checkret.bind(this);
+    this.route = this.route.bind(this);
 }
 
-export default searchbar;
+  onChangeSearchJob(event){
+      this.setState({
+          searchJobName : event.target.value 
+      })
+  }
+
+  onChangeLocation(event){
+      this.setState({
+          searchLocation : event.target.value 
+      })
+  }
+
+  checkret(data)
+  {
+    console.log("location",data);
+    this.setState({
+      latitude: data.coordinates.latitude,
+      longitude:data.coordinates.longitude
+    })
+    
+  }
+
+  route(e){
+    e.preventDefault();
+    console.log("Props",this.props);
+    if (this.state.searchJobName && this.state.latitude && this.state.longitude){
+      window.location.href=`/searchedjobs/${this.state.searchJobName}/${this.state.latitude}/${this.state.longitude}`;
+    }
+    else 
+    {
+      printMessage("Please enter both values to proceed");
+    }
+  }
+
+  
+  render() {
+    return (
+      <div className="search-box">
+      <form>
+      <div className="row">
+      <div className="col-sm-5">
+            <input type="text" placeholder="Search Jobs" className = "inputtext" value={this.state.searchJobName} onChange={this.onChangeSearchJob} required />              
+      </div>
+
+      <div className="col-sm-5 inputtext pos-rel">
+      <PLACES onPosition={this.checkret}></PLACES>
+      
+      </div>
+      <div className="col-sm-2 searchButton">    
+      
+      <button type="button" onClick={this.route}>Search</button>
+      </div>
+      </div>
+      
+    </form>
+      </div>
+
+    )
+  }
+}
+export default JobSearchBar;
