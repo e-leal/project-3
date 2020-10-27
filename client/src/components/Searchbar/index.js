@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 // import PLACES from '../Common/Places';
-//import {printMessage} from '../../services/';
 
 
 class JobSearchBar extends Component {
