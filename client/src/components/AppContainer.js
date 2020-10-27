@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import NavBar from './Nav';
-import Signup from '../components/Signup';
+import NavBar from './Nav/Navbar';
+import Signup from './Signup';
 import SearchJobs from '../pages/SearchJobs';
 
 function Homepage() {
