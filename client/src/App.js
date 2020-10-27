@@ -25,8 +25,11 @@ function App (){
   return (
     <ApolloProvider client={client}>
       <Router>
-      <AppContainer />
-        <SearchJobs />
+      <Switch>
+              <Route exact path="/" component={SearchJobs} />
+              {/* <Route exact path="/signup" component={Signup} /> */}
+              {/* <Route component={NoMatch} /> */}
+            </Switch>
       </Router>
       </ApolloProvider>
   );
