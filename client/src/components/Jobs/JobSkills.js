@@ -14,11 +14,11 @@ constructor(props){
       let skills=null;
       skills =this.props.skills.map(skill => {
         return(
-            <div class="row">
-            <div class="col-md-1 image-tick">
+            <div className="row">
+            <div className="col-md-1 image-tick">
             <img src={Tick} style={{width:"16px"}} alt=""></img>
             </div>
-            <div class="col-md-9">
+            <div className="col-md-9">
             <label className="skill-name">{skill}</label>
             </div>
             

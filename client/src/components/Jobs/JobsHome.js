@@ -84,7 +84,7 @@ class JobsHome extends Component {
         </div>
         </section>
 
-        <section class="companies-info companies-info-background col-md-8" >
+        <section className="companies-info companies-info-background col-md-8" >
         
         <div className="smallheading">
 					<h3>Jobs you may be interested in</h3>

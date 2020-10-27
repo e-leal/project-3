@@ -42,7 +42,7 @@ class JobCard extends Component {
       <div className="row left-job-detail" onClick={this.setActiveID}>
            
               <div className="col-md-2 left-job-detail-image">
-                  <img src={this.state.company_logo} style={{width:"100%"}} class="img-fluid job-card-image" alt="LinkedIn" />
+                  <img src={this.state.company_logo} style={{width:"100%"}} className="img-fluid job-card-image" alt="LinkedIn" />
               </div>
               <div className="col-md-10 left-job-detail-desc">
               <div className="heading-company3">
