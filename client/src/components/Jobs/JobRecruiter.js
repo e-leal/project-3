@@ -58,12 +58,12 @@ componentWillReceiveProps(nextProps){
       Contact the Job Poster
       </label>
       <div>
-      <div class="row">
-            <div class="col-md-5 image-tick">
+      <div className="row">
+            <div className="col-md-5 image-tick">
             <img id="target2" src={""} className="avatar img-circle img-thumbnail" alt="" />
 
             </div>
-            <div class="col-md-6">
+            <div className="col-md-6">
             <div>
             <label className="recuiter-name">{this.state.fname} &nbsp; {this.state.lname}</label><br/>
             </div>

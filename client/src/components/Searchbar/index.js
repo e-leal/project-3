@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
-import PLACES from '../Common/Places';
+// import PLACES from '../Common/Places';
+//import {printMessage} from '../../services/';
 
 
 class JobSearchBar extends Component {
@@ -49,7 +49,7 @@ class JobSearchBar extends Component {
     }
     else 
     {
-      printMessage("Please enter both values to proceed");
+      console.log("Please enter both values to proceed");
     }
   }
 
@@ -64,7 +64,7 @@ class JobSearchBar extends Component {
       </div>
 
       <div className="col-sm-5 inputtext pos-rel">
-      <PLACES onPosition={this.checkret}></PLACES>
+      {/* <PLACES onPosition={this.checkret}></PLACES> */}
       
       </div>
       <div className="col-sm-2 searchButton">    

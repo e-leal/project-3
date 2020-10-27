@@ -1,3 +1,4 @@
+// Will have search comps
 import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 import Auth from '../utils/auth';
@@ -6,7 +7,6 @@ import { saveJobIds, getSavedJobIds } from '../utils/localStorage';
 //import {REMOVE_BOOK, SAVE_BOOK, ADD_USER, LOGIN_USER} from '../utils/mutations';
 import { useMutation } from '@apollo/react-hooks';
 import {SAVE_JOB} from '../utils/mutations';
-import Searchbar from '../components/Searchbar';
 //import {LOGIN_USER} from '../utils/mutations';
 
 const SearchJobs = () => {
@@ -87,8 +87,7 @@ const SearchJobs = () => {
         <Container>
           <h1>Search for Jobs!</h1>
           <Form onSubmit={handleFormSubmit}>
-            <Searchbar />
-            {/* <Form.Row>
+            <Form.Row>
               <Col xs={12} md={8}>
                 <Form.Control
                   name='searchInput'
@@ -104,7 +103,7 @@ const SearchJobs = () => {
                   Submit Search
                 </Button>
               </Col>
-            </Form.Row> */}
+            </Form.Row>
           </Form>
         </Container>
       </Jumbotron>
