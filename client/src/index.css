@@ -1,13 +1,206 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+html *
+{
+  font-family: 'Libre Franklin', sans-serif;
+  margin: auto;
+  scroll-behavior: smooth;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html {
+  scroll-behavior: smooth;
+}
+
+.name {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif bold;
+  margin: 10px;
+  text-align: center;
+  justify-content: end;
+  white-space: nowrap;
+  font-weight: bolder;
+  color: Black;
+
+
+}
+
+.skills {
+  color: Black;
+}
+
+.portfolio {
+  text-align: center;
+  color:#ebeff5;
+}
+
+.port {
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  padding-top: 10%;
+  padding-bottom: 10%;
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 2.0vw;
+  
+}
+
+p {
+  font-size: 1.5vw;
+}
+
+
+body {
+    background-color: light;
+}
+
+.navbar {
+  color:#ebeff5;
+  font: bold;
+  font-size: 1.5vw;
+  display: flex;
+  padding: 2%;
+}
+
+
+.navbar-text:hover{
+  opacity: .5;
+  transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+
+}
+
+.col {
+  padding: 0;
+}
+
+.navbar-text {
+  transition: transform .2s; /* Animation */
+  justify-content: flex-end;
+  margin: 1vw;
+  text-decoration: none;
+
+}
+.navbar-text:hover {
+  opacity: .5;
+  transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  text-decoration: none;
+  cursor: default;
+  color: #ebeff5;
+}
+
+a {
+  color: black;
+  font: bolder;
+  text-decoration: none;
+  scroll-behavior: smooth;
+}
+
+.container {
+  width: 100%
+}
+
+.about {
+  background-color: #ebeff5;
+  width: 100%;
+}
+
+
+.grey {
+  height: 200%;
+  width: 100%;
+  background-color: black;
+  box-shadow: -10px 0px 20px 0.5px #aaaaaa;
+  
+}
+
+
+li {
+  list-style-type: none;
+  text-align: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.MERN {
+  width: 100%;
+  max-width: 30vw;
+  height: auto;
+  position: relative;
+  top: -10%;
+  left:13%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  }
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+
+  }
+  
+  /* Create four equal columns that sits next to each other */
+  .column {
+    flex: 50%;
+    max-width: 100%;
+    padding: 0;
+  }
+  
+  .column img {
+    margin-top: 8px;
+    vertical-align: middle;
+    width: 100%;
+    transition: transform .2s; /* Animation */
+    -webkit-box-shadow: 0 8px 6px -6px #aaaaaa;
+
+    -moz-box-shadow: 0 8px 6px -6px #aaaaaa;
+    
+    box-shadow: 0 8px 6px -6px #aaaaaa;
+  }
+
+  .column img:hover {
+    opacity: .5;
+    transform: scale(1.01); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    cursor: default;
+  }
+  
+  /* Responsive layout - makes a two column-layout instead of four columns */
+  @media screen and (max-width: 800px) {
+    .column {
+      flex: 50%;
+      max-width: 50%;
+    }
+  }
+  
+  /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+  @media screen and (max-width: 600px) {
+
+    .column {
+      flex: 100%;
+      max-width: 100%;
+    }
+  }
+
+  /* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #ebeff5;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
