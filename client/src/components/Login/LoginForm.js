@@ -61,7 +61,7 @@ const LoginForm = () => {
 
   return (
     // <>
-    <div className="signup-body">
+    // <div className="signup-body">
       <div className="signup-body-background">
         <div className="signup-form-lower">
           <h2 className="signup-title">Find your next Career</h2>
@@ -101,7 +101,7 @@ const LoginForm = () => {
             </Form>
         </div>
       </div>
-    </div>
+    // </div>
   // </>     
   );
 };
