@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import NavBar from './Nav/Navbar';
-import Signup from '../components/Signup';
-import SearchJobs from '../pages/SearchJobs';
+import NavBar from '../Nav/Navbar';
+import Signup from '../Signup';
+import SearchJobs from '../../pages/SearchJobs';
 
-function Homepage() {
+function AppContainer() {
   const [currentPage, handlePageChange] = useState('Home');
 
   const renderPage = () => {
@@ -15,7 +15,7 @@ function Homepage() {
 //      case 'User Profile':
 //        return <UserProfile />;
         default:
-          return <Homepage />;
+          return <AppContainer />;
     }
   };
 
@@ -27,4 +27,4 @@ function Homepage() {
   );
 }
 
-export default Homepage;
+export default AppContainer;

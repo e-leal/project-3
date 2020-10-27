@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
-import { ApolloClient } from '@apollo/client'
-import AppContainer from "./components/AppContainer";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { ApolloProvider } from '@apollo/react-hooks';
+import  ApolloClient from 'apollo-boost';
+import AppContainer from './components/AppContainer';
+import SearchJobs from '../src/pages/SearchJobs';
 
-const App = () => <AppContainer />;
 
 const client = new ApolloClient({
   request: (operation) => {
@@ -18,5 +20,16 @@ const client = new ApolloClient({
   },
   uri: '/graphql'
 });
+
+function App (){
+  return (
+    <ApolloProvider client={client}>
+      <Router>
+      <AppContainer />
+        <SearchJobs />
+      </Router>
+      </ApolloProvider>
+  );
+} 
 
 export default App;
