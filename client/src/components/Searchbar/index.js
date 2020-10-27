@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
-const searchbar = (props) => {
+const Searchbar = (props) => {
   return (
     <Form inline>
       <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
@@ -13,4 +13,4 @@ const searchbar = (props) => {
   );
 }
 
-export default searchbar;
+export default Searchbar;
