@@ -45,6 +45,16 @@ query {
     }
 }
 
+query {
+  applications{
+    _id
+    createdAt
+    email
+    resume
+    status
+  }
+}
+
 query user($username: String!) {
   user(username: $username) {
     username
