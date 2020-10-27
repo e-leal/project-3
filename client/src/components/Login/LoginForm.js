@@ -4,8 +4,9 @@ import React, { useState, useEffect } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import { useMutation } from '@apollo/react-hooks';
 import { LOGIN_USER } from '../../utils/mutations';
-import "./LoginForm.css";
 import Auth from '../../utils/auth';
+import "./LoginForm.css";
+
 
 const LoginForm = () => {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
@@ -23,20 +24,24 @@ const LoginForm = () => {
   }, [error]);
 
   const handleInputChange = (event) => {
+
     const { name, value } = event.target;
+    console.log(name, " is being changed to: ", value);
     setUserFormData({ ...userFormData, [name]: value });
   };
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    
     const form = event.currentTarget;
+    console.log("the form is: ", form);
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
     }
 
     try {
-
+      console.log("our user data is: ", userFormData);
       const { data } = await login({
         variables: { ...userFormData },
       });
@@ -55,7 +60,7 @@ const LoginForm = () => {
   };
 
   return (
-    <>
+    // <>
     <div className="signup-body">
       <div className="signup-body-background">
         <div className="signup-form-lower">
@@ -97,7 +102,7 @@ const LoginForm = () => {
         </div>
       </div>
     </div>
-  </>     
+  // </>     
   );
 };
 
