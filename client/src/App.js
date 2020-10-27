@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import ApolloClient from '@apollo/react-hooks';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { ApolloProvider } from '@apollo/react-hooks';
+import  ApolloClient from 'apollo-boost';
 import AppContainer from "./components/AppContainer";
+import Homepage from './components/AppContainer';
 
-const App = () => <AppContainer />;
+// const App = () => <AppContainer />;
 
 const client = new ApolloClient({
   request: (operation) => {
@@ -18,5 +21,18 @@ const client = new ApolloClient({
   },
   uri: '/graphql'
 });
+
+function App (){
+  return (
+    <ApolloProvider client={client}>
+      <Router>
+      
+      <div className="flex-column justify-flex-start min-100-vh">
+        Will this work?
+        </div>
+      </Router>
+      </ApolloProvider>
+  );
+}
 
 export default App;
