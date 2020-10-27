@@ -85,7 +85,7 @@ const SearchJobs = () => {
     <>
       <Jumbotron fluid className='text-light bg-dark'>
         <Container>
-          <h1>Search for Jobs!</h1>
+          <h2 size='sm'>Search for Jobs!</h2>
           <Form onSubmit={handleFormSubmit}>
             <Form.Row>
               <Col xs={12} md={8}>
@@ -100,7 +100,7 @@ const SearchJobs = () => {
               </Col>
               <Col xs={12} md={4}>
                 <Button type='submit' variant='success' size='lg'>
-                  Submit Search
+                   Search
                 </Button>
               </Col>
             </Form.Row>

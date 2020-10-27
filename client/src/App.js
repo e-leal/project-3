@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/react-hooks';
 import  ApolloClient from 'apollo-boost';
 import Conduct from './components/Conduct';
-import SearchJobs from '../src/pages/SearchJobs'
 
 const client = new ApolloClient({
   request: (operation) => {
