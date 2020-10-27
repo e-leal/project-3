@@ -103,6 +103,16 @@ const SignupForm = () => {
           />
           <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
         </Form.Group>
+        <Form.Group>
+          <Form.Label htmlFor="employerStatus">Are you an employer?</Form.Label>
+          <Form.Control
+            as="select" onChange={handleInputChange}
+            value={userFormData.employer}
+            required>
+              <option value="false">No</option>
+              <option value="true">Yes</option>
+            </Form.Control>
+        </Form.Group>
         <Button
           disabled={!(userFormData.username && userFormData.email && userFormData.password)}
           type='submit'
