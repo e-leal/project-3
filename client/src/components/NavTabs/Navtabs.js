@@ -1,5 +1,5 @@
 import React from 'react';
-import "../index.css"
+import "./index.css"
 
 function NavTabs(props) {
   const tabs = ['About', 'Projects', 'Resume'];

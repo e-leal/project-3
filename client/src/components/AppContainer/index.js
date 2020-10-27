@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import NavBar from '../Nav/Navbar';
+import NavTabs from '../NavTabs/NavTabs';
 import Signup from '../Signup';
 import SearchJobs from '../../pages/SearchJobs';
 
@@ -12,8 +12,6 @@ function AppContainer() {
         return <Signup />;
       case 'Search Jobs':
         return <SearchJobs />;
-//      case 'User Profile':
-//        return <UserProfile />;
         default:
           return <AppContainer />;
     }
@@ -21,7 +19,7 @@ function AppContainer() {
 
   return (
     <div>
-      <NavBar currentPage={currentPage} handlePageChange={handlePageChange} />
+      <NavTabs currentPage={currentPage} handlePageChange={handlePageChange} />
       <div>{renderPage(currentPage)}</div>
     </div>
   );
