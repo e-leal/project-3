@@ -4,7 +4,7 @@ import Auth from '../utils/auth';
 import { searchCareerJobs } from '../utils/API';
 import { saveJobIds, getSavedJobIds } from '../utils/localStorage';
 //import {REMOVE_BOOK, SAVE_BOOK, ADD_USER, LOGIN_USER} from '../utils/mutations';
-import { useMutation, useQuery } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/react-hooks';
 import {SAVE_JOB} from '../utils/mutations';
 //import {LOGIN_USER} from '../utils/mutations';
 
@@ -16,7 +16,7 @@ const SearchJobs = () => {
 
   // create state to hold saved bookId values
   const [savedJobIds, setSavedJobIds] = useState(getSavedJobIds());
-  const [saveJob, {error}] = useMutation(SAVE_JOB);
+  const [saveJob] = useMutation(SAVE_JOB);
   // set up useEffect hook to save `savedBookIds` list to localStorage on component unmount
   // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
   useEffect(() => {
