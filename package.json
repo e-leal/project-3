@@ -18,8 +18,19 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@apollo/react-components": "^4.0.0",
+    "@apollo/react-hooks": "^4.0.0",
+    "apollo-link-context": "^1.0.20",
+    "bootstrap": "^4.5.3",
+    "graphql": "^15.4.0",
     "if-env": "^1.0.4",
-    "nodemon": "^2.0.4"
+    "jwt-decode": "^3.0.0",
+    "nodemon": "^2.0.4",
+    "react": "^17.0.1",
+    "react-bootstrap": "^1.4.0",
+    "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0",
+    "reactstrap": "^8.6.0"
   },
   "devDependencies": {
     "concurrently": "^5.3.0"
