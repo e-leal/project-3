@@ -42,22 +42,27 @@ Certainly is a Job Search tool that helps Employers and Job Seekers keep track o
   * WHEN application is posted, COMMENTS are enabled
   * WHEN comments are enabled, both employers and employees can comment.
 
+* Jobs
+  * WHEN job is posted, 
+
 
 ## Installation
 
 Commence creating a clone or pulling from the Project repository into your local machine, then navigate the directories to the project-3 directory folder through the terminal
 
-In the project-3 directory, there are two folders, the "client" folder and the "server" folder. you must use the terminal to go into those folders and install the "node_modules" folder as well as the dependencies that is needed to run this application in those folders as well as the root folder by using the following command: 
+In the project-3 directory, there are two folders, the "client" folder and the "server" folder. you must use the terminal to go into those folders and install the "node_modules" folder as well as the dependencies that is needed to run this application in those folders as well as the root folder by using either of the following commands: 
 
 > npm install
+
+or 
+
+> npm i
 
 The dependencies should automatically be installed, however, you still need to set up the .env file, which will be covered in the Usage section.  
 
 ## Usage
 
-In the client folder, you need to create a .env file and within that file, you need to type in this:
 
-> SKIP_PREFLIGHT_CHECK=true
 
 
 ## License
