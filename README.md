@@ -43,7 +43,11 @@ Certainly is a Job Search tool that helps Employers and Job Seekers keep track o
   * WHEN comments are enabled, both employers and employees can comment.
 
 * Jobs
-  * WHEN job is posted, 
+  * WHEN job is posted, employees are able to see them inside the Query
+  * WHEN job is posted, employees will be able to POST an application for that job
+  * WHEN job is posted, employers are able to UPDATE or DELETE that job
+  * WHEN job is posted, employers are able to look at the applications that was posted to that job
+  
 
 
 ## Installation
@@ -58,8 +62,7 @@ or
 
 > npm i
 
-The dependencies should automatically be installed, however, you still need to set up the .env file, which will be covered in the Usage section.  
-
+The dependencies should automatically be installed.
 ## Usage
 
 
