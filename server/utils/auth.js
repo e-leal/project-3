@@ -15,7 +15,7 @@ module.exports = {
         .pop()
         .trim();
     }
-   // console.log("token is: ", token)
+    console.log("token is: ", token)
     if (!token) {
       return req;
     }

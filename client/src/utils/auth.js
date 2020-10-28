@@ -2,7 +2,7 @@
 import decode from 'jwt-decode';
 
 // create a new class to instantiate for a user
-class Auth {
+class AuthService {
   // get user data
   getProfile() {
     return decode(this.getToken());
@@ -33,6 +33,7 @@ class Auth {
   }
 
   login(idToken) {
+    console.log("here is our token: ", idToken);
     // Saves user token to localStorage
     localStorage.setItem('id_token', idToken);
     window.location.assign('/');
@@ -46,4 +47,4 @@ class Auth {
   }
 }
 
-export default new Auth();
+export default new AuthService();

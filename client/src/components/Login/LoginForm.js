@@ -2,10 +2,11 @@
 
 import React, { useState, useEffect } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { useMutation } from '@apollo/react-hooks';
 import { LOGIN_USER } from '../../utils/mutations';
-import "./LoginForm.css";
 import Auth from '../../utils/auth';
+
 
 const LoginForm = () => {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
@@ -23,20 +24,24 @@ const LoginForm = () => {
   }, [error]);
 
   const handleInputChange = (event) => {
+
     const { name, value } = event.target;
+    console.log(name, " is being changed to: ", value);
     setUserFormData({ ...userFormData, [name]: value });
   };
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    
     const form = event.currentTarget;
+    console.log("the form is: ", form);
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
     }
 
     try {
-
+      console.log("our user data is: ", userFormData);
       const { data } = await login({
         variables: { ...userFormData },
       });
@@ -56,11 +61,6 @@ const LoginForm = () => {
 
   return (
     <>
-    <div className="signup-body">
-      <div className="signup-body-background">
-        <div className="signup-form-lower">
-          <h2 className="signup-title">Find your next Career</h2>
-          <h3 className="signup-title-small">Get started today!</h3>
             <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
               <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
                 Something went wrong with your login credentials!
@@ -90,13 +90,10 @@ const LoginForm = () => {
                 />
                 <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
               </Form.Group>
-              <Button disabled={!(userFormData.email && userFormData.password)} type='submit' variant='success' className='signup-login-button'>
+              <Button disabled={!(userFormData.email && userFormData.password)} type='button' variant='primary' className='signup-login-button'>
                 Submit
               </Button>
             </Form>
-        </div>
-      </div>
-    </div>
   </>     
   );
 };

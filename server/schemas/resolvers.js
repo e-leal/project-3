@@ -73,13 +73,13 @@ const resolvers = {
         },
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email });
-
+            console.log("our backend user is: ", user);
             if (!user) {
                 throw new AuthenticationError('Incorrect credentials');
             }
 
             const correctPw = await user.isCorrectPassword(password);
-
+            console.log("Do we have the correctPassword?: ", correctPw);
             if (!correctPw) {
                 throw new AuthenticationError('Incorrect credentials');
             }

@@ -1,6 +1,5 @@
 import React, { useState, useEffect }  from "react";
 import { NavLink } from "react-router-dom";
-import "./Home.css";
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 import Auth from '../../utils/auth';
 import { searchCareerJobs } from '../../utils/API';
@@ -84,24 +83,25 @@ const Home = () => {
   
     return (
       <>
-        <Jumbotron fluid className='text-light bg-dark'>
+        <Jumbotron fluid className='text-light center bg-dark'>
           <Container>
-            <h1>Search for Jobs!</h1>
+            <h3>Find your next Career</h3>
             <Form onSubmit={handleFormSubmit}>
               <Form.Row>
                 <Col xs={12} md={8}>
                   <Form.Control
+                    className='center'
                     name='searchInput'
                     value={searchInput}
                     onChange={(e) => setSearchInput(e.target.value)}
                     type='text'
-                    size='lg'
+                    size=''
                     placeholder='Search for a Job'
                   />
                 </Col>
                 <Col xs={12} md={4}>
-                  <Button type='submit' variant='success' size='lg'>
-                    Submit Search
+                  <Button type='submit' variant='primary' size=''>
+                    Search
                   </Button>
                 </Col>
               </Form.Row>

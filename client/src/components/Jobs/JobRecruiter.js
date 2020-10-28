@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
 import "./jobs.css";
 import { Link } from 'react-router-dom';
-import { api , printError} from '../../services/';
 
 class JobRecruiter extends Component {
 constructor(props){
     super(props)
 
     this.state={
-        fname:"Varun",
-        lname:"Jain",
-        company:"Sr Recruiter at Google",
+        fname:"Tester",
+        lname:"testing",
+        company:"Sr Recruiter",
         id:"",
         rec_id:this.props.data
     }
