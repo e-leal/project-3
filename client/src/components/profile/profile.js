@@ -10,8 +10,8 @@ const profile = () => {
 
     
     return (
-      <div>
-        
+      
+
         <div className="container">
           <div className="row block-row">
             <div className="wrapper col-lg-9">
@@ -514,7 +514,7 @@ const profile = () => {
                   <input type="text" className="form-control" />
                   <br />
                   <label id="work-exp-form"> Location </label>
-                  <PLACES />
+                 
                   <br />
                   <label id="work-exp-form"> Description </label>
                   <input type="textarea" className="form-control" />
@@ -770,60 +770,7 @@ const profile = () => {
                       />
                     </div>
                   </div>
-                  <div class="form-group pos-rel">
-                    <label for="inputAddress">Address</label>
-
-                    <PlacesAutocomplete
-                      value={this.state.street}
-                      onChange={this.handleChange}
-                      onSelect={this.handleSelect}
-                    >
-                      {({
-                        getInputProps,
-                        suggestions,
-                        getSuggestionItemProps,
-                        loading
-                      }) => (
-                        <div>
-                          <input
-                            {...getInputProps({
-                              placeholder: "Search Places ...",
-                              className: "location-search-input form-control"
-                            })}
-                          />
-                          <div className="autocomplete-dropdown-container">
-                            {suggestions.map(suggestion => {
-                              const className = suggestion.active
-                                ? "suggestion-item--active"
-                                : "suggestion-item";
-                              // inline style for demonstration purpose
-                              const style = suggestion.active
-                                ? {
-                                    backgroundColor: "#fafafa",
-                                    cursor: "pointer",
-                                    padding: "10px"
-                                  }
-                                : {
-                                    backgroundColor: "#ffffff",
-                                    cursor: "pointer",
-                                    padding: "10px"
-                                  };
-                              return (
-                                <div
-                                  {...getSuggestionItemProps(suggestion, {
-                                    className,
-                                    style
-                                  })}
-                                >
-                                  <span>{suggestion.description}</span>
-                                </div>
-                              );
-                            })}
-                          </div>
-                        </div>
-                      )}
-                    </PlacesAutocomplete>
-                  </div>
+                  
                   <div class="form-row">
                     <div class="form-group col-md-4">
                       <label for="inputEmail4">City</label>
