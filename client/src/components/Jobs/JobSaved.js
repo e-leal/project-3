@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import "./jobs.css";
 import { Link } from 'react-router-dom';
-import Pin from '../Files/Images/Pin.svg';
-import { api , printError, printMessage} from '../../services/';
 import $ from 'jquery'; 
 
 
@@ -171,7 +169,7 @@ catch (error)
     let easyApplyButton=null;
 
 if(this.state.easyApply){
-  easyApplyButton=<div class='child inline-block-child'><button type="button" className="btn easy-apply" data-toggle="modal" data-target="#easyApplyModal" onClick={this.getApplicant}>Easy Apply</button></div>
+  easyApplyButton=<div className='child inline-block-child'><button type="button" className="btn easy-apply" data-toggle="modal" data-target="#easyApplyModal" onClick={this.getApplicant}>Easy Apply</button></div>
 
 }else{
     easyApplyButton=<div className="col-md-3">
@@ -199,7 +197,7 @@ if(this.state.easyApply){
               </div>
               {easyApplyButton}
               <div className="col-md-2">
-              <button type="button" class="btn btn-outline-primary" onClick={this.UNSAVE}>Unsave</button></div>
+              <button type="button" className="btn btn-outline-primary" onClick={this.UNSAVE}>Unsave</button></div>
               </div>
               
 
@@ -234,7 +232,7 @@ if(this.state.easyApply){
         <div className="row left-job-detail" >
            
               <div className="col-md-3 left-job-detail-image">
-                  <img src="" class="img-fluid job-card-image-easy-apply" alt="" />
+                  <img src="" Name="img-fluid job-card-image-easy-apply" alt="" />
               </div>
               <div className="col-md-8 left-job-detail-desc">
               <div>
@@ -247,7 +245,7 @@ if(this.state.easyApply){
               <label style={{fontSize:"12px",color:"gray",fontWeight:"bold"}}>{this.state.applicantLocation}</label>
               </div>
               <div>
-              <Link to="/profile"><button type="button" class="btn btn-link" onClick={() => $("#easyApplyModal").modal('hide')}>Review your profile</button></Link>
+              <Link to="/profile"><button type="button" className="btn btn-link" onClick={() => $("#easyApplyModal").modal('hide')}>Review your profile</button></Link>
               </div>
               </div>
       </div>
@@ -258,9 +256,9 @@ if(this.state.easyApply){
                 pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                 required  className="form-control" onChange={this.setPhone}></input>
                 <br/>
-                    <div class="input-group">
-                      <div class="upload-btn-wrapper">
-                        <button class="btn btn1" >Upload Resume</button>
+                    <div className="input-group">
+                      <div className="upload-btn-wrapper">
+                        <button className="btn btn1" >Upload Resume</button>
                         <input id="uploadResume" type="file" name="myfile" onChange={this.uploadResume} required/>
                       </div>
 

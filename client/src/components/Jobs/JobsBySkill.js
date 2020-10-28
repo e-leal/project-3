@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import JobCard from "./JobCard.js";
-import { api , printError, printMessage} from '../../services/';
 import "./jobs.css";
 import { Link } from 'react-router-dom';
 
@@ -86,9 +85,9 @@ class JobsBySkill extends Component {
        var render_job = this.state.recommended_jobs.map((job)=>{
        
             return(
-                                <div class="col-lg-3 col-md-4 col-sm-6">
-                                    <div class="company_profile_info greybackground">
-                                        <div class="company-up-info">
+                                <div Name="col-lg-3 col-md-4 col-sm-6">
+                                    <div className="company_profile_info greybackground">
+                                        <div className="company-up-info">
                                             <img src={S3_URL+job.company_logo} alt="" />
                                             <Link to={`/companypage/${job._id}`}><h3>{job.title}</h3></Link>
                                             <h4>{job.function}</h4>
@@ -100,9 +99,9 @@ class JobsBySkill extends Component {
         })
     return (
             <div>                               
-            <div class="container">
-            <div class="companies-list">
-            <div class="row">
+            <div className="container">
+            <div className="companies-list">
+            <div className="row">
                 {render_job}
             </div>
             </div>

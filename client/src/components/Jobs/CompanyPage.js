@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Header from '../Common/Header';
 import bannerlogo from '../Files/Images/profile-banner.svg';
 import profileplaceholder from '../Files/Images/profile-placeholder.png'
 import JobSkills from "./JobSkills";
@@ -9,8 +8,6 @@ import '../profile/profile.css';
 import $ from 'jquery'; 
 import { Link } from 'react-router-dom';
 import JobDetailedView from "./JobDetailedView";
-import { api , printError, printMessage} from '../../services/';
-import RecruiterHeader from "../Common/RecruiterHeader";
 
 
 
@@ -248,7 +245,7 @@ class CompanyPage extends Component {
 
         var saveButton =  "";  
         if(sessionStorage.getItem('profile') == "recruiter"){
-            saveButton =   <div class='child inline-block-child' style={{paddingRight:"20px"}}><button onClick={this.saveJob} type="button" class="btn btn-outline-primary btn-save" style={{fontWeight:"bold"}}>Save Changes</button></div>
+            saveButton =   <div className='child inline-block-child' style={{paddingRight:"20px"}}><button onClick={this.saveJob} type="button" className="btn btn-outline-primary btn-save" style={{fontWeight:"bold"}}>Save Changes</button></div>
         }
       
         var check = sessionStorage.getItem("profile");
@@ -259,7 +256,7 @@ class CompanyPage extends Component {
     return (
       <div>
          {check == "applicant" ? <Header /> : <RecruiterHeader />}
-                <section class="cover-sec">
+                <section className="cover-sec">
                         <img src={this.state.banner} alt=""/>
                 </section>
                     
@@ -386,7 +383,7 @@ class CompanyPage extends Component {
         <div className="row left-job-detail" >
            
               <div className="col-md-3 left-job-detail-image">
-                  <img src="" class="img-fluid job-card-image-easy-apply" alt="" />
+                  <img src="" className="img-fluid job-card-image-easy-apply" alt="" />
               </div>
               <div className="col-md-8 left-job-detail-desc">
               <div>
@@ -399,7 +396,7 @@ class CompanyPage extends Component {
               <label style={{fontSize:"12px",color:"gray",fontWeight:"bold"}}>{this.state.applicantLocation}</label>
               </div>
               <div>
-              <Link to="/profile"><button type="button" class="btn btn-link" onClick={() => $("#easyApplyModal").modal('hide')}>Review your profile</button></Link>
+              <Link to="/profile"><button type="button" className="btn btn-link" onClick={() => $("#easyApplyModal").modal('hide')}>Review your profile</button></Link>
               </div>
               </div>
       </div>
@@ -410,9 +407,9 @@ class CompanyPage extends Component {
                 pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                 required  className="form-control" onChange={this.setPhone}></input>
                 <br/>
-                    <div class="input-group">
-                      <div class="upload-btn-wrapper">
-                        <button class="btn btn1" >Upload Resume</button>
+                    <div className="input-group">
+                      <div className="upload-btn-wrapper">
+                        <button className="btn btn1" >Upload Resume</button>
                         <input id="uploadResume" type="file" name="myfile" onChange={this.uploadResume} required/>
                       </div>
 

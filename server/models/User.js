@@ -25,7 +25,7 @@ const userSchema = new Schema (
             minlength: 5
         },
         employer: {
-            type: Boolean,
+            type: String,
             required: true
         },
         createdApplications: [

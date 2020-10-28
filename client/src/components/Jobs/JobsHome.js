@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import JobSearchBar from "./JobSearchBar";
-import Header from "../Common/Header"
 import {connect} from "react-redux";
 import { Link } from 'react-router-dom';
 import "./jobs.css";
-import { api , printError, printMessage} from '../../services/';
 import JobsBySkill from "../Jobs/JobsBySkill";
 
 
@@ -84,7 +82,7 @@ class JobsHome extends Component {
         </div>
         </section>
 
-        <section class="companies-info companies-info-background col-md-8" >
+        <section className="companies-info companies-info-background col-md-8" >
         
         <div className="smallheading">
 					<h3>Jobs you may be interested in</h3>

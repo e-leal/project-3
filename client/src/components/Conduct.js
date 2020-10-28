@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import NavBar from '../Nav/Navbar';
-import Signup from '../Signup';
-import SearchJobs from '../../pages/SearchJobs';
+import Navbar from './Nav/Navbar';
+import Signup from './Signup';
+import SearchJobs from '../pages/SearchJobs';
+import Home from '../components/Home/Home.js'
 
-function AppContainer() {
+function Conduct() {
   const [currentPage, handlePageChange] = useState('Home');
 
   const renderPage = () => {
@@ -12,19 +13,17 @@ function AppContainer() {
         return <Signup />;
       case 'Search Jobs':
         return <SearchJobs />;
-//      case 'User Profile':
-//        return <UserProfile />;
         default:
-          return <AppContainer />;
+          return <Home />;
     }
   };
 
   return (
     <div>
-      <NavBar currentPage={currentPage} handlePageChange={handlePageChange} />
+      <Navbar currentPage={currentPage} handlePageChange={handlePageChange} />
       <div>{renderPage(currentPage)}</div>
     </div>
   );
 }
 
-export default AppContainer;
+export default Conduct;

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
 import SignUpForm from '../Signup';
 import LoginForm from '../Login/LoginForm';
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 import Auth from '../../utils/auth';
 
@@ -15,13 +16,13 @@ const AppNavbar = () => {
       <Navbar bg='dark' variant='dark' expand='lg'>
         <Container fluid>
           <Navbar.Brand as={Link} to='/'>
-            Certainly
+            <h1>Certainly</h1>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar'>
-            <Nav className='ml-auto'>
+            <Nav className='ml-auto' size='sm'>
               <Nav.Link as={Link} to='/'>
-                Search For Jobs
+                <h4>Profile</h4>
               </Nav.Link>
               {/* if user is logged in show saved books and logout */}
               {Auth.loggedIn() ? (
@@ -32,7 +33,7 @@ const AppNavbar = () => {
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
                 </>
               ) : (
-                <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
+                <Nav.Link onClick={() => setShowModal(true)}><h4>Login</h4></Nav.Link>
               )}
             </Nav>
           </Navbar.Collapse>

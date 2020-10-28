@@ -1,4 +1,4 @@
-# project-3
+# project-3: Certainly
 
 ## Description
 Certainly is a Job Search tool that helps Employers and Job Seekers keep track of their applications and listings.

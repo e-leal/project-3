@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import PLACES from '../Common/Places';
-import { api, printError, printMessage } from '../../services';
 
 
 class JobSearchBar extends Component {
