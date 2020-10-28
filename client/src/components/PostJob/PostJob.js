@@ -1,60 +1,11 @@
 import React, { Component } from "react";
-
-import Header from "../Common/Header";
-import { connect } from "react-redux";
 import "./PostJob.css";
 import PostJobHeader from "./PostJobHeader";
 import jobsfooter from "../Files/Images/jobsfooter.png";
-import PLACES from '../Common/Places';
-import { api, printError, printMessage } from "../../services/";
 
 //import Navbar
 
 class PostJob extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      company: "",
-      jobtitle: "",
-      jobaddress: ""
-    };
-
-    this.onChange = this.onChange.bind(this);
-    this.checkret = this.checkret.bind(this);
-  }
-
-  checkret(data)
-  {
-    console.log(data);
-    this.setState({
-      jobaddress : data
-    })
-    
-  }
-
-  onChange = e => this.setState({ [e.target.name]: e.target.value });
-
-  handleJobPost = e => {
-    e.preventDefault();
-
-    // const data = {
-    //   company: this.state.company,
-    //   jobtitle: this.state.jobtitle,
-    //   jobaddress: this.state.jobaddress
-    // };
-
-    console.log("Inside handle post job");
-
-    this.props.history.push({
-      pathname: "/postjobfirst",
-      state: {
-        company: this.state.company,
-        jobtitle: this.state.jobtitle,
-        jobaddress: this.state.jobaddress
-      }
-    });
-  };
 
   render() {
     return (
@@ -102,7 +53,6 @@ class PostJob extends Component {
                 name="jobaddress"
                 onChange={this.onChange}
               /> */}
-              <PLACES onPosition={this.checkret}></PLACES>
             </div>
             <button
               type="button"

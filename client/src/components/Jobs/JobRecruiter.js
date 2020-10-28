@@ -3,50 +3,6 @@ import "./jobs.css";
 import { Link } from 'react-router-dom';
 
 class JobRecruiter extends Component {
-constructor(props){
-    super(props)
-
-    this.state={
-        fname:"Tester",
-        lname:"testing",
-        company:"Sr Recruiter",
-        id:"",
-        rec_id:this.props.data
-    }
-    this.getRecruiter=this.getRecruiter.bind(this);
-
-}
-
-async getRecruiter(id){
-if(id){
-
-  try {
-    let ret = await api('GET','/users/'+id);
-    
-    this.setState({
-      fname:ret.data.payLoad.user.name.first,
-      lname:ret.data.payLoad.user.name.last,
-      company:ret.data.payLoad.user.company
-    })
-  } catch (error) {
-    console.log("error",Object.keys(error), error.response);
-    if(error.response){
-    printError(error);
-    }
-  }
-
-}else{
-  return;
-}
-}
-
-componentWillReceiveProps(nextProps){
-  
-  
-    this.getRecruiter(nextProps.data);
- 
-  
-}
 
   render() {
     
