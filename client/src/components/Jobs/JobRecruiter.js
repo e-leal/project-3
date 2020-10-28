@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import "./jobs.css";
 import { Link } from 'react-router-dom';
-import { api , printError} from '../../services/';
 
 class JobRecruiter extends Component {
 constructor(props){

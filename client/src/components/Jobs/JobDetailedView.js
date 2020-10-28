@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import {set_active_id} from "../../actions/jobCardActiveId";
-import { api , printError, printMessage} from '../../services/';
 import "./jobs.css";
 import JobSkills from "./JobSkills";
 import JobFunctions from "./JobFunctions"
 import JobRecruiter from "./JobRecruiter";
 import {connect} from "react-redux";
-import Watch from '../Files/Images/Watch.svg';
 import $ from 'jquery'; 
 class JobDetailedView extends Component {
 

@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import "./jobs.css";
 import { Link } from 'react-router-dom';
-import Pin from '../Files/Images/Pin.svg';
-import { api , printError, printMessage} from '../../services/';
 import $ from 'jquery'; 
 
 

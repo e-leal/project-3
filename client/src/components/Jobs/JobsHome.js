@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import JobSearchBar from "./JobSearchBar";
-import Header from "../Common/Header"
 import {connect} from "react-redux";
 import { Link } from 'react-router-dom';
 import "./jobs.css";
-import { api , printError, printMessage} from '../../services/';
 import JobsBySkill from "../Jobs/JobsBySkill";
 
 

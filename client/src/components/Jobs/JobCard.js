@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from "react-redux";
 import {set_active_id} from "../../actions/jobCardActiveId";
-import { api , printError, printMessage} from '../../services/';
 import "./jobs.css";
 
 class JobCard extends Component {

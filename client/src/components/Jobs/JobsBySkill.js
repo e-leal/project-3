@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import JobCard from "./JobCard.js";
-import { api , printError, printMessage} from '../../services/';
 import "./jobs.css";
 import { Link } from 'react-router-dom';
 

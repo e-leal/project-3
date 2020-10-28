@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { useMutation } from '@apollo/react-hooks';
 import { LOGIN_USER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
@@ -60,12 +61,7 @@ const LoginForm = () => {
   };
 
   return (
-    // <>
-    // <div className="signup-body">
-      <div className="signup-body-background">
-        <div className="signup-form-lower">
-          <h2 className="signup-title">Find your next Career</h2>
-          <h3 className="signup-title-small">Get started today!</h3>
+    <>
             <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
               <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
                 Something went wrong with your login credentials!
@@ -95,14 +91,11 @@ const LoginForm = () => {
                 />
                 <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
               </Form.Group>
-              <Button disabled={!(userFormData.email && userFormData.password)} type='submit' variant='success' className='signup-login-button'>
+              <Button disabled={!(userFormData.email && userFormData.password)} type='button' variant='primary' class='btn btn-primary btn-block' className='signup-login-button'>
                 Submit
               </Button>
             </Form>
-        </div>
-      </div>
-    // </div>
-  // </>     
+  </>     
   );
 };
 
