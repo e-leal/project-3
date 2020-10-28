@@ -15,7 +15,7 @@ class PostJob extends Component {
         <div className="container-fluid containerstyle">
           <div style={{clear : "both", paddingTop: "72px"}}>
             <p className="lead jobtext"  style={{marginLeft: "24%"}}>
-              Reach the quality candidates you can’t find anywhere else.
+              Reach quality candidates.
             </p>
           </div>
 

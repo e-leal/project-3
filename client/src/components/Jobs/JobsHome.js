@@ -39,12 +39,12 @@ const JobsHome = () => {
 
 
                 <div className="col-md-3">
-                    <span className="bluetext"> {this.state.appliedJobs}</span>
+                    <span className="bluetext"> Job home</span>
                     <span className ="lightgreytext"> Applied Jobs </span>
                 </div>
 
                 <div className="col-md-3">
-                    <span className="bluetext"> {this.state.savedJobs}</span>
+                    <span className="bluetext"> home </span>
                     <span className ="lightgreytext"> <Link to="/jobshome/savedjobs" className ="lightgreytext"> Saved Jobs </Link></span>               
                 </div> 
         </div>
