@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import {connect} from "react-redux";
 import { Link } from 'react-router-dom';
 import { searchCareerJobs } from '../utils/API';
 import "./jobs.css";
@@ -9,14 +8,6 @@ import { Container } from 'react-bootstrap';
 //import Navabar
 
 class JobsHome extends Component {
-    constructor(props) {
-		super(props);
-
-		this.state = ({
-            savedJobs:0,
-            appliedJobs:0
-		})
-    }
 
     // Bringing the jobs according to the skill set of the user
     // async componentDidMount(){

@@ -1,17 +1,12 @@
 import React, { Component } from "react";
 import profileplaceholder from "../Files/Images/profile-placeholder.png";
 import "./profile.css";
-import $ from "jquery";
-import { connect } from "react-redux";
-import * as moment from "moment";
 import { Link } from "react-router-dom";
 
 const profile = () => {
 
     
     return (
-      <div>
-        
         <div className="container">
           <div className="row block-row">
             <div className="wrapper col-lg-9">
@@ -24,18 +19,12 @@ const profile = () => {
                           <div className="main-left-sidebar">
                             <div className="user_profile custom-wrapper">
                               <section className="cover-sec">
-                                <img
-                                  src={this.state.banner}
-                                  alt="LinkedIn"
-                                  onClick={() => this.changeDocument("BANNER")}
-                                />
                               </section>
                               <div className="user-pro-img">
                                 <img
                                   src={this.state.userimage}
-                                  alt="LinkedIn"
+                                  alt="Profilepic"
                                   className="user-image profile-user-image"
-                                  onClick={() => this.changeDocument("PROFILE")}
                                 />
                               </div>
                               {/* <!--user-pro-img end--> */}
@@ -514,7 +503,6 @@ const profile = () => {
                   <input type="text" className="form-control" />
                   <br />
                   <label id="work-exp-form"> Location </label>
-                  <PLACES />
                   <br />
                   <label id="work-exp-form"> Description </label>
                   <input type="textarea" className="form-control" />
@@ -772,57 +760,6 @@ const profile = () => {
                   </div>
                   <div class="form-group pos-rel">
                     <label for="inputAddress">Address</label>
-
-                    <PlacesAutocomplete
-                      value={this.state.street}
-                      onChange={this.handleChange}
-                      onSelect={this.handleSelect}
-                    >
-                      {({
-                        getInputProps,
-                        suggestions,
-                        getSuggestionItemProps,
-                        loading
-                      }) => (
-                        <div>
-                          <input
-                            {...getInputProps({
-                              placeholder: "Search Places ...",
-                              className: "location-search-input form-control"
-                            })}
-                          />
-                          <div className="autocomplete-dropdown-container">
-                            {suggestions.map(suggestion => {
-                              const className = suggestion.active
-                                ? "suggestion-item--active"
-                                : "suggestion-item";
-                              // inline style for demonstration purpose
-                              const style = suggestion.active
-                                ? {
-                                    backgroundColor: "#fafafa",
-                                    cursor: "pointer",
-                                    padding: "10px"
-                                  }
-                                : {
-                                    backgroundColor: "#ffffff",
-                                    cursor: "pointer",
-                                    padding: "10px"
-                                  };
-                              return (
-                                <div
-                                  {...getSuggestionItemProps(suggestion, {
-                                    className,
-                                    style
-                                  })}
-                                >
-                                  <span>{suggestion.description}</span>
-                                </div>
-                              );
-                            })}
-                          </div>
-                        </div>
-                      )}
-                    </PlacesAutocomplete>
                   </div>
                   <div class="form-row">
                     <div class="form-group col-md-4">
@@ -926,10 +863,8 @@ const profile = () => {
             onChange={() => this.docChange("RESUME")}
           />
         </div>
-      </div>
     );
   }
 
 
 export default profile;
-
