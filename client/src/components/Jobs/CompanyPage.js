@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Header from '../Common/Header';
 import bannerlogo from '../Files/Images/profile-banner.svg';
 import profileplaceholder from '../Files/Images/profile-placeholder.png'
 import JobSkills from "./JobSkills";
@@ -9,8 +8,6 @@ import '../profile/profile.css';
 import $ from 'jquery'; 
 import { Link } from 'react-router-dom';
 import JobDetailedView from "./JobDetailedView";
-import { api , printError, printMessage} from '../../services/';
-import RecruiterHeader from "../Common/RecruiterHeader";
 
 
 
