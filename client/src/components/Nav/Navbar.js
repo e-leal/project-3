@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
 import SignUpForm from '../Signup';
 import LoginForm from '../Login/LoginForm';
-import JobsHome from '../Jobs/JobsHome'
-import 'bootstrap/dist/css/bootstrap.min.css'
+import JobsHome from '../Jobs/JobsHome';
+import profile from '../profile/profile';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Auth from '../../utils/auth';
 
@@ -22,7 +23,7 @@ const AppNavbar = () => {
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar'>
             <Nav className='ml-auto' size='sm'>
-              <Nav.Link as={Link} to='/'>
+              <Nav.Link as={Link} to={ profile }>
                 <h4>Profile</h4>
               </Nav.Link>
               {/* if user is logged in show saved books and logout */}

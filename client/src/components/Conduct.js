@@ -1,22 +1,22 @@
-// import React, { useState } from 'react';
-// import Navbar from './Nav/Navbar';
-// import Login from './components/Login/LoginForm';
-// import Profile from '../components/profile/profile';
-// import Home from '../components/Home/Home.js'
+import React, { useState } from 'react';
+import Navbar from './Nav/Navbar';
+import Login from '../components/Login/LoginForm';
+import Profile from '../components/profile/profile';
+import Home from '../components/Home/Home.js'
 
 // function Conduct() {
 //   const [currentPage, handlePageChange] = useState('Home');
 
-//   const renderPage = () => {
-//     switch (currentPage) {
-//       case 'Profile':
-//         return <Profile />;
-//       case 'Login':
-//         return <Login />;
-//         default:
-//           return <Home />;
-//     }
-//   };
+  const renderPage = () => {
+    switch (currentPage) {
+      case 'Profile':
+        return <Profile />;
+      case 'Login':
+        return <Login />;
+      default:
+        return <Home />;
+    }
+  };
 
 //   return (
 //     <div>
