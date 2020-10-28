@@ -2,7 +2,7 @@
   "name": "base",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3001",
+  "proxy": "http://localhost:3001/",
   "dependencies": {
     "@apollo/react-components": "^4.0.0",
     "@apollo/react-hooks": "^4.0.0",
