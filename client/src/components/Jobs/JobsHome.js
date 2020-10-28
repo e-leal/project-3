@@ -1,12 +1,27 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import "./jobs.css";
 import { Container } from 'react-bootstrap';
+import {GET_ME} from '../../utils/queries';
+import { useMutation, useQuery } from '@apollo/react-hooks';
+
 
 
 //import Navabar
 
 const JobsHome = () => {
+    //const [showAlert, setShowAlert] = useState(false);
+    //const [userFormData, setUserFormData] = useState({username: '', email: '', employer: '', createdJobs: '', createdApplication: ''})
+    const { loading, data } = useQuery(GET_ME);
+    const userData = data?.me || {};
+    console.log("user data is: ", userData);
+    // useEffect(() => {
+    //     if (error) {
+    //       setShowAlert(true);
+    //     } else {
+    //       setShowAlert(false);
+    //     }
+    //   }, [error]);
 
     // Bringing the jobs according to the skill set of the user
     // async componentDidMount(){
@@ -28,6 +43,10 @@ const JobsHome = () => {
 
     // }
 
+    if (loading) {
+        return <h2>LOADING...</h2>;
+      }
+
     return (
     <div>
         <Container />
@@ -39,12 +58,12 @@ const JobsHome = () => {
 
 
                 <div className="col-md-3">
-                    <span className="bluetext"> {this.state.appliedJobs}</span>
+                    <span className="bluetext"> {userData.appliedJobs}</span>
                     <span className ="lightgreytext"> Applied Jobs </span>
                 </div>
 
                 <div className="col-md-3">
-                    <span className="bluetext"> {this.state.savedJobs}</span>
+                    <span className="bluetext"> {userData.savedJobs}</span>
                     <span className ="lightgreytext"> <Link to="/jobshome/savedjobs" className ="lightgreytext"> Saved Jobs </Link></span>               
                 </div> 
         </div>
