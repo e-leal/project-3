@@ -1,41 +1,9 @@
 import React, { Component } from 'react'
-import {connect} from "react-redux";
 import {set_active_id} from "../../actions/jobCardActiveId";
 import "./jobs.css";
 
 class JobCard extends Component {
 
-  constructor(props){
-    super(props);
-    this.state={
-      title:this.props.data.title,
-      company:this.props.data.company,
-      description:this.props.data.description,
-      address:this.props.data.address,
-      id:this.props.data._id,
-      active_id:this.props.jobs[0]._id,
-      time_diff:this.props.data.time_diff,
-      company_logo: S3_URL + this.props.data.company_logo
-    }
-    this.setActiveID=this.setActiveID.bind(this);
-  }
-
-  async setActiveID(){
-    this.props.set_active_id(this.state.id);
-    this.props.callback(this.state.id);
-
-
-    try {
-      let ret = await api('PUT',"/log/click/"+this.state.active_id);
-      console.log(ret);
-    
-  } catch (error) {
-      console.log(Object.keys(error), error.response);
-      printError(error);   //Pass Full response object to the printError method.
-  }
-  
-
-  }
   render() {
     return (
       <div className="row left-job-detail" onClick={this.setActiveID}>
@@ -79,7 +47,4 @@ const mapDispachToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispachToProps
-)(JobCard);
+export default JobCard;
