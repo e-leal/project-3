@@ -247,11 +247,11 @@ if(filteredJob!=null){
 let easyApplyButton=null;
 
 if(this.state.easyapply){
-    easyApplyButton=<div class='child inline-block-child'><button type="button" className="btn easy-apply" data-toggle="modal" data-target="#easyApplyModal" onClick={this.getApplicant}>Easy Apply</button></div>
+    easyApplyButton=<div className='child inline-block-child'><button type="button" className="btn easy-apply" data-toggle="modal" data-target="#easyApplyModal" onClick={this.getApplicant}>Easy Apply</button></div>
 
 }else {
   easyApplyButton = (
-    <div class="child inline-block-child">
+    <div className="child inline-block-child">
       <Link className="btn easy-apply" to={`/apply/${this.state.job_id}`}>
         Apply{" "}
       </Link>
@@ -263,7 +263,7 @@ if(this.state.easyapply){
       <div className="row left-job-detail">
            
               <div className="col-md-3 left-job-detail-image">
-                  <img src={this.state.company_logo} class="img-fluid job-detail-image" alt="LinkedIn"/>
+                  <img src={this.state.company_logo} className="img-fluid job-detail-image" alt="LinkedIn"/>
                   
               </div>
 
@@ -284,7 +284,7 @@ if(this.state.easyapply){
         <div className="row left-job-detail" >
            
               <div className="col-md-3 left-job-detail-image">
-                  <img src={this.state.profile_image} class="img-fluid job-card-image-easy-apply" alt="" />
+                  <img src={this.state.profile_image} className="img-fluid job-card-image-easy-apply" alt="" />
               </div>
               <div className="col-md-8 left-job-detail-desc">
               <div>
@@ -297,7 +297,7 @@ if(this.state.easyapply){
               <label style={{fontSize:"12px",color:"gray",fontWeight:"bold"}}>{this.state.applicantLocation}</label>
               </div>
               <div>
-              <Link to={`/public-profile/${this.state.applicant_id}`}><button type="button" class="btn btn-link" onClick={() => $("#easyApplyModal").modal('hide')}>Review your profile</button></Link>
+              <Link to={`/public-profile/${this.state.applicant_id}`}><button type="button" className="btn btn-link" onClick={() => $("#easyApplyModal").modal('hide')}>Review your profile</button></Link>
               </div>
               </div>
       </div>
@@ -308,9 +308,9 @@ if(this.state.easyapply){
                 pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                 required  className="form-control" onChange={this.setPhone}></input>
                 <br/>
-                    <div class="input-group">
-                      <div class="upload-btn-wrapper">
-                        <button class="btn btn1" >Upload Resume</button>
+                    <div className="input-group">
+                      <div className="upload-btn-wrapper">
+                        <button className="btn btn1" >Upload Resume</button>
                         <input id="uploadResume" type="file" name="myfile" onChange={this.uploadResume} required/>
                       </div>
 
@@ -348,8 +348,8 @@ if(this.state.easyapply){
               <img src={Watch} style={{width:"4%"}}></img>&nbsp;<label style={{paddingTop:"1%",fontSize:"12px"}}>Be an early applicant</label>
               </div>
               <div className="heading-location-button">
-              <div class='parent' >
-              <div class='child inline-block-child' style={{paddingRight:"20px"}}><button type="button" class="btn btn-outline-primary" style={{fontWeight:"bold"}} onClick={this.saveJob}>Save</button></div>
+              <div className='parent' >
+              <div className='child inline-block-child' style={{paddingRight:"20px"}}><button type="button" className="btn btn-outline-primary" style={{fontWeight:"bold"}} onClick={this.saveJob}>Save</button></div>
               {easyApplyButton}
             </div>
             </div>

@@ -100,7 +100,7 @@ if(this.props.jobs){
 }
 jobsComponent =this.props.jobs?this.props.jobs.map(job => {
   return(
-    <div class={job._id === this.state.activeID? 'activeCard':''}>
+    <div className={job._id === this.state.activeID? 'activeCard':''}>
       <JobCard key={Math.random()} data={job} callback={this.updateActiveID}/>
     </div>
   )

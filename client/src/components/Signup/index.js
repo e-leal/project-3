@@ -7,7 +7,7 @@ import { useMutation } from '@apollo/react-hooks';
 
 const SignupForm = () => {
   // set initial form state
-  const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
+  const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '', employer: '' });
   // set state for form validation
   const [validated] = useState(false);
   // set state for alert
@@ -24,7 +24,9 @@ const SignupForm = () => {
   }, [error]);
 
   const handleInputChange = (event) => {
+    
     const { name, value } = event.target;
+    console.log(name, " is being changed to: ", value);
     setUserFormData({ ...userFormData, [name]: value });
   };
 
@@ -43,6 +45,7 @@ const SignupForm = () => {
       const {data} = await addUser({
         variables: {...userFormData}
       });
+      console.log("our data is: ", data)
       Auth.login(data.addUser.token);
     } catch (err) {
       console.error(err);
@@ -53,6 +56,7 @@ const SignupForm = () => {
       username: '',
       email: '',
       password: '',
+      employer: ''
     });
   };
 
@@ -102,6 +106,16 @@ const SignupForm = () => {
             required
           />
           <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
+        </Form.Group>
+        <Form.Group>
+          <Form.Label htmlFor="employer">Are you an employer?</Form.Label>
+          <Form.Control
+            as="select" name="employer" onChange={handleInputChange}
+            value={userFormData.employer}
+            required defaultValue="false">
+              <option value='false'>No</option>
+              <option value='true'>Yes</option>
+            </Form.Control>
         </Form.Group>
         <Button
           disabled={!(userFormData.username && userFormData.email && userFormData.password)}
