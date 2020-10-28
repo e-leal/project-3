@@ -54,7 +54,6 @@
     font-size: 25px;
     text-align: left;
     padding-left: 30px;
-    font-family: linkedin-regular-font;
   }
 
   .profile-user-subname
@@ -64,7 +63,6 @@
     text-align: left;
     padding-left: 30px;
     padding-top : 8px;
-    font-family: linkedin-regular-font;
 
   }
 
@@ -76,17 +74,15 @@
     text-align: left;
     padding-left: 30px;
     padding-top: 15px;
-    font-family: linkedin-regular-font;
   }
 
 
   #profile-section
   {
     color: #fff;
-    background-color: #0073b1;
+    background-color: grey;
     border-color: #0073b1;
     font-weight: bold;
-    font-family: linkedin-regular-font;
     letter-spacing: 1px;
     padding-left: 30px;
     padding-right : 30px;
@@ -108,7 +104,6 @@
     text-align: left;
     padding-left: 30px;
     line-height: 24px;
-    font-family: linkedin-regular-font;
     padding-bottom: 30px;
   }
   
@@ -118,7 +113,6 @@
     font-size: 25px;
     text-align: left;
     padding-left: 10px;
-    font-family: linkedin-regular-font;
   }
 
 
@@ -162,7 +156,7 @@
     content: '';
     right: 0px;
     height: 200%;
-    background: #0374b3;
+    background: grey;
     width: 1px;
     right: -10px;
     z-index: 11111;
@@ -190,7 +184,6 @@
     border: 0;
     padding: 10px;
     padding-left: 15px;
-    font-family: linkedin-regular-font;
 }
 
 .exts button:hover
@@ -209,7 +202,6 @@
 {
   padding-bottom: 5px;
   font-size: 16px;
-  font-family: linkedin-regular-font;
 }
 
 .autocomplete-dropdown-container
@@ -239,7 +231,6 @@
   font-size: 16px !important;
   font-weight: 600 !important;
   color : rgba(0,0,0,.9) !important;
-  font-family: linkedin-regular-font;
 }
 
 .exp-company
@@ -247,7 +238,6 @@
   font-size: 18px !important;
   line-height: 31px !important;
   color: rgba(0,0,0,.9) !important;
-  font-family: linkedin-regular-font;
   font-weight: 300;
 }
 
@@ -401,7 +391,6 @@
   width: 100%;
     padding: 4px;
     height: 40px;
-    font-family: linkedin-regular-font;
     margin-bottom: 15px;
 }
 

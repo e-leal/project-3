@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from "react-redux";
 import { Link } from 'react-router-dom';
-import api from 'client/src/utils/API.js'
+import { searchCareerJobs } from '../utils/API';
 import "./jobs.css";
 import { Container } from 'react-bootstrap';
 

@@ -1,20 +1,10 @@
 import React, { Component } from "react";
-import Header from "../Common/Header";
 import RecruiterHeader from "../Common/RecruiterHeader";
-import { S3_URL } from "../../constants/routes";
-import bannerlogo from "../Files/Images/profile-banner.svg";
 import profileplaceholder from "../Files/Images/profile-placeholder.png";
 import "./profile.css";
-import PlacesAutocomplete, {
-  geocodeByAddress,
-  getLatLng
-} from "react-places-autocomplete";
 import $ from "jquery";
 import { connect } from "react-redux";
-import { api, printError, printMessage } from "../../services/";
-import fetchProfile from "../../actions/profile";
 import * as moment from "moment";
-import PLACES from "../Common/Places";
 import { Link } from "react-router-dom";
 
 window.delrows = function(f) {
@@ -1001,7 +991,7 @@ class profile extends Component {
         console.log(ret);
         if (ret.status >= 200 && ret.status < 300) {
           let data = {
-            banner_image: S3_URL + ret["data"]["payLoad"]
+            banner_image: ret["data"]["payLoad"]
           };
           let ret2 = await api(
             "PUT",

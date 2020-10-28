@@ -1,6 +1,5 @@
 import React, { useState, useEffect }  from "react";
 import { NavLink } from "react-router-dom";
-import "./Home.css";
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 import Auth from '../../utils/auth';
 import { searchCareerJobs } from '../../utils/API';

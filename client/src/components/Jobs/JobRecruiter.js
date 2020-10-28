@@ -7,9 +7,9 @@ constructor(props){
     super(props)
 
     this.state={
-        fname:"Varun",
-        lname:"Jain",
-        company:"Sr Recruiter at Google",
+        fname:"Tester",
+        lname:"testing",
+        company:"Sr Recruiter",
         id:"",
         rec_id:this.props.data
     }

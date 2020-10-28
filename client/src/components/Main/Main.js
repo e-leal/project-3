@@ -23,8 +23,6 @@ import JobsBySkill from "../Jobs/JobsBySkill";
 import PublicProfile from "../profile/publicprofile";
 import ApplicantHome from "../Home/ApplicantHome";
 import RecruiterHome from "../Home/RecruiterHome";
-import RecruiterConnection from "../Connection/RecruiterConnection";
-import ApplicantConnection from "../Connection/ApplicantConnection";
 import ListedJobs from "../recruiter/listedJobs";
 import Recruitersignup from "../Recruitersignup/Recruitersignup";
 import ApplyJob from "../ApplyJob/Applyjob";

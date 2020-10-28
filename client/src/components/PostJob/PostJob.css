@@ -19,11 +19,11 @@
 }
 
 .containerstyle {
-  background: #006097;
+  background: grey;
   height: 594px;
 }
 .submitbutton {
-  background-color: #004b7c;
+  background-color: #165e8d;
   border: 0;
   border-radius: 2px;
   box-sizing: border-box;
