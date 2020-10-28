@@ -15,7 +15,6 @@ class JobCard extends Component {
       id:this.props.data._id,
       active_id:this.props.jobs[0]._id,
       time_diff:this.props.data.time_diff,
-      company_logo: S3_URL + this.props.data.company_logo
     }
     this.setActiveID=this.setActiveID.bind(this);
   }

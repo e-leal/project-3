@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import JobSearchBar from "./JobSearchBar";
 import {connect} from "react-redux";
 import { Link } from 'react-router-dom';
+import api from 'client/src/utils/API.js'
 import "./jobs.css";
-import JobsBySkill from "../Jobs/JobsBySkill";
+import { Container } from 'react-bootstrap';
 
 
 //import Navabar
@@ -30,7 +30,7 @@ class JobsHome extends Component {
             })
           } catch (error) {
             console.log(Object.keys(error), error.response);
-            printError(error);
+          
           }
     }
     
@@ -59,11 +59,8 @@ class JobsHome extends Component {
 
     return (
     <div>
-        <Header />
+        <Container />
             <div className="jobSearchBar">
-                <div className="container">
-                <JobSearchBar />        
-                </div>
             </div>
 
             <section className="appliedjobs container col-md-8">
@@ -87,9 +84,6 @@ class JobsHome extends Component {
         <div className="smallheading">
 					<h3>Jobs you may be interested in</h3>
 		</div>
-        <div>
-        <JobsBySkill />
-        </div>
         </section>
         
         

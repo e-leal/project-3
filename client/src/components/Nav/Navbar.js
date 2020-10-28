@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
 import SignUpForm from '../Signup';
 import LoginForm from '../Login/LoginForm';
+import JobsHome from '../Jobs/JobsHome'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 import Auth from '../../utils/auth';
@@ -27,7 +28,7 @@ const AppNavbar = () => {
               {/* if user is logged in show saved books and logout */}
               {Auth.loggedIn() ? (
                 <>
-                  <Nav.Link as={Link} to='/saved'>
+                  <Nav.Link as={Link} to= { JobsHome }>
                     See Your Jobs And Applications
                   </Nav.Link>
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
