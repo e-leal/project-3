@@ -42,8 +42,9 @@ const SignupForm = () => {
     }
 
     try {
+      console.log("our user form data is: ", userFormData);
       const {data} = await addUser({
-        variables: {...userFormData}
+        variables: {email: userFormData.email, username: userFormData.username, employer: userFormData.employer, password: userFormData.password}
       });
       console.log("our data is: ", data)
       Auth.login(data.addUser.token);
@@ -112,9 +113,9 @@ const SignupForm = () => {
           <Form.Control
             as="select" name="employer" onChange={handleInputChange}
             value={userFormData.employer}
-            required defaultValue="false">
-              <option value='false'>No</option>
-              <option value='true'>Yes</option>
+            required defaultValue={false}>
+              <option value={false}>No</option>
+              <option value={true}>Yes</option>
             </Form.Control>
         </Form.Group>
         <Button
