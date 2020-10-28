@@ -6,7 +6,7 @@ import { Container } from 'react-bootstrap';
 
 //import Navabar
 
-class JobsHome extends Component {
+const JobsHome = () => {
 
     // Bringing the jobs according to the skill set of the user
     // async componentDidMount(){
@@ -27,9 +27,6 @@ class JobsHome extends Component {
     //     // console.log("data1",temp.data.payLoad);
 
     // }
-
-
-    render() {
 
     return (
     <div>
@@ -66,24 +63,9 @@ class JobsHome extends Component {
     </div>
     )
   }
-}
 
-
-function mapStateToProps(state) {
-    console.log("in map state details view",state);
-  //  return { property_detail: state.fetch_details_view.property_detail,
-  //  };
-  }
   
-  const mapDispachToProps = dispatch => {
-    return {
-     //   fetch_detailsview: (id) => dispatch(fetch_detailsview(id)),
-     
-
-    };
-  };
-  
-  export default JobsHome;
+export default JobsHome;
   
 
 
