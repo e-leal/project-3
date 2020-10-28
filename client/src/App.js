@@ -7,7 +7,7 @@ import Conduct from './components/Conduct';
 import SearchJobs from '../src/pages/SearchJobs'
 
 const client = new ApolloClient({
-  request: (operation) => {
+  request: operation => {
     console.log("007 operation: ", operation)
     const token = localStorage.getItem('id_token');
     console.log("our client app.js is saying our token is: ", token)
@@ -17,7 +17,7 @@ const client = new ApolloClient({
       },
     });
   },
-  uri: '/graphql'
+  uri: 'http://localhost:3001/graphql'
 });
 
 function App (){
