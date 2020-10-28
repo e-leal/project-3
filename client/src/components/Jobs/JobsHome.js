@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
-import { searchCareerJobs } from '../utils/API';
 import "./jobs.css";
 import { Container } from 'react-bootstrap';
 
@@ -84,10 +83,7 @@ function mapStateToProps(state) {
     };
   };
   
-  export default connect(
-    mapStateToProps,
-    mapDispachToProps
-  )(JobsHome);
+  export default JobsHome;
   
 
 

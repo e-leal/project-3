@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Navbar from './Nav/Navbar';
-import Login from './components/Login/LoginForm';
+import Login from '../components/Login/LoginForm';
 import Profile from '../components/profile/profile';
 import Home from '../components/Home/Home.js'
 
@@ -13,8 +13,8 @@ function Conduct() {
         return <Profile />;
       case 'Login':
         return <Login />;
-        default:
-          return <Home />;
+      default:
+        return <Home />;
     }
   };
 
