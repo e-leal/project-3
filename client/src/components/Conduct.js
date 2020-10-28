@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from './Nav/Navbar';
-import Signup from './Signup';
-import SearchJobs from '../pages/SearchJobs';
+import Login from './components/Login/LoginForm';
+import Profile from '../components/profile/profile';
 import Home from '../components/Home/Home.js'
 
 function Conduct() {
@@ -9,10 +9,10 @@ function Conduct() {
 
   const renderPage = () => {
     switch (currentPage) {
-      case 'Signup':
-        return <Signup />;
-      case 'Search Jobs':
-        return <SearchJobs />;
+      case 'Profile':
+        return <Profile />;
+      case 'Login':
+        return <Login />;
         default:
           return <Home />;
     }
