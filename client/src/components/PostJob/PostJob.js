@@ -11,14 +11,14 @@ const PostJob = () => {
   const [userFormData, setUserFormData] = useState(
     {
     company: '',
+    title: '',
     requirements: '',
-    description: '',
     contact: '', 
   });
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 
-  const [postjob, { error }] = useMutation(CREATE_JOB);
+  const [createJob, { error }] = useMutation(CREATE_JOB);
 
   useEffect(() => {
     if (error) {
@@ -46,7 +46,7 @@ const PostJob = () => {
 
     try {
       console.log("our user data is: ", userFormData);
-      const { data } = await postjob({
+      const { data } = await createJob({
         variables: { ...userFormData },
       });
 
@@ -59,9 +59,9 @@ const PostJob = () => {
     // clear form values
     setUserFormData({
       company: '',
+      title: '',
       requirements: '',
-      description: '',
-      contact: '',
+      contactemail: '', 
     });
   };
 
@@ -96,10 +96,10 @@ const PostJob = () => {
               <input
                 type="text"
                 className="form-control"
-                id="requirements"
-                placeholder="Job title (requirements)"
+                id="title"
+                placeholder="Job title"
                 onChange={handleInputChange}
-                name="requirements"
+                name="title"
               />
             </div>
 
@@ -108,10 +108,10 @@ const PostJob = () => {
               { <input
                 type="text"
                 className="form-control"
-                id="description"
-                placeholder="Job Address or City"
+                id="requirements"
+                placeholder="Responsiablitys"
                 onChange={handleInputChange}
-                name="description"
+                name="requirements"
               /> }
             </div>
             <div className="form-group filter-message-box">
@@ -126,9 +126,8 @@ const PostJob = () => {
               />
             </div>
             
-            <Button disabled={!(userFormData.company && userFormData.title && userFormData.createdAt && userFormData.contactemail)}
-              type='primary' 
-              variant='primary' 
+            <Button disabled={!(userFormData.company && userFormData.title && userFormData.requirements && userFormData.contact)}
+              type="primary"
               className="btn btn-lg submitbutton wow-page__submit-button"
             >
               Post Job

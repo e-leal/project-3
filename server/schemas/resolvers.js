@@ -54,7 +54,7 @@ const resolvers = {
                     }
                 });
         },
-        createdJobs: async (parent, { username }) => {
+        createdJobs: async (parent, { username }, context) => {
             const params = email ? { username } : {};
             return Job.find(params).populate('jobApplications').sort({ createdAt: -1 });
         },

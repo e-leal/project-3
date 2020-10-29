@@ -48,7 +48,7 @@ export const SAVE_APPLICATION = gql`
 
 export const CREATE_JOB = gql`
 mutation createJob($company: String!, $contact: String!, $description: String!, $requirements: String!){
-    addJob(company: $company, contact: $contact, description: $description, requirements: $requirements){
+    createJob(company: $company, contact: $contact, description: $description, requirements: $requirements){
         _id
         company
         title
