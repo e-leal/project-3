@@ -4,8 +4,8 @@ import Login from '../components/Login/LoginForm';
 import Profile from '../components/profile/profile';
 import Home from '../components/Home/Home.js'
 
-// function Conduct() {
-//   const [currentPage, handlePageChange] = useState('Home');
+function Conduct() {
+  const [currentPage, handlePageChange] = useState('Home');
 
   const renderPage = () => {
     switch (currentPage) {
@@ -18,12 +18,12 @@ import Home from '../components/Home/Home.js'
     }
   };
 
-//   return (
-//     <div>
-//       <Navbar currentPage={currentPage} handlePageChange={handlePageChange} />
-//       <div>{renderPage(currentPage)}</div>
-//     </div>
-//   );
-// }
+  return (
+    <div>
+      <Navbar currentPage={currentPage} handlePageChange={handlePageChange} />
+      <div>{renderPage(currentPage)}</div>
+    </div>
+  );
+}
 
-// export default Conduct;
+export default Conduct;

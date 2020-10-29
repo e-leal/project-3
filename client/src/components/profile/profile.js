@@ -1,9 +1,9 @@
-// import React, { Component } from "react";
-// import profileplaceholder from "../Files/Images/profile-placeholder.png";
-// import "./profile.css";
-// import { Link } from "react-router-dom";
+import React, { Component } from "react";
+import profileplaceholder from "../Files/Images/profile-placeholder.png";
+import "./profile.css";
+import { Link } from "react-router-dom";
 
-// const profile = () => {
+const profile = () => {
 
     
  return (
@@ -158,4 +158,4 @@
   }
 
 
-// export default profile;
+export default profile;

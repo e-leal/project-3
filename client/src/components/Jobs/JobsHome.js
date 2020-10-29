@@ -6,7 +6,7 @@ import { Container } from 'react-bootstrap';
 
 //import Navabar
 
-class JobsHome extends Component {
+const JobsHome = () => {
 
     // Bringing the jobs according to the skill set of the user
     // async componentDidMount(){
@@ -24,66 +24,47 @@ class JobsHome extends Component {
     //     let ret = await api('GET','search/jobs',config);
         
 
-//     //     // console.log("data1",temp.data.payLoad);
+    //     // console.log("data1",temp.data.payLoad);
 
-//     // }
+    // }
 
+    return (
+    <div>
+        <Container />
+            <div className="jobSearchBar">
+            </div>
 
-//     render() {
-
-//     return (
-//     <div>
-//         <Container />
-//             <div className="jobSearchBar">
-//             </div>
-
-//             <section className="appliedjobs container col-md-8">
-//             <div className="row">
+            <section className="appliedjobs container col-md-8">
+            <div className="row">
 
 
-//                 <div className="col-md-3">
-//                     <span className="bluetext"> {this.state.appliedJobs}</span>
-//                     <span className ="lightgreytext"> Applied Jobs </span>
-//                 </div>
+                <div className="col-md-3">
+                    <span className="bluetext"> {this.state.appliedJobs}</span>
+                    <span className ="lightgreytext"> Applied Jobs </span>
+                </div>
 
-//                 <div className="col-md-3">
-//                     <span className="bluetext"> {this.state.savedJobs}</span>
-//                     <span className ="lightgreytext"> <Link to="/jobshome/savedjobs" className ="lightgreytext"> Saved Jobs </Link></span>               
-//                 </div> 
-//         </div>
-//         </section>
+                <div className="col-md-3">
+                    <span className="bluetext"> {this.state.savedJobs}</span>
+                    <span className ="lightgreytext"> <Link to="/jobshome/savedjobs" className ="lightgreytext"> Saved Jobs </Link></span>               
+                </div> 
+        </div>
+        </section>
 
-//         <section className="companies-info companies-info-background col-md-8" >
+        <section className="companies-info companies-info-background col-md-8" >
         
-//         <div className="smallheading">
-// 					<h3>Jobs you may be interested in</h3>
-// 		</div>
-//         </section>
+        <div className="smallheading">
+					<h3>Jobs you may be interested in</h3>
+		</div>
+        </section>
         
         
 
 
-//     </div>
-//     )
-//   }
-// }
+    </div>
+    )
+  }
 
-
-// function mapStateToProps(state) {
-//     console.log("in map state details view",state);
-//   //  return { property_detail: state.fetch_details_view.property_detail,
-//   //  };
-//   }
   
-//   const mapDispachToProps = dispatch => {
-//     return {
-//      //   fetch_detailsview: (id) => dispatch(fetch_detailsview(id)),
-     
-
-//     };
-//   };
-  
-  export default JobsHome;
-  
+export default JobsHome;
 
 
