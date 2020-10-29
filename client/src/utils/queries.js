@@ -11,6 +11,7 @@ export const GET_ME = gql`
             _id
             company
             createdAt
+            title
             contact
             description
             requirements
