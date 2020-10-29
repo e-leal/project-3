@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import "./jobs.css";
 import { Container } from 'react-bootstrap';
 import {GET_ME} from '../../utils/queries';
 import { useMutation, useQuery } from '@apollo/client';
-
+// Add this in your component file
+require('react-router-dom');
+window.React2 = require('react');
+console.log(window.React1 === window.React2);
 
 
 //import Navabar
@@ -12,9 +15,9 @@ import { useMutation, useQuery } from '@apollo/client';
 const JobsHome = () => {
     //const [showAlert, setShowAlert] = useState(false);
     //const [userFormData, setUserFormData] = useState({username: '', email: '', employer: '', createdJobs: '', createdApplication: ''})
-    // const { loading, data } = useQuery(GET_ME);
-    // const userData = data?.me || {};
-    // console.log("user data is: ", userData);
+    const { loading, data } = useQuery(GET_ME);
+    const userData = data?.me || {};
+    console.log("user data is: ", userData);
     // useEffect(() => {
     //     if (error) {
     //       setShowAlert(true);
@@ -43,9 +46,9 @@ const JobsHome = () => {
 
     // }
 
-    // if (loading) {
-    //     return <h2>LOADING...</h2>;
-    //   }
+    if (loading) {
+        return <h2>LOADING...</h2>;
+      }
 
     return (
     <div>
@@ -58,13 +61,13 @@ const JobsHome = () => {
 
 
                 <div className="col-md-3">
-                    <span className="bluetext"> Job home</span>
-                    <span className ="lightgreytext"> Applied Jobs </span>
+                    <span className="bluetext">{userData.username}'s Job home</span>
+                    <span className ="lightgreytext">{userData.username}'s Applied Jobs </span>
                 </div>
 
                 <div className="col-md-3">
                     <span className="bluetext"> home </span>
-                    <span className ="lightgreytext"> <Link to="/jobshome/savedjobs" className ="lightgreytext"> Saved Jobs </Link></span>               
+                    {/* <span className ="lightgreytext"> <Link to="/jobshome/savedjobs" className ="lightgreytext"> Saved Jobs </Link></span>                */}
                 </div> 
         </div>
         </section>
