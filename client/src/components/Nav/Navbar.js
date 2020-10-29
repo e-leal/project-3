@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
 import SignUpForm from '../Signup';
 import LoginForm from '../Login/LoginForm';
+import JobsHome from '../Jobs/JobsHome';
+import PostJob from '../PostJob/PostJob';
+import profile from '../profile/profile';
 
 import Auth from '../../utils/auth';
 
@@ -15,24 +18,25 @@ const AppNavbar = () => {
       <Navbar bg='dark' variant='dark' expand='lg'>
         <Container fluid>
           <Navbar.Brand as={Link} to='/'>
-            Certainly
+            <h1>Certainly</h1>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar'>
-            <Nav className='ml-auto'>
-              <Nav.Link as={Link} to='/'>
-                Search For Jobs
+            <Nav className='ml-auto' size='sm'>
+              <Nav.Link as={Link} to='profile'>
+                <h4>Profile</h4>
               </Nav.Link>
               {/* if user is logged in show saved books and logout */}
               {Auth.loggedIn() ? (
                 <>
-                  <Nav.Link as={Link} to='/saved'>
-                    See Your Jobs And Applications
+              <Nav className='ml-auto' size='sm'></Nav>
+                  <Nav.Link as={Link} to= 'PostJob'>
+                    <h4>Post a Job</h4>
                   </Nav.Link>
-                  <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
+                  <Nav.Link onClick={Auth.logout}><h4>Logout</h4></Nav.Link>
                 </>
               ) : (
-                <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
+                <Nav.Link onClick={() => setShowModal(true)}><h4>Login</h4></Nav.Link>
               )}
             </Nav>
           </Navbar.Collapse>
