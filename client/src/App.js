@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/react-hooks';
 import  ApolloClient from 'apollo-boost';
 import Conduct from './components/Conduct';
+import NavBar from './components/Nav/Navbar';
 /*
 ***********
 APP COMPONENT IMPORTS 
@@ -49,6 +50,7 @@ function App (){
   return (
     <ApolloProvider client={client}>
       <Router>
+        <NavBar />
       <Switch>
                 <Route path="/" component={HomePage} exact/>
                 {/* <Route path="/recruiter" component={RecruiterDashboard} exact/> */}
@@ -75,7 +77,7 @@ function App (){
                 {/* <Route path="/jobsaved" component={JobSaved} exact />
                 <Route path="/companypage/:id" component={CompanyPage} exact />
                 <Route path="/recruiterprofile" component={RecruiterProfile} exact /> */}
-
+                <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
                
             </Switch>
       </Router>
