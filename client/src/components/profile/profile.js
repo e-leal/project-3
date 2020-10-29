@@ -1,24 +1,7 @@
-<<<<<<< HEAD
-import React, { useState, useEffect } from "react";
-=======
 import React, { useState, useEffect } from 'react'
->>>>>>> develop
 import profileplaceholder from "../Files/Images/profile-placeholder.png";
 import { Container } from 'react-bootstrap';
 import "./profile.css";
-<<<<<<< HEAD
-import { Link } from 'react-router-dom';
-import { Container } from 'react-bootstrap';
-import { GET_ME } from '../../utils/queries';
-import Auth from '../../utils/auth';
-import { useMutation, useQuery } from '@apollo/client';
-import { getSavedJobIds } from '../../utils/localStorage';
-const Profile = () => {
-
-    const {loading, data} = useQuery(GET_ME);
-    const userData = data?.me || {};
-   
-=======
 import { Link } from "react-router-dom";
 import { GET_ME } from '../../utils/queries';
 import { useMutation, useQuery } from '@apollo/client';
@@ -36,7 +19,6 @@ const Profile = () => {
         return <h2>LOADING...</h2>;
     }
 
->>>>>>> develop
  return (
       <div className="emp-profile">
       <form method="post">
@@ -186,11 +168,6 @@ const Profile = () => {
       </form>           
   </div>
     );
-  
+ };
 
-<<<<<<< HEAD
- }
-=======
-
->>>>>>> develop
 export default Profile;

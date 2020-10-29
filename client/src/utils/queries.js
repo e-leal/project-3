@@ -9,12 +9,10 @@ export const GET_ME = gql`
         employer
         createdJobs {
             _id
-<<<<<<< HEAD
-=======
             company
->>>>>>> develop
             createdAt
             contact
+            title
             description
             requirements
         }

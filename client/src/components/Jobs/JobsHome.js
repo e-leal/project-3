@@ -80,45 +80,13 @@ const JobsHome = () => {
     // };
 
     return (
-<<<<<<< HEAD
-    <div>
-        <Container />
-            <div className="jobSearchBar">
-            </div>
-
-             <section className="appliedjobs container col-md-8">
-             <div className="row">
-
-
-                <div className="col-md-3">
-                    <span className="bluetext"> Job home</span>
-                    <span className ="lightgreytext"> Applied Jobs </span>
-                </div>
-
-                <div className="col-md-3">
-                    <span className="bluetext"> home </span>
-                    <span className ="lightgreytext"> <Link to="/jobshome" className ="lightgreytext"> Saved Jobs </Link></span>               
-                </div> 
-        </div>
-        </section>
-
-        <section className="companies-info companies-info-background col-md-8" >
-        
-         <div className="smallheading">
- 					<h3>Jobs you may be interested in</h3>
- 		</div>
-         </section>
-        
-        
-=======
     <Jobcon>
         <section className="companies-info companies-info-background col-md-8" >
             <div className="smallheading">
-			<h3>Jobs you may be interested in</h3>
 		    </div>
         </section>
-    <div>{loading ? <div>Loading...</div> : <JobCard jobs={myJob} /> } </div>
->>>>>>> develop
+    <div>{loading ? <div>Loading...</div> : 
+    <JobCard jobs={myJob} /> } </div>
 
     </Jobcon>
      )
