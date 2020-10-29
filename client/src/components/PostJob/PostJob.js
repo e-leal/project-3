@@ -12,13 +12,14 @@ const PostJob = () => {
     {
     company: '',
     title: '',
-    createdAt: '',
-    contactemail: '', 
+    requirements: '',
+    contact: '',
+    description: '' 
   });
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 
-  const [postjob, { error }] = useMutation(CREATE_JOB);
+  const [createJob, { error }] = useMutation(CREATE_JOB);
 
   useEffect(() => {
     if (error) {
@@ -46,7 +47,7 @@ const PostJob = () => {
 
     try {
       console.log("our user data is: ", userFormData);
-      const { data } = await postjob({
+      const { data } = await createJob({
         variables: { ...userFormData },
       });
 
@@ -60,8 +61,9 @@ const PostJob = () => {
     setUserFormData({
       company: '',
       title: '',
-      createdAt: '',
-      contactemail: '', 
+      requirements: '',
+      email: '', 
+      description: ''
     });
   };
 
@@ -73,9 +75,9 @@ const PostJob = () => {
       <div className="div">
 
         <div className="container-fluid containerstyle">
-          <div style={{clear : "both", paddingTop: "32px"}}>
-            <p className="lead jobtext"  style={{marginLeft: ""}}>
-              Reach quality candidates.
+          <div style={{clear : "both", paddingTop: "40px"}}>
+            <p className="lead jobtext"  style={{marginLeft: "39%"}}>
+              Reach quality candidates
             </p>
           </div>
 
@@ -87,7 +89,7 @@ const PostJob = () => {
                 className="form-control"
                 id="company"
                 placeholder="Company"
-                // onChange={this.onChange}
+                onChange={handleInputChange}
                 name="company"
               />
             </div>
@@ -96,10 +98,10 @@ const PostJob = () => {
               <input
                 type="text"
                 className="form-control"
-                id="jobtitle"
+                id="title"
                 placeholder="Job title"
-                // onChange={this.onChange}
-                name="jobtitle"
+                onChange={handleInputChange}
+                name="title"
               />
             </div>
 
@@ -108,9 +110,10 @@ const PostJob = () => {
               { <input
                 type="text"
                 className="form-control"
-                id="jobaddress"
-                placeholder="Job Address or City"
-                name="jobaddress"
+                id="requirements"
+                placeholder="Responsiablitys"
+                onChange={handleInputChange}
+                name="requirements"
               /> }
             </div>
             <div className="form-group filter-message-box">
@@ -118,18 +121,28 @@ const PostJob = () => {
               <input
                 type="text"
                 className="form-control"
-                id="Salary"
-                placeholder="Salary"
-                // onChange={this.onChange}
-                name="Salary"
+                id="contact"
+                placeholder="Contact Email"
+                onChange={handleInputChange}
+                name="contact"
+              />
+            </div>
+            <div className="form-group filter-message-box">
+                <i className="fa fa-building"> </i>
+              <input
+                type="text"
+                className="form-control"
+                id="description"
+                placeholder="Job Description"
+                onChange={handleInputChange}
+                name="description"
               />
             </div>
             
-            <Button
-              type="button"
-              class="btn btn-lg submitbutton wow-page__submit-button"
-              // onClick={this.handleJobPost}
-            >
+            <Button disabled={!(userFormData.company && userFormData.title && userFormData.requirements && userFormData.contact)}
+              type="primary"
+              variant="success"
+              className="btn btn-lg submitbutton wow-page__submit-button">
               Post Job
             </Button>
           </form>

@@ -41,6 +41,10 @@ const resolvers = {
             return Application.find()
             .populate('appliedJob')
         },
+        jobs: async () => {
+            return Job.find()
+            .populate('jobApplications')
+        },
         user: async (parent, { username }) => {
             return User.findOne({ username })
                 .select('-__v -password')
@@ -54,7 +58,7 @@ const resolvers = {
                     }
                 });
         },
-        createdJobs: async (parent, { username }) => {
+        createdJobs: async (parent, { username }, context) => {
             const params = email ? { username } : {};
             return Job.find(params).populate('jobApplications').sort({ createdAt: -1 });
         },
