@@ -1,3 +1,9 @@
+:root {
+  --light-color:#ced3dc;
+  --dark-color: #4e8098;
+  --third-color: #fcf7f8;
+}
+
 .jobstats{
     float: left;
     width: 97.5%;
@@ -454,7 +460,7 @@ padding : 10px
   }
 
   .card {
-    background: #fff;
+    background: var(--third-color);
     border-radius: 2px;
     height: 150px;
     margin: 0 auto;

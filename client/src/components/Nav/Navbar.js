@@ -15,10 +15,10 @@ const AppNavbar = () => {
 
   return (
     <>
-      <Navbar bg='dark' variant='dark' expand='lg'>
+      <Navbar variant='dark' expand='lg' id="dark-purple">
         <Container fluid>
           <Navbar.Brand as={Link} to='/'>
-            <h1>Certainly</h1>
+            <h1 >Certainly</h1>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar'>
