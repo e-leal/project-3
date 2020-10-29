@@ -69,8 +69,8 @@ const JobsHome = () => {
             <div className="jobSearchBar">
             </div>
 
-//             <section className="appliedjobs container col-md-8">
-//             <div className="row">
+             <section className="appliedjobs container col-md-8">
+             <div className="row">
 
 
                 <div className="col-md-3">
@@ -85,12 +85,12 @@ const JobsHome = () => {
         </div>
         </section>
 
-//         <section className="companies-info companies-info-background col-md-8" >
+        <section className="companies-info companies-info-background col-md-8" >
         
-//         <div className="smallheading">
-// 					<h3>Jobs you may be interested in</h3>
-// 		</div>
-//         </section>
+         <div className="smallheading">
+ 					<h3>Jobs you may be interested in</h3>
+ 		</div>
+         </section>
         
         
 

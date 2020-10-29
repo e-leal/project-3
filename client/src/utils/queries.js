@@ -9,8 +9,6 @@ export const GET_ME = gql`
         employer
         createdJobs {
             _id
-            company
-            title
             createdAt
             contact
             description
@@ -20,7 +18,6 @@ export const GET_ME = gql`
             _id
             resume
             createdAt
-            company
             appliedJob {
                 _id
                 company

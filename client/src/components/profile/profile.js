@@ -1,9 +1,16 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import profileplaceholder from "../Files/Images/profile-placeholder.png";
 import "./profile.css";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import { Container } from 'react-bootstrap';
+import { GET_ME } from '../../utils/queries';
+import Auth from '../../utils/auth';
+import { useMutation, useQuery } from '@apollo/client';
+import { getSavedJobIds } from '../../utils/localStorage';
+const Profile = () => {
 
-const profile = () => {
+    const {loading, data} = useQuery(GET_ME);
+    const userData = data?.me || {};
    
  return (
       <div class="container emp-profile">
@@ -157,4 +164,4 @@ const profile = () => {
   
 
  }
-export default profile;
+export default Profile;
