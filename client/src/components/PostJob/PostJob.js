@@ -1,21 +1,81 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from 'react';
+import { Form, Button, Alert } from 'react-bootstrap';
+import { useMutation } from '@apollo/react-hooks';
+import { CREATE_JOB } from '../../utils/mutations';
+import Auth from '../../utils/auth';
 import "./PostJob.css";
-import PostJobHeader from "./PostJobHeader";
-import jobsfooter from "../Files/Images/jobsfooter.png";
 
 //import Navbar
 
-class PostJob extends Component {
+const PostJob = () => {
+  const [userFormData, setUserFormData] = useState(
+    {
+    company: '',
+    title: '',
+    createdAt: '',
+    contactemail: '', 
+  });
+  const [validated] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
 
-  render() {
+  const [postjob, { error }] = useMutation(CREATE_JOB);
+
+  useEffect(() => {
+    if (error) {
+      setShowAlert(true);
+    } else {
+      setShowAlert(false);
+    }
+  }, [error]);
+  const handleInputChange = (event) => {
+
+    const { name, value } = event.target;
+    console.log(name, " is being changed to: ", value);
+    setUserFormData({ ...userFormData, [name]: value });
+  };
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    
+    const form = event.currentTarget;
+    console.log("the form is: ", form);
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    try {
+      console.log("our user data is: ", userFormData);
+      const { data } = await postjob({
+        variables: { ...userFormData },
+      });
+
+      console.log("our data result is: ", data);
+      Auth.login(data.login.token);
+    } catch (e) {
+      console.error(e);
+    }
+
+    // clear form values
+    setUserFormData({
+      company: '',
+      title: '',
+      createdAt: '',
+      contactemail: '', 
+    });
+  };
+
     return (
+      <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+      <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
+        Something went wrong with your Job Posting!
+      </Alert>
       <div className="div">
-        <PostJobHeader />
 
         <div className="container-fluid containerstyle">
-          <div style={{clear : "both", paddingTop: "72px"}}>
-            <p className="lead jobtext"  style={{marginLeft: "24%"}}>
-              Reach the quality candidates you can’t find anywhere else.
+          <div style={{clear : "both", paddingTop: "40px"}}>
+            <p className="lead jobtext"  style={{marginLeft: "39%"}}>
+              Reach quality candidates
             </p>
           </div>
 
@@ -27,7 +87,7 @@ class PostJob extends Component {
                 className="form-control"
                 id="company"
                 placeholder="Company"
-                onChange={this.onChange}
+                onChange={handleInputChange}
                 name="company"
               />
             </div>
@@ -38,49 +98,45 @@ class PostJob extends Component {
                 className="form-control"
                 id="jobtitle"
                 placeholder="Job title"
-                onChange={this.onChange}
+                onChange={handleInputChange}
                 name="jobtitle"
               />
             </div>
 
             <div className="form-group filter-message-box">
             <i className="fa fa-map-marker"> </i>
-              {/* <input
+              { <input
                 type="text"
                 className="form-control"
-                id="jobaddress"
+                id="createdAt"
                 placeholder="Job Address or City"
+                onChange={handleInputChange}
                 name="jobaddress"
-                onChange={this.onChange}
-              /> */}
+              /> }
             </div>
-            <button
+            <div className="form-group filter-message-box">
+                <i className="fa fa-building"> </i>
+              <input
+                type="text"
+                className="form-control"
+                id="contactemail"
+                placeholder="Contact Email"
+                onChange={handleInputChange}
+                name="Salary"
+              />
+            </div>
+            
+            <Button disabled={!(userFormData.company && userFormData.title && userFormData.createdAt && userFormData.contactemail)}
               type="button"
-              class="btn btn-lg submitbutton wow-page__submit-button"
-              onClick={this.handleJobPost}
+              className="btn btn-lg submitbutton wow-page__submit-button"
             >
-              Start job post
-            </button>
+              Post Job
+            </Button>
           </form>
         </div>
-
-        <div>
-          <img src={jobsfooter} class="footercrop" style={{marginTop : "10px"}} alt="no pic" />{" "}
-        </div>
       </div>
+      </Form>
     );
   }
-}
 
-function mapStateToProps(state) {
-  console.log("Inside map state to props ", state);
-}
-
-const mapDispachToProps = dispatch => {
-  return {};
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispachToProps
-)(PostJob);
+export default PostJob;
