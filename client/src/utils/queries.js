@@ -10,6 +10,7 @@ export const GET_ME = gql`
         createdJobs {
             _id
             company
+            title
             createdAt
             contact
             description

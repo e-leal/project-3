@@ -73,9 +73,9 @@ const PostJob = () => {
       <div className="div">
 
         <div className="container-fluid containerstyle">
-          <div style={{clear : "both", paddingTop: "32px"}}>
-            <p className="lead jobtext"  style={{marginLeft: ""}}>
-              Reach quality candidates.
+          <div style={{clear : "both", paddingTop: "40px"}}>
+            <p className="lead jobtext"  style={{marginLeft: "39%"}}>
+              Reach quality candidates
             </p>
           </div>
 
@@ -87,7 +87,7 @@ const PostJob = () => {
                 className="form-control"
                 id="company"
                 placeholder="Company"
-                // onChange={this.onChange}
+                onChange={handleInputChange}
                 name="company"
               />
             </div>
@@ -98,7 +98,7 @@ const PostJob = () => {
                 className="form-control"
                 id="jobtitle"
                 placeholder="Job title"
-                // onChange={this.onChange}
+                onChange={handleInputChange}
                 name="jobtitle"
               />
             </div>
@@ -108,8 +108,9 @@ const PostJob = () => {
               { <input
                 type="text"
                 className="form-control"
-                id="jobaddress"
+                id="createdAt"
                 placeholder="Job Address or City"
+                onChange={handleInputChange}
                 name="jobaddress"
               /> }
             </div>
@@ -118,17 +119,16 @@ const PostJob = () => {
               <input
                 type="text"
                 className="form-control"
-                id="Salary"
-                placeholder="Salary"
-                // onChange={this.onChange}
+                id="contactemail"
+                placeholder="Contact Email"
+                onChange={handleInputChange}
                 name="Salary"
               />
             </div>
             
-            <Button
+            <Button disabled={!(userFormData.company && userFormData.title && userFormData.createdAt && userFormData.contactemail)}
               type="button"
-              class="btn btn-lg submitbutton wow-page__submit-button"
-              // onClick={this.handleJobPost}
+              className="btn btn-lg submitbutton wow-page__submit-button"
             >
               Post Job
             </Button>
