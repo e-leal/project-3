@@ -112,7 +112,7 @@ const SearchJobs = () => {
         <h2>
           {searchedJobs.length
             ? `Viewing ${searchedJobs.length} results:`
-            : 'Search for a job to begin'}
+            : ''}
         </h2>
         <CardColumns>
           {searchedJobs.map((job) => {
