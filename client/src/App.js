@@ -19,7 +19,7 @@ import Profile from './components/profile/profile';
 // import Message from "../Message/Message";
 // import CompanyPage from "../Jobs/CompanyPage";
 // import JobSaved from "../Jobs/JobSaved";
-// import PostJob from "../PostJob/PostJob";
+import PostJob from './components/PostJob/PostJob';
 // import PostJobfirst from "../PostJob/PostJobfirst";
 // import SavedJobsHome from "../Jobs/SavedJobsHome";
 // import JobsBySkill from "../Jobs/JobsBySkill";
@@ -68,13 +68,13 @@ function App (){
                 {/* <Route path="/applicantconnection" component={ApplicantConnection} exact /> */}
                 {/* <Route path="/recruiterhome" component={RecruiterHome} exact /> */}
                 {/* <Route path="/recruiterconnection" component={RecruiterConnection} exact /> */}
-                {/* <Route path="/jobsaved" component={JobSaved} exact />
+                {/* <Route path="/jobsaved" component={JobSaved} exact />*/
                 <Route path="/postjob" component={PostJob} exact />
-                <Route path="/postjobfirst" component={PostJobfirst} exact />
-                <Route path="/recruitersignup" component={Recruitersignup} exact />
-                <Route path="/apply/:id" component={ApplyJob} exact /> */}
-                {/* <Route path="/jobapplicant/:jobId" component={JobApplicantsHome} exact /> */}
-                {/* <Route path="/jobsaved" component={JobSaved} exact />
+                // <Route path="/postjobfirst" component={PostJobfirst} exact />
+                // <Route path="/recruitersignup" component={Recruitersignup} exact />
+                // <Route path="/apply/:id" component={ApplyJob} exact /> */}
+                // {/* <Route path="/jobapplicant/:jobId" component={JobApplicantsHome} exact /> */}
+                /* <Route path="/jobsaved" component={JobSaved} exact />
                 <Route path="/companypage/:id" component={CompanyPage} exact />
                 <Route path="/recruiterprofile" component={RecruiterProfile} exact /> */}
                 <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
