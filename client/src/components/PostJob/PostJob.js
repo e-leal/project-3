@@ -11,9 +11,9 @@ const PostJob = () => {
   const [userFormData, setUserFormData] = useState(
     {
     company: '',
-    title: '',
-    createdAt: '',
-    contactemail: '', 
+    requirements: '',
+    description: '',
+    contact: '', 
   });
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
@@ -59,9 +59,9 @@ const PostJob = () => {
     // clear form values
     setUserFormData({
       company: '',
-      title: '',
-      createdAt: '',
-      contactemail: '', 
+      requirements: '',
+      description: '',
+      contact: '',
     });
   };
 
@@ -96,10 +96,10 @@ const PostJob = () => {
               <input
                 type="text"
                 className="form-control"
-                id="jobtitle"
-                placeholder="Job title"
+                id="requirements"
+                placeholder="Job title (requirements)"
                 onChange={handleInputChange}
-                name="jobtitle"
+                name="requirements"
               />
             </div>
 
@@ -108,10 +108,10 @@ const PostJob = () => {
               { <input
                 type="text"
                 className="form-control"
-                id="createdAt"
+                id="description"
                 placeholder="Job Address or City"
                 onChange={handleInputChange}
-                name="jobaddress"
+                name="description"
               /> }
             </div>
             <div className="form-group filter-message-box">
@@ -119,15 +119,16 @@ const PostJob = () => {
               <input
                 type="text"
                 className="form-control"
-                id="contactemail"
+                id="contact"
                 placeholder="Contact Email"
                 onChange={handleInputChange}
-                name="Salary"
+                name="contact"
               />
             </div>
             
             <Button disabled={!(userFormData.company && userFormData.title && userFormData.createdAt && userFormData.contactemail)}
-              type="button"
+              type='primary' 
+              variant='primary' 
               className="btn btn-lg submitbutton wow-page__submit-button"
             >
               Post Job
