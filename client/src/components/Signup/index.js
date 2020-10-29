@@ -120,7 +120,7 @@ const SignupForm = () => {
         </Form.Group>
         <Button
           disabled={!(userFormData.username && userFormData.email && userFormData.password)}
-          type='submit'
+          type='primary'
           variant='success'>
           Submit
         </Button>

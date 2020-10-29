@@ -7,6 +7,7 @@ import { saveJobIds, getSavedJobIds } from '../../utils/localStorage';
 //import {REMOVE_BOOK, SAVE_BOOK, ADD_USER, LOGIN_USER} from '../utils/mutations';
 import { useMutation } from '@apollo/react-hooks';
 import {SAVE_JOB} from '../../utils/mutations';
+import AppNavBar from '../Nav/Navbar';
 //import {LOGIN_USER} from '../utils/mutations';
 
 const Home = () => {
@@ -84,6 +85,7 @@ const Home = () => {
     return (
       <>
         <Jumbotron fluid className='text-light center bg-dark'>
+          <AppNavBar/>
           <Container>
             <h3>Find your next Career</h3>
             <Form onSubmit={handleFormSubmit}>

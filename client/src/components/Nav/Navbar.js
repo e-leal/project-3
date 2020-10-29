@@ -24,13 +24,14 @@ const AppNavbar = () => {
           <Navbar.Collapse id='navbar'>
             <Nav className='ml-auto' size='sm'>
               <Nav.Link as={Link} to={ profile }>
-                <h4>Profile</h4>
+                Profile
               </Nav.Link>
               {/* if user is logged in show saved books and logout */}
               {Auth.loggedIn() ? (
                 <>
+              <Nav className='ml-auto' size='sm'></Nav>
                   <Nav.Link as={Link} to= { JobsHome }>
-                    See Your Jobs And Applications
+                    Post a Job
                   </Nav.Link>
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
                 </>
