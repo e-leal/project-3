@@ -1,5 +1,3 @@
-// see SignupForm.js for comments
-
 import React, { useState, useEffect } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -90,7 +88,10 @@ const LoginForm = () => {
                 />
                 <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
               </Form.Group>
-              <Button disabled={!(userFormData.email && userFormData.password)} type='button' variant='primary' className='signup-login-button'>
+              <Button disabled={!(userFormData.email && userFormData.password)} 
+              type='primary' 
+              variant='success' 
+              className='signup-login-button'>
                 Submit
               </Button>
             </Form>
