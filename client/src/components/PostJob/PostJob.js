@@ -36,7 +36,6 @@ const PostJob = () => {
   };
 
   const handleFormSubmit = async (event) => {
-    const token = localStorage.getItem('id_token');
     event.preventDefault();
     
     const form = event.currentTarget;
