@@ -40,7 +40,9 @@ const PostJob = () => {
     event.preventDefault();
     
     const form = event.currentTarget;
+    const token = localStorage.getItem('id_token');
     console.log("the form is: ", form);
+    // console.log("the token is: ", token);
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
@@ -53,7 +55,7 @@ const PostJob = () => {
       });
 
       console.log("our data result is: ", data);
-      Auth.login(data.login.token);
+      Auth.login(token);
     } catch (e) {
       console.error(e);
     }

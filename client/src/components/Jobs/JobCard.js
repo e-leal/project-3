@@ -38,6 +38,7 @@ const JobCard = ({ jobs }) => {
     </div>
   );
   };
+
   <Container>
   <h2>
     {searchedJobs.length
