@@ -4,9 +4,9 @@ import Jobcon from './Jobcon';
 import JobCard from './JobCard';
 import { Link } from 'react-router-dom';
 import "./jobs.css";
-import { GET_ME, MY_JOBS } from '../../utils/queries';
+import { GET_ME, QUERY_JOBS } from '../../utils/queries';
 import Auth from '../../utils/auth';
-import { useMutation, useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/react-hooks';
 import { getSavedJobIds } from '../../utils/localStorage';
 
 
@@ -22,11 +22,12 @@ const JobsHome = () => {
     //  const myJobData = data1?.user || {};
     //  console.log("my job data is:::: ", myJobData);
     const {loading, data} = useQuery(GET_ME);
-    const createdJobData = data?.me || {};
+    const createdJobData = data?.me || [];
     console.log(createdJobData)
-     const myJob = createdJobData.createdJobs
-    //  const {createdJobs} = myJob;
-    console.log("our created jobs might be: ", myJob);
+      const myJob = createdJobData.createdJobs
+    // //  const {createdJobs} = myJob;
+    // console.log("our created jobs might be: ", myJob);
+    console.log("Our user job data is: ", createdJobData);
     // const tasks = Object.values(myJob.createdJobs);
     // console.log("my tasks are: ", tasks)
   
@@ -85,16 +86,8 @@ const JobsHome = () => {
 			<h3>Jobs you may be interested in</h3>
 		    </div>
         </section>
-        {/* {createdJobData.map(createdJobs => ( */}
-        <JobCard>
-          key={createdJobData._id}
-          company={createdJobData.company}
-          title={createdJobData.title}
-          requirements={createdJobData.requirements}
-          contact={createdJobData.contact}
-        </JobCard>
-        {/* ))
-}; */}
+    <div>{loading ? <div>Loading...</div> : <JobCard jobs={myJob} /> } </div>
+
     </Jobcon>
      )
   }

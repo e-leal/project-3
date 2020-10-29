@@ -29,17 +29,15 @@ export const GET_ME = gql`
 `;
 
 
-export const MY_JOBS = gql`
-query createdJobs($username: String!) {
-        user(username: $username) {
-            createdJobs { 
-                _id
-                company
-                createdAt
-                contact
-                description
-                requirements
-            }
+export const QUERY_JOBS = gql`
+{
+    jobs{
+            _id
+            company
+            createdAt
+            contact
+            description
+            requirements
         }
     }
   `;
