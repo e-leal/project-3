@@ -20,8 +20,7 @@ const JobsHome = () => {
   
     const {loading, data} = useQuery(GET_ME);
     const createdJobs = data?.me || {};
-    console.log(createdJobs)
-  
+
     // useEffect(() => {
     //   if (error) {
     //     setShowAlert(true);
@@ -70,19 +69,20 @@ const JobsHome = () => {
     <Jobcon>
         <section className="companies-info companies-info-background col-md-8" >
             <div className="smallheading">
-			<h3>Jobs you may be interested in</h3>
-		    </div>
+			      <h3>Jobs you may be interested in</h3>
+		        </div>
         </section>
-    
-        <JobCard>
+        { jobCard.map(createdJobs.createdJobs => (
+        <JobCard
           key={createdJobs._id}
           company={createdJobs.company}
           title={createdJobs.title}
           requirements={createdJobs.requirements}
           contact={createdJobs.contact}
-        </JobCard>
+        />
+        ))};
     </Jobcon>
-     )
+     );
   }
 
   
