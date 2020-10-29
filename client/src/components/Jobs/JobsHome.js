@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Button, Card } from 'react-bootstrap';
-import Jobcon from '../components/Jobs/Jobcon';
-import JobCard from '../components/Jobs/JobCard';
+import Jobcon from './Jobcon';
+import JobCard from './JobCard';
 import { Link } from 'react-router-dom';
 import "./jobs.css";
 import { GET_ME } from '../../utils/queries';
@@ -29,41 +29,45 @@ const JobsHome = () => {
     //   }
     // }, [error]);
   
-    const handleInputChange = (event) => {
+    // const handleInputChange = (event) => {
   
-      const { name, value } = event.target;
-      console.log(name, " is being changed to: ", value);
-      setUserFormData({ ...userFormData, [name]: value });
-    };
+    //   const { name, value } = event.target;
+    //   console.log(name, " is being changed to: ", value);
+    //   setUserFormData({ ...userFormData, [name]: value });
+    // };
   
-    const handleFormSubmit = async (event) => {
-      event.preventDefault();
+    // const handleFormSubmit = async (event) => {
+    //   event.preventDefault();
       
-      const form = event.currentTarget;
-      console.log("the form is: ", form);
-      if (form.checkValidity() === false) {
-        event.preventDefault();
-        event.stopPropagation();
-      }
+    //   const form = event.currentTarget;
+    //   console.log("the form is: ", form);
+    //   if (form.checkValidity() === false) {
+    //     event.preventDefault();
+    //     event.stopPropagation();
+    //   }
   
-      try {
-        console.log("our user data is: ", userFormData);
-        const { data } = await getSavedJobIds({
-          variables: { ...userFormData },
-        });
+    //   try {
+    //     console.log("our user data is: ", userFormData);
+    //     const { data } = await getSavedJobIds({
+    //       variables: { ...userFormData },
+    //     });
   
-        console.log("our data result is: ", data);
-        Auth.login(data.login.token);
-      } catch (e) {
-        console.error(e);
-      }
+    //     console.log("our data result is: ", data);
+    //     Auth.login(data.login.token);
+    //   } catch (e) {
+    //     console.error(e);
+    //   }
   
-      // clear form values
-      setUserFormData({
-        email: '',
-        password: '',
-      });
-    };
+    //   // clear form values
+    //   setUserFormData({
+    //     email: '',
+    //     password: '',
+    //   });
+    // };
+
+    if(loading){
+        return <h2>LOADING...</h2>;
+    }
 
     return (
     <Jobcon>
