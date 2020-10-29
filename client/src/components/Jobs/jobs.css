@@ -457,7 +457,8 @@ padding : 10px
     background: #fff;
     border-radius: 2px;
     height: 150px;
-    margin: 1rem;
+    margin: 0 auto;
+    margin-top: 1rem;
     position: relative;
     width: 90%;
     box-shadow: 0 3px 6px #999, 0 3px 6px #999;
@@ -515,4 +516,8 @@ padding : 10px
 
   .content > ul > li {
     text-align: left;
+  }
+
+  .card-title {
+    text-align: center;
   }
