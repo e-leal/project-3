@@ -1,32 +1,37 @@
 import React from 'react'
 import "./jobs.css";
 
-function JobCard(props) {
+const JobCard = ({jobs}) => {
+  if(!jobs.length){
+    return <h3>You have no posted jobs!</h3>
+  }
     return (
-      <div className="row left-job-detail" onClick={this.state}>
-           
-              <div className="col-md-2 left-job-detail-image">
-              </div>
-              <div className="col-md-10 left-job-detail-desc">
+
+      <div className="row left-job-detail">
+           {jobs &&
+           jobs.map((job) => (
+            <div className="col-md-10 left-job-detail-desc">
               <div className="heading-company3">
-               {/* {this.state.title} */}
+              {job.company}
               </div>
               <div className="heading-company4">
-              {/* {this.state.company} */}
+              {job.title}
               </div>
               <div className="heading-location3">
-              {/* <img src={""}></img>&nbsp; {this.state.address.city} {this.state.address.zipcode},{this.state.address.country} */}
+              {job.requirements}
               </div>
               <div>
-              <label style={{color:"green",fontSize:"12px"}}>New &#9670;</label>&nbsp;<label style={{fontSize:"12px"}}>Posted {this.state.time_diff}  ago</label>
+              {job.createdAt}
                </div>
               <div className="heading-company4">
-              {/* {this.state.description} */}
+              {job.contact}
               </div>
               </div>
+           ))}
+              
       </div>
-    )
-  }
+    );
+  };
 
 
 export default JobCard;
