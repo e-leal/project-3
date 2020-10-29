@@ -1,6 +1,5 @@
 import React, { useState, useEffect }  from "react";
 import { NavLink } from "react-router-dom";
-import "./Home.css";
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 import Auth from '../../utils/auth';
 import { searchCareerJobs } from '../../utils/API';
@@ -89,7 +88,7 @@ const Home = () => {
             <h3>Find your next Career</h3>
             <Form onSubmit={handleFormSubmit}>
               <Form.Row>
-                <Col xs={12} md={8}>
+                <Col xs={3} md={8}>
                   <Form.Control
                     className='center'
                     name='searchInput'
@@ -125,7 +124,7 @@ const Home = () => {
                   ) : null}
                   <Card.Body>
                     <Card.Title>{job.title}</Card.Title>
-                    <p className='small'>Authors: {job.authors}</p>
+                    <p className='small'>Employeers: {job.authors}</p>
                     <Card.Text>{job.description}</Card.Text>
                     {Auth.loggedIn() && (
                       <Button

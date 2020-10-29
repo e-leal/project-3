@@ -20,7 +20,7 @@ Certainly is a Job Search tool that helps Employers and Job Seekers keep track o
 
 * New Users:
   * CREATE NEW account
-  * WHEN users SIGN UP, they are prompted to either having an employer account or an employee account.
+  * WHEN users SIGN UP, they are prompted to either having an employer account or an employee account
 
 * Employers (Job Creator):
   * WHEN employers LOG IN, they can CREATE a job
@@ -31,11 +31,11 @@ Certainly is a Job Search tool that helps Employers and Job Seekers keep track o
 * Employees (Job Seeker):
   * WHEN employees LOG IN, they are prompted to a QUERY of jobs and listings created recently by employers
   * WHEN employees LOG IN, they can POST applications to a job
-  * WHEN employees LOG IN, they can look over all of their applications they had made.
+  * WHEN employees LOG IN, they can look over all of their applications they had made
   * WHEN employees LOG IN, they can CREATE and UPDATE their resume
   * WHEN employees LOG IN, they can comment on their own applications
   * WHEN employees LOG IN, they can add their resume to their applications
-  * WHEN employees LOG OUT, they are logged out with the option to log back in
+  * WHEN employees LOG OUT, they are logged out to the main page with the option to log back in
 
 * Applications
   * WHEN application is posted, the employer is notified when he/she is logged in
@@ -63,13 +63,36 @@ or
 > npm i
 
 The dependencies should automatically be installed.
+
 ## Usage
+
+You can start the server by terminal in 2 ways:
+
+> npm run watch
+
+or
+
+> npm start
+
+make sure you are in the root folder so you can start the client end and the server end.
+
+
+To stop the server, head to the terminal and type this command below:
+
+> CTRL + C
+
+> Y
+
+This will stop the server connection.
 
 
 
 
 ## License
 
+This project is covered by the MIT license.
+
+![MIT license badge](https://img.shields.io/badge/license-MIT-brightgreen)
 
 ## Technologies
 

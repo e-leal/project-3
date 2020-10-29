@@ -1,12 +1,9 @@
-// see SignupForm.js for comments
-
 import React, { useState, useEffect } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useMutation } from '@apollo/react-hooks';
 import { LOGIN_USER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
-import "./LoginForm.css";
 
 
 const LoginForm = () => {
@@ -91,7 +88,10 @@ const LoginForm = () => {
                 />
                 <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
               </Form.Group>
-              <Button disabled={!(userFormData.email && userFormData.password)} type='button' variant='primary' className='btn btn-primary btn-block' className='signup-login-button'>
+              <Button disabled={!(userFormData.email && userFormData.password)} 
+              type='primary' 
+              variant='success' 
+              className='signup-login-button'>
                 Submit
               </Button>
             </Form>
