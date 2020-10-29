@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
+import { Button, Card } from 'react-bootstrap';
+import Jobcon from '../components/Jobs/Jobcon';
+import JobCard from '../components/Jobs/JobCard';
 import { Link } from 'react-router-dom';
 import "./jobs.css";
-import { Container } from 'react-bootstrap';
 import { GET_ME } from '../../utils/queries';
 import Auth from '../../utils/auth';
 import { useMutation, useQuery } from '@apollo/client';
@@ -16,7 +18,7 @@ const JobsHome = () => {
     const [validated] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
   
-    const {loading, data} = useQuery(GET_ME);
+    const {loading, createdJobs, data} = useQuery(GET_ME);
     const userData = data?.me || {};
   
     // useEffect(() => {
@@ -64,39 +66,21 @@ const JobsHome = () => {
     };
 
     return (
-    <div>
-        <Container />
-            <div className="jobSearchBar">
-            </div>
-
-            <section className="appliedjobs container col-md-8">
-            <div className="row">
-
-
-                <div className="col-md-3">
-                    <span className="bluetext"> Job home</span>
-                    <span className ="lightgreytext"> Applied Jobs </span>
-                </div>
-
-                <div className="col-md-3">
-                    <span className="bluetext"> home </span>
-                    <span className ="lightgreytext"> <Link to="/jobshome" className ="lightgreytext"> Saved Jobs </Link></span>               
-                </div> 
-        </div>
-        </section>
-
+    <Jobcon>
         <section className="companies-info companies-info-background col-md-8" >
-        
-        <div className="smallheading">
-					<h3>Jobs you may be interested in</h3>
-		</div>
+            <div className="smallheading">
+			<h3>Jobs you may be interested in</h3>
+		    </div>
         </section>
-        
-        
-
-
-    </div>
-    )
+    
+        <JobCard>
+          company={createdJobs.company}
+          key={createdJobs.id}
+          name={createdJobs.name}
+          image={createdJobs.image}
+        </JobCard>
+    </Jobcon>
+     )
   }
 
   

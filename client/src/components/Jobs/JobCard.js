@@ -1,10 +1,7 @@
-import React, { Component } from 'react'
-import {set_active_id} from "../../actions/jobCardActiveId";
+import React from 'react'
 import "./jobs.css";
 
-class JobCard extends Component {
-
-  render() {
+function JobCard(props) {
     return (
       <div className="row left-job-detail" onClick={this.state}>
            
@@ -30,20 +27,6 @@ class JobCard extends Component {
       </div>
     )
   }
-}
 
-function mapStateToProps(state) {
-  console.log("in map Jobs Search",state);
- return { jobs: state.searched_jobs.jobs,
-};
-}
-
-const mapDispachToProps = dispatch => {
-  return {
-     set_active_id: (id) => dispatch(set_active_id(id)),
-   
-
-  };
-};
 
 export default JobCard;
