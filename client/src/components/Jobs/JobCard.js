@@ -11,7 +11,7 @@ const JobCard = ({ jobs }) => {
   { jobs &&
   jobs.map((job) => (
     <div className="card">
-      <div className="content">
+      <div className="job-detail">
         <ul>
         <li>
         <strong>Company:</strong> {job.company}
