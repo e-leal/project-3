@@ -6,26 +6,25 @@ class JobCard extends Component {
 
   render() {
     return (
-      <div className="row left-job-detail" onClick={this.setActiveID}>
+      <div className="row left-job-detail" onClick={this.state}>
            
               <div className="col-md-2 left-job-detail-image">
-                  <img src={this.state.company_logo} style={{width:"100%"}} className="img-fluid job-card-image" alt="LinkedIn" />
               </div>
               <div className="col-md-10 left-job-detail-desc">
               <div className="heading-company3">
-               {this.state.title}
+               {/* {this.state.title} */}
               </div>
               <div className="heading-company4">
-              {this.state.company}
+              {/* {this.state.company} */}
               </div>
               <div className="heading-location3">
-              <img src={""}></img>&nbsp; {this.state.address.city} {this.state.address.zipcode},{this.state.address.country}
+              {/* <img src={""}></img>&nbsp; {this.state.address.city} {this.state.address.zipcode},{this.state.address.country} */}
               </div>
               <div>
               <label style={{color:"green",fontSize:"12px"}}>New &#9670;</label>&nbsp;<label style={{fontSize:"12px"}}>Posted {this.state.time_diff}  ago</label>
                </div>
               <div className="heading-company4">
-              {this.state.description}
+              {/* {this.state.description} */}
               </div>
               </div>
       </div>
