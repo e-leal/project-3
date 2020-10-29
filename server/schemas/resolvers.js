@@ -41,6 +41,10 @@ const resolvers = {
             return Application.find()
             .populate('appliedJob')
         },
+        jobs: async () => {
+            return Job.find()
+            .populate('jobApplications')
+        },
         user: async (parent, { username }) => {
             return User.findOne({ username })
                 .select('-__v -password')
@@ -54,7 +58,7 @@ const resolvers = {
                     }
                 });
         },
-        createdJobs: async (parent, { username }) => {
+        createdJobs: async (parent, { username }, context) => {
             const params = email ? { username } : {};
             return Job.find(params).populate('jobApplications').sort({ createdAt: -1 });
         },
@@ -73,13 +77,13 @@ const resolvers = {
         },
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email });
-
+            console.log("our backend user is: ", user);
             if (!user) {
                 throw new AuthenticationError('Incorrect credentials');
             }
 
             const correctPw = await user.isCorrectPassword(password);
-
+            console.log("Do we have the correctPassword?: ", correctPw);
             if (!correctPw) {
                 throw new AuthenticationError('Incorrect credentials');
             }

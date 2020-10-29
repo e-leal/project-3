@@ -19,7 +19,6 @@ export const GET_ME = gql`
             _id
             resume
             createdAt
-            company
             appliedJob {
                 _id
                 company
@@ -28,3 +27,17 @@ export const GET_ME = gql`
     }
 }
 `;
+
+
+export const QUERY_JOBS = gql`
+{
+    jobs{
+            _id
+            company
+            createdAt
+            contact
+            description
+            requirements
+        }
+    }
+  `;
