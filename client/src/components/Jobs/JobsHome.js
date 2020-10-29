@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Button, Card } from 'react-bootstrap';
-import Jobcon from '../components/Jobs/Jobcon';
-import JobCard from '../components/Jobs/JobCard';
+import Jobcon from './Jobcon';
+import JobCard from './JobCard';
 import { Link } from 'react-router-dom';
 import "./jobs.css";
 import { GET_ME } from '../../utils/queries';
@@ -18,8 +18,9 @@ const JobsHome = () => {
     const [validated] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
   
-    const {loading, createdJobs, data} = useQuery(GET_ME);
-    const userData = data?.me || {};
+    const {loading, data} = useQuery(GET_ME);
+    const createdJobs = data?.me || {};
+    console.log(createdJobs)
   
     // useEffect(() => {
     //   if (error) {
@@ -74,10 +75,11 @@ const JobsHome = () => {
         </section>
     
         <JobCard>
+          key={createdJobs._id}
           company={createdJobs.company}
-          key={createdJobs.id}
-          name={createdJobs.name}
-          image={createdJobs.image}
+          title={createdJobs.title}
+          requirements={createdJobs.requirements}
+          contact={createdJobs.contact}
         </JobCard>
     </Jobcon>
      )
