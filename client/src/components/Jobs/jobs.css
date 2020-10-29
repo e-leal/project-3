@@ -1,4 +1,4 @@
-/* .jobstats{
+.jobstats{
     float: left;
     width: 97.5%;
     margin-bottom: 20px;
@@ -451,7 +451,7 @@ padding : 10px
     height: 162px;
     margin-top: 10px;
     border: 1px solid lightgrey;
-  } */
+  }
 
   .card {
     background: #fff;

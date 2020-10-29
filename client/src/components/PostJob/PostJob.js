@@ -36,6 +36,7 @@ const PostJob = () => {
   };
 
   const handleFormSubmit = async (event) => {
+    const token = localStorage.getItem('id_token');
     event.preventDefault();
     
     const form = event.currentTarget;
@@ -52,7 +53,7 @@ const PostJob = () => {
       });
 
       console.log("our data result is: ", data);
-      Auth.login(data.login.token);
+      Auth.login(token);
     } catch (e) {
       console.error(e);
     }

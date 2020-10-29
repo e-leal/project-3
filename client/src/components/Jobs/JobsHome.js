@@ -83,6 +83,7 @@ const JobsHome = () => {
     <Jobcon>
         <section className="companies-info companies-info-background col-md-8" >
             <div className="smallheading">
+                <strong>Your Jobs</strong>
 		    </div>
         </section>
     <div>{loading ? <div>Loading...</div> : 
