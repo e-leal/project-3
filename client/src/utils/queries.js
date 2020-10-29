@@ -9,6 +9,10 @@ export const GET_ME = gql`
         employer
         createdJobs {
             _id
+<<<<<<< HEAD
+=======
+            company
+>>>>>>> develop
             createdAt
             contact
             description
@@ -26,3 +30,17 @@ export const GET_ME = gql`
     }
 }
 `;
+
+
+export const QUERY_JOBS = gql`
+{
+    jobs{
+            _id
+            company
+            createdAt
+            contact
+            description
+            requirements
+        }
+    }
+  `;

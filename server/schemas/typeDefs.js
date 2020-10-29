@@ -49,6 +49,7 @@ const typeDefs = gql`
         me: User
         users: [User]
         applications: [Application]
+        jobs: [Job]
         user(username: String!): User
         createdJobs(username: String!): [Job]
         createdApplications(username: String!): [Application]

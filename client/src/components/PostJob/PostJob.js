@@ -12,13 +12,14 @@ const PostJob = () => {
     {
     company: '',
     title: '',
-    createdAt: '',
-    contactemail: '', 
+    requirements: '',
+    contact: '',
+    description: '' 
   });
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 
-  const [postjob, { error }] = useMutation(CREATE_JOB);
+  const [createJob, { error }] = useMutation(CREATE_JOB);
 
   useEffect(() => {
     if (error) {
@@ -46,7 +47,7 @@ const PostJob = () => {
 
     try {
       console.log("our user data is: ", userFormData);
-      const { data } = await postjob({
+      const { data } = await createJob({
         variables: { ...userFormData },
       });
 
@@ -60,8 +61,9 @@ const PostJob = () => {
     setUserFormData({
       company: '',
       title: '',
-      createdAt: '',
-      contactemail: '', 
+      requirements: '',
+      email: '', 
+      description: ''
     });
   };
 
@@ -96,10 +98,10 @@ const PostJob = () => {
               <input
                 type="text"
                 className="form-control"
-                id="jobtitle"
+                id="title"
                 placeholder="Job title"
                 onChange={handleInputChange}
-                name="jobtitle"
+                name="title"
               />
             </div>
 
@@ -108,10 +110,10 @@ const PostJob = () => {
               { <input
                 type="text"
                 className="form-control"
-                id="createdAt"
-                placeholder="Job Address or City"
+                id="requirements"
+                placeholder="Responsiablitys"
                 onChange={handleInputChange}
-                name="jobaddress"
+                name="requirements"
               /> }
             </div>
             <div className="form-group filter-message-box">
@@ -119,17 +121,28 @@ const PostJob = () => {
               <input
                 type="text"
                 className="form-control"
-                id="contactemail"
+                id="contact"
                 placeholder="Contact Email"
                 onChange={handleInputChange}
-                name="Salary"
+                name="contact"
+              />
+            </div>
+            <div className="form-group filter-message-box">
+                <i className="fa fa-building"> </i>
+              <input
+                type="text"
+                className="form-control"
+                id="description"
+                placeholder="Job Description"
+                onChange={handleInputChange}
+                name="description"
               />
             </div>
             
-            <Button disabled={!(userFormData.company && userFormData.title && userFormData.createdAt && userFormData.contactemail)}
-              type="button"
-              className="btn btn-lg submitbutton wow-page__submit-button"
-            >
+            <Button disabled={!(userFormData.company && userFormData.title && userFormData.requirements && userFormData.contact)}
+              type="primary"
+              variant="success"
+              className="btn btn-lg submitbutton wow-page__submit-button">
               Post Job
             </Button>
           </form>
