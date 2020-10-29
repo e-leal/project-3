@@ -47,8 +47,8 @@ export const SAVE_APPLICATION = gql`
 `;
 
 export const CREATE_JOB = gql`
-mutation createJob($company: String!, $contact: String!, $description: String!, $requirements: String!){
-    createJob(company: $company, contact: $contact, description: $description, requirements: $requirements){
+mutation createJob($company: String!, $title: String!, $contact: String!, $description: String!, $requirements: String!){
+    createJob(company: $company, title: $title, contact: $contact, description: $description, requirements: $requirements){
         _id
         company
         title
@@ -134,3 +134,5 @@ mutation removeJob($jobId: ID){
     }
 }
 `;
+
+

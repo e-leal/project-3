@@ -13,7 +13,8 @@ const PostJob = () => {
     company: '',
     title: '',
     requirements: '',
-    contact: '', 
+    contact: '',
+    description: '' 
   });
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
@@ -61,7 +62,8 @@ const PostJob = () => {
       company: '',
       title: '',
       requirements: '',
-      contactemail: '', 
+      email: '', 
+      description: ''
     });
   };
 
@@ -125,11 +127,22 @@ const PostJob = () => {
                 name="contact"
               />
             </div>
+            <div className="form-group filter-message-box">
+                <i className="fa fa-building"> </i>
+              <input
+                type="text"
+                className="form-control"
+                id="description"
+                placeholder="Job Description"
+                onChange={handleInputChange}
+                name="description"
+              />
+            </div>
             
             <Button disabled={!(userFormData.company && userFormData.title && userFormData.requirements && userFormData.contact)}
               type="primary"
-              className="btn btn-lg submitbutton wow-page__submit-button"
-            >
+              variant="success"
+              className="btn btn-lg submitbutton wow-page__submit-button">
               Post Job
             </Button>
           </form>

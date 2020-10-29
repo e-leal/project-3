@@ -27,3 +27,17 @@ export const GET_ME = gql`
     }
 }
 `;
+
+
+export const QUERY_JOBS = gql`
+{
+    jobs{
+            _id
+            company
+            createdAt
+            contact
+            description
+            requirements
+        }
+    }
+  `;

@@ -4,9 +4,9 @@ import Jobcon from './Jobcon';
 import JobCard from './JobCard';
 import { Link } from 'react-router-dom';
 import "./jobs.css";
-import { GET_ME } from '../../utils/queries';
+import { GET_ME, QUERY_JOBS } from '../../utils/queries';
 import Auth from '../../utils/auth';
-import { useMutation, useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/react-hooks';
 import { getSavedJobIds } from '../../utils/localStorage';
 
 
@@ -14,12 +14,26 @@ import { getSavedJobIds } from '../../utils/localStorage';
 //import Navabar
 
 const JobsHome = () => {
-    const [userFormData, setUserFormData] = useState({ email: '', password: '' });
+    const [userJobData, setUserJobData] = useState({ company: '', createdAt: '', contact: '', description: '', requirements: '' });
     const [validated] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
-  
+
+    // const {loading1, data1} = useQuery(MY_JOBS);
+    //  const myJobData = data1?.user || {};
+    //  console.log("my job data is:::: ", myJobData);
     const {loading, data} = useQuery(GET_ME);
-    const createdJobs = data?.me || {};
+    const createdJobData = data?.me || [];
+    console.log(createdJobData)
+      const myJob = createdJobData.createdJobs
+    // //  const {createdJobs} = myJob;
+    // console.log("our created jobs might be: ", myJob);
+    console.log("Our user job data is: ", createdJobData);
+    // const tasks = Object.values(myJob.createdJobs);
+    // console.log("my tasks are: ", tasks)
+  
+    // const { data } = await createdJobs({
+    //           variables: { ...userFormData },
+    //      });
 
     // useEffect(() => {
     //   if (error) {
@@ -29,41 +43,41 @@ const JobsHome = () => {
     //   }
     // }, [error]);
   
-    const handleInputChange = (event) => {
+    // const handleInputChange = (event) => {
   
-      const { name, value } = event.target;
-      console.log(name, " is being changed to: ", value);
-      setUserFormData({ ...userFormData, [name]: value });
-    };
+    //   const { name, value } = event.target;
+    //   console.log(name, " is being changed to: ", value);
+    //   setUserFormData({ ...userFormData, [name]: value });
+    // };
   
-    const handleFormSubmit = async (event) => {
-      event.preventDefault();
+    // const handleFormSubmit = async (event) => {
+    //   event.preventDefault();
       
-      const form = event.currentTarget;
-      console.log("the form is: ", form);
-      if (form.checkValidity() === false) {
-        event.preventDefault();
-        event.stopPropagation();
-      }
+    //   const form = event.currentTarget;
+    //   console.log("the form is: ", form);
+    //   if (form.checkValidity() === false) {
+    //     event.preventDefault();
+    //     event.stopPropagation();
+    //   }
   
-      try {
-        console.log("our user data is: ", userFormData);
-        const { data } = await getSavedJobIds({
-          variables: { ...userFormData },
-        });
+    //   try {
+    //     console.log("our user data is: ", userFormData);
+    //     const { data } = await getSavedJobIds({
+    //       variables: { ...userFormData },
+    //     });
   
-        console.log("our data result is: ", data);
-        Auth.login(data.login.token);
-      } catch (e) {
-        console.error(e);
-      }
+    //     console.log("our data result is: ", data);
+    //     Auth.login(data.login.token);
+    //   } catch (e) {
+    //     console.error(e);
+    //   }
   
-      // clear form values
-      setUserFormData({
-        email: '',
-        password: '',
-      });
-    };
+    //   // clear form values
+    //   setUserFormData({
+    //     email: '',
+    //     password: '',
+    //   });
+    // };
 
     return (
     <Jobcon>
@@ -72,15 +86,8 @@ const JobsHome = () => {
 			      <h3>Jobs you may be interested in</h3>
 		        </div>
         </section>
-        { jobCard.map(createdJobs.createdJobs => (
-        <JobCard
-          key={createdJobs._id}
-          company={createdJobs.company}
-          title={createdJobs.title}
-          requirements={createdJobs.requirements}
-          contact={createdJobs.contact}
-        />
-        ))};
+    <div>{loading ? <div>Loading...</div> : <JobCard jobs={myJob} /> } </div>
+
     </Jobcon>
      );
   }
@@ -88,5 +95,3 @@ const JobsHome = () => {
   
 export default JobsHome;
   
-
-
