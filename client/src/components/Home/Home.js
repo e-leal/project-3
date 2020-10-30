@@ -5,8 +5,11 @@ import Auth from '../../utils/auth';
 import { searchCareerJobs } from '../../utils/API';
 import { saveJobIds, getSavedJobIds } from '../../utils/localStorage';
 //import {REMOVE_BOOK, SAVE_BOOK, ADD_USER, LOGIN_USER} from '../utils/mutations';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation, useQuery } from '@apollo/react-hooks';
+import { GET_ME, QUERY_JOBS } from '../../utils/queries';
 import {SAVE_JOB} from '../../utils/mutations';
+import JobCard from '../Jobs/JobCard';
+import '../../index.css'
 //import {LOGIN_USER} from '../utils/mutations';
 
 const Home = () => {
@@ -14,6 +17,14 @@ const Home = () => {
     const [searchedJobs, setSearchedJobs] = useState([]);
     // create state for holding our search field data
     const [searchInput, setSearchInput] = useState('');
+
+
+    const {loading, data} = useQuery(GET_ME);
+    const createdJobData = data?.me || [];
+    console.log(createdJobData)
+      const myJob = createdJobData.createdJobs
+
+      
   
     // create state to hold saved bookId values
     const [savedJobIds, setSavedJobIds] = useState(getSavedJobIds());
@@ -83,9 +94,9 @@ const Home = () => {
   
     return (
       <>
-        <Jumbotron fluid className='text-light center bg-dark'>
+        <Jumbotron fluid id='dark-purple' className='text-light center purple-mountain'>
           <Container>
-            <h3>Find your next Career</h3>
+            <h3>Find your next job</h3>
             <Form onSubmit={handleFormSubmit}>
               <Form.Row>
                 <Col xs={3} md={8}>
@@ -109,13 +120,14 @@ const Home = () => {
           </Container>
         </Jumbotron>
   
-        <Container>
+        <Container id="light-purple">
           <h2>
             {searchedJobs.length
               ? `Viewing ${searchedJobs.length} results:`
               : 'Search for a job to begin'}
           </h2>
-          <CardColumns>
+          <div>{loading ? <div>Loading...</div> : <JobCard jobs={myJob} /> } </div>
+          {/* <CardColumns>
             {searchedJobs.map((job) => {
               return (
                 <Card key={job.jobId} border='dark'>
@@ -140,7 +152,7 @@ const Home = () => {
                 </Card>
               );
             })}
-          </CardColumns>
+          </CardColumns> */}
         </Container>
       </>
     );
