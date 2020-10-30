@@ -23,17 +23,17 @@ const AppNavbar = () => {
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar'>
             <Nav className='ml-auto' size='sm'>
-              <Nav.Link as={Link} to='profile'>
-                <h4>Profile</h4>
+              <Nav.Link as={Link} to='profile' >
+                <h4 class="navbar-text">Profile</h4>
               </Nav.Link>
               {/* if user is logged in show saved books and logout */}
               {Auth.loggedIn() ? (
                 <>
               <Nav className='ml-auto' size='sm'></Nav>
                   <Nav.Link as={Link} to= 'PostJob'>
-                    <h4>Post a Job</h4>
+                    <h4 class="navbar-text">Post a Job</h4>
                   </Nav.Link>
-                  <Nav.Link onClick={Auth.logout}><h4>Logout</h4></Nav.Link>
+                  <Nav.Link onClick={Auth.logout}><h4 class="navbar-text">Logout</h4></Nav.Link>
                 </>
               ) : (
                 <Nav.Link onClick={() => setShowModal(true)}><h4>Login</h4></Nav.Link>

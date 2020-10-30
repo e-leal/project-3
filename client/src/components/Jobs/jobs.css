@@ -9,6 +9,11 @@ html * {
   color: var(--black);
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+.navbar-text:hover{
+  opacity: .5;
+  transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+
+}
 
 .jobstats{
     float: left;
