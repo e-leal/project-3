@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { handleSaveJob, savedJobIds }  from 'react'
 import { Button, Container, Card, CardColumns } from 'react-bootstrap';
+import Auth from '../../utils/auth';
 import "./jobs.css";
 
 const JobCard = ({ jobs }) => {
