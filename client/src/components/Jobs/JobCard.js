@@ -2,9 +2,9 @@ import React from 'react'
 import "./jobs.css";
 
 const JobCard = ({ jobs }) => {
-  if (!jobs.length) {
-    return <h3>You have no posted jobs!</h3>
-  }
+  // if (!jobs.length) {
+  //   return <h3>You have no posted jobs!</h3>
+  // }
   return (
 
 <div>

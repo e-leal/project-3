@@ -2,6 +2,12 @@
   --light-color:#ced3dc;
   --dark-color: #4e8098;
   --third-color: #fcf7f8;
+  --black: black;
+}
+
+html * {
+  color: var(--black);
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .jobstats{
