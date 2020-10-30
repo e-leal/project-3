@@ -13,6 +13,7 @@ APP COMPONENT IMPORTS
 import HomePage from './components/Home/Home';
 // import RecruiterDashboard from "../recruiter/Dashboard/Dashboard";
 import JobsHome from "./components/Jobs/JobsHome";
+import JobPage from "./components/Jobs/JobPage";
 // import JobDetailedView from './components/Jobs/JobCard';
 // import SearchedJobs from "./pages/SearchJobs";
 import Profile from './components/profile/profile';
@@ -55,6 +56,7 @@ function App (){
                 <Route path="/" component={HomePage} exact/>
                 {/* <Route path="/recruiter" component={RecruiterDashboard} exact/> */}
                 <Route path="/jobshome" component={JobsHome} exact />
+                <Route path="/jobpage/:id" component={JobPage} exact />
                 {/* <Route path="/jobdetailedview" component={JobDetailedView} exact /> */}
                 {/* <Route path="/postedjobs" component={ListedJobs} exact /> */}
                 <Route path="/profile" component={Profile} exact />
