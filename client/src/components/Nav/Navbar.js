@@ -3,9 +3,6 @@ import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
 import SignUpForm from '../Signup';
 import LoginForm from '../Login/LoginForm';
-import JobsHome from '../Jobs/JobsHome';
-import PostJob from '../PostJob/PostJob';
-import profile from '../profile/profile';
 
 import Auth from '../../utils/auth';
 
