@@ -1,7 +1,10 @@
 import React from 'react'
 import "./jobs.css";
+import { Link } from 'react-router-dom';
 
 const JobCard = ({ jobs }) => {
+
+  console.log(jobs)
   // if (!jobs.length) {
   //   return <h3>You have no posted jobs!</h3>
   // }
@@ -10,6 +13,7 @@ const JobCard = ({ jobs }) => {
 <div>
   { jobs &&
   jobs.map((job) => (
+    <Link to={`/jobpage/${job._id}`}>
     <div className="card">
       <div className="content">
         <ul>
@@ -33,6 +37,7 @@ const JobCard = ({ jobs }) => {
 
       </div>
       </div>
+      </ Link>
            ))}
 
     </div>

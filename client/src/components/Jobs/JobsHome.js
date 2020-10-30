@@ -83,8 +83,8 @@ const JobsHome = () => {
     <Jobcon>
         <section>
             <div className="smallheading">
-			      <h3>Jobs you may be interested in</h3>
-		        </div>
+			<h3 className="card-title">Jobs you have posted</h3>
+		    </div>
         </section>
     <div>{loading ? <div>Loading...</div> : <JobCard jobs={myJob} /> } </div>
 
