@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Button, Alert } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { Form, Nav, Button, Alert } from 'react-bootstrap';
 import { useMutation } from '@apollo/react-hooks';
 import { CREATE_JOB } from '../../utils/mutations';
 import Auth from '../../utils/auth';
@@ -69,14 +70,14 @@ const PostJob = () => {
 
     return (
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
-      <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
-        Something went wrong with your Job Posting!
-      </Alert>
+        <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
+          Something went wrong with your Job Posting!
+        </Alert>
       <div className="div">
 
         <div className="container-fluid containerstyle">
-          <div style={{clear : "both", paddingTop: "40px"}}>
-            <p className="lead jobtext"  style={{marginLeft: "39%"}}>
+          <div style={{clear : "both", paddingTop: "50px"}}>
+            <p className="lead jobtext"  style={{marginleft: "39%"}}>
               Reach quality candidates
             </p>
           </div>
@@ -111,7 +112,7 @@ const PostJob = () => {
                 type="text"
                 className="form-control"
                 id="requirements"
-                placeholder="Responsiablitys"
+                placeholder="Needed Creditials"
                 onChange={handleInputChange}
                 name="requirements"
               /> }
@@ -138,13 +139,14 @@ const PostJob = () => {
                 name="description"
               />
             </div>
-            
+            <Nav.Link as={Link} to='jobshome'>
             <Button disabled={!(userFormData.company && userFormData.title && userFormData.requirements && userFormData.contact)}
               type="primary"
-              variant="success"
+              variant="primary"
               className="btn btn-lg submitbutton wow-page__submit-button">
               Post Job
             </Button>
+            </Nav.Link>
           </form>
         </div>
       </div>
