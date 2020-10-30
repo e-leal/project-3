@@ -81,7 +81,7 @@ const JobsHome = () => {
 
     return (
     <Jobcon>
-        <section className="companies-info companies-info-background col-md-8" >
+        <section>
             <div className="smallheading">
 			      <h3>Jobs you may be interested in</h3>
 		        </div>
