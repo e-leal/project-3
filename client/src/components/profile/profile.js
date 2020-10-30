@@ -86,7 +86,7 @@ const Profile = () => {
                                           <label>Name</label>
                                       </div>
                                       <div className="col-md-6">
-                                          <p>Kshiti Ghelani</p>
+                                          <p>Jesus Boone</p>
                                       </div>
                                   </div>
                                   <div className="row">

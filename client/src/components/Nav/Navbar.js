@@ -36,7 +36,7 @@ const AppNavbar = () => {
                   <Nav.Link onClick={Auth.logout}><h4 class="navbar-text">Logout</h4></Nav.Link>
                 </>
               ) : (
-                <Nav.Link onClick={() => setShowModal(true)}><h4>Login</h4></Nav.Link>
+                <Nav.Link onClick={() => setShowModal(true)}><h4 class="navbar-text">Login</h4></Nav.Link>
               )}
             </Nav>
           </Navbar.Collapse>
