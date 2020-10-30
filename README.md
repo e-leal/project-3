@@ -106,7 +106,17 @@ This project is covered by the MIT license.
 
 * [dotenv](https://www.npmjs.com/package/dotenv)
 
-* [graphql]()
+* [graphql](https://www.npmjs.com/package/graphql)
+
+* [nodemon](https://www.npmjs.com/package/nodemon)
+
+* [apollo](https://www.npmjs.com/package/apollo)
+
+* [bcrypt](https://www.npmjs.com/package/bcrypt)
+
+* []()
+
+
 
 
 
