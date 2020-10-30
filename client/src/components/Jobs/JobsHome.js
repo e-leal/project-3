@@ -83,13 +83,13 @@ const JobsHome = () => {
     <Jobcon>
         <section className="companies-info companies-info-background col-md-8" >
             <div className="smallheading">
-			<h3>Jobs you may be interested in</h3>
-		    </div>
+			      <h3>Jobs you may be interested in</h3>
+		        </div>
         </section>
     <div>{loading ? <div>Loading...</div> : <JobCard jobs={myJob} /> } </div>
 
     </Jobcon>
-     )
+     );
   }
 
   
