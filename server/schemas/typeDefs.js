@@ -53,6 +53,7 @@ const typeDefs = gql`
         user(username: String!): User
         createdJobs(username: String!): [Job]
         createdApplications(username: String!): [Application]
+        job(_id: ID!): Job
     }
 
     input jobInput {

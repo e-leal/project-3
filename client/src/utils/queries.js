@@ -42,3 +42,29 @@ export const QUERY_JOBS = gql`
         }
     }
   `;
+
+  export const QUERY_JOB = gql`
+  query job($id: ID!) {
+    job(_id: $id) {
+      _id
+      company
+      title
+      createdAt
+      contact
+      description
+      requirements
+      jobApplications {
+        _id
+        createdAt
+        email
+        resume
+        status
+        comments {
+            _id
+            body
+            createdAt
+        }
+      }
+    }
+  }
+`;
