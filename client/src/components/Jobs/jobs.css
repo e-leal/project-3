@@ -1,3 +1,20 @@
+:root {
+  --light-color:#ced3dc;
+  --dark-color: #4e8098;
+  --third-color: #fcf7f8;
+  --black: black;
+}
+
+html * {
+  color: var(--black);
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.navbar-text:hover{
+  opacity: .5;
+  transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+
+}
+
 .jobstats{
     float: left;
     width: 97.5%;
@@ -451,4 +468,73 @@ padding : 10px
     height: 162px;
     margin-top: 10px;
     border: 1px solid lightgrey;
+  }
+
+  .card {
+    background: var(--third-color);
+    border-radius: 2px;
+    height: 150px;
+    margin: 0 auto;
+    margin-top: 1rem;
+    position: relative;
+    width: 90%;
+    box-shadow: 0 3px 6px #999, 0 3px 6px #999;
+    text-align: left;
+  }
+
+  .card > .img-container {
+    height: 60%;
+    overflow: hidden;
+    text-align: center;
+    background:#6CADDC;
+  }
+  .card > .img-container > img {
+    width: 60%
+  }
+
+  .card > .content {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 15px;
+  }
+
+  .card > .content > ul {
+    list-style-type: none;
+  }
+
+  .card > .content > ul > li {
+    margin-top: 4px;
+  }
+
+  .card > .remove {
+    color: #ff1744;
+    font-size: 48px;
+    position: absolute;
+    top: -20px;
+    right: 5px;
+    cursor: pointer;
+  }
+
+  .card > .remove:hover {
+    color: #d50000;
+  }
+
+  .wrapper {
+    padding-top: 50px;
+    background: #ECEFF1;
+    height: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    padding: 20px;
+    justify-content: space-around;
+    align-content: flex-start;
+    overflow: auto;
+  }
+
+  .content > ul > li {
+    text-align: left;
+  }
+
+  .card-title {
+    text-align: center;
   }

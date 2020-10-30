@@ -7,6 +7,8 @@ import { saveJobIds, getSavedJobIds } from '../utils/localStorage';
 import { useMutation } from '@apollo/react-hooks';
 import {SAVE_JOB} from '../utils/mutations';
 import Searchbar from '../components/Searchbar';
+import JobCard from '../components/Jobs/JobCard';
+
 //import {LOGIN_USER} from '../utils/mutations';
 
 const SearchJobs = () => {
@@ -28,9 +30,9 @@ const SearchJobs = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    if (!searchInput) {
-      return false;
-    }
+    // if (!searchInput) {
+    //   return false;
+    // }
 
     try {
       const response = await searchCareerJobs(searchInput);
@@ -115,7 +117,8 @@ const SearchJobs = () => {
             ? `Viewing ${searchedJobs.length} results:`
             : 'Search for a job to begin'}
         </h2>
-        <CardColumns>
+        <JobCard />
+        {/* <CardColumns>
           {searchedJobs.map((job) => {
             return (
               <Card key={job.jobId} border='dark'>
@@ -140,7 +143,7 @@ const SearchJobs = () => {
               </Card>
             );
           })}
-        </CardColumns>
+        </CardColumns> */}
       </Container>
     </>
   );
