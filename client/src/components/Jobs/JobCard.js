@@ -1,7 +1,6 @@
 import React from 'react'
 import "./jobs.css";
 import { Link } from 'react-router-dom';
-import Home from './Home/Home';
 
 const JobCard = ({ jobs }) => {
 
