@@ -45,6 +45,9 @@ const resolvers = {
             return Job.find()
             .populate('jobApplications')
         },
+        job: async (parent, { _id }) => {
+            return Job.findOne({ _id });
+          },
         user: async (parent, { username }) => {
             return User.findOne({ username })
                 .select('-__v -password')

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import "./jobs.css";
-import { GET_ME, QUERY_JOBS } from '../../utils/queries';
+import { GET_ME, QUERY_JOB } from '../../utils/queries';
 import Auth from '../../utils/auth';
 import { useMutation, useQuery } from '@apollo/react-hooks';
+import { Form, Button, Alert } from 'react-bootstrap';
 
 const JobPage = () => {
 
@@ -12,22 +13,26 @@ const JobPage = () => {
     // const {loading1, data1} = useQuery(MY_JOBS);
     //  const myJobData = data1?.user || {};
     //  console.log("my job data is:::: ", myJobData);
-    useEffect(() => {
-        let jobId = window.location.pathname.split("/")[2];
+    // useEffect(() => {
+    //let jobId = window.location.pathname.split("/")[2];
 
-    })
-    let jobId = window.location.pathname.split("/")[2];
-    console.log("my job id is", jobId)
-    const { loading, data } = useQuery(GET_ME);
-    const createdJobData = data?.me || [];
-    console.log(createdJobData)
-    const myJob = createdJobData.createdJobs
-    console.log("my job is", myJob)
-    const filteredJob = myJob.filter((job) => job._id === jobId)
-    console.log("filtered job", filteredJob)
+    // })
+    // let jobId = window.location.pathname.split("/")[2];
+    // console.log("my job id is", jobId)
+    // const { loading, data } = useQuery(GET_ME);
+    // const createdJobData = data?.me || [];
+    // console.log(createdJobData)
+    // const myJob = createdJobData.createdJobs
+    // console.log("my job is", myJob)
+    // const filteredJob = myJob.filter((job) => job._id === jobId)
+    // console.log("filtered job", filteredJob)
+    const jobId = window.location.pathname.split("/")[2];
 
-
-
+    const { loading, data } = useQuery(QUERY_JOB, {
+      variables: { id: jobId }
+    });
+  
+    const myJob = data?.job || {};
     // const job = myJob.filter(_id === jobId);
     //   if (!jobs.length) {
     //     return <h3>You have no posted jobs!</h3>
@@ -37,6 +42,7 @@ const JobPage = () => {
         <div>
                     <div className="card2">
                         <div className="content">
+                          <div>
         <ul>
         <li>
         <strong>Company:</strong> {filteredJob[0].company}
@@ -58,11 +64,19 @@ const JobPage = () => {
         </li>
 
         </ul>
-
+        </div>
+        <div>
+        <Button
+          type='primary'
+          variant='success'>
+          Submit Application Here!
+        </Button>
+        </div>
       </div>
+      
                     </div>
                 
-            
+                    
         </div>
     );
 
