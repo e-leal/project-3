@@ -3,6 +3,7 @@ import "./jobs.css";
 import { GET_ME, QUERY_JOB } from '../../utils/queries';
 import Auth from '../../utils/auth';
 import { useMutation, useQuery } from '@apollo/react-hooks';
+import { Form, Button, Alert } from 'react-bootstrap';
 
 const JobPage = () => {
 
@@ -41,6 +42,7 @@ const JobPage = () => {
         <div>
                     <div className="card">
                         <div className="content">
+                          <div>
         <ul>
         <li>
         <strong>Company:</strong> {myJob.company}
@@ -59,11 +61,19 @@ const JobPage = () => {
         </li>
 
         </ul>
-
+        </div>
+        <div>
+        <Button
+          type='primary'
+          variant='success'>
+          Submit Application Here!
+        </Button>
+        </div>
       </div>
+      
                     </div>
                 
-            
+                    
         </div>
     );
 
