@@ -1,3 +1,14 @@
+:root {
+  --light-color:#947eb0;
+  --dark-color:#766c7f;
+  --third-color: #a3a5c3;
+  
+}
+
+body{
+  background-color: var(--third-color);
+}
+
 .App {
   text-align: center;
 }
