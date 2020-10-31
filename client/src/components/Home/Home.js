@@ -18,79 +18,18 @@ const Home = () => {
     // create state for holding our search field data
     const [searchInput, setSearchInput] = useState('');
 
-
     const {loading, data} = useQuery(GET_ME);
     const createdJobData = data?.me || [];
     console.log(createdJobData)
       const myJob = createdJobData.createdJobs
 
-      
-  
-    // create state to hold saved bookId values
-    const [savedJobIds, setSavedJobIds] = useState(getSavedJobIds());
-    const [saveJob] = useMutation(SAVE_JOB);
-    // set up useEffect hook to save `savedBookIds` list to localStorage on component unmount
-    // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
+    
     useEffect(() => {
-      return () => saveJobIds(savedJobIds);
-    });
-  
-    // create method to search for books and set state on form submit
-    const handleFormSubmit = async (event) => {
-      event.preventDefault();
-  
-      if (!searchInput) {
-        return false;
-      }
-  
-      try {
-        const response = await searchCareerJobs(searchInput);
-  
-        if (!response.ok) {
-          throw new Error('something went wrong!');
-        }
-  
-        const { items } = await response.json();
-  
-        const jobData = items.map((job) => ({
-          JobId: job._id,
-          authors: job.title || ['No author to display'],
-          company: job.company,
-          description: job.description//,
-          //image: job.volumeInfo.imageLinks?.thumbnail || '',
-        }));
-  
-        setSearchedJobs(jobData);
-        setSearchInput('');
-      } catch (err) {
-        console.error(err);
-      }
-    };
-  
-    // create function to handle saving a book to our database
-    const handleSaveJob = async (jobId) => {
-      // find the book in `searchedBooks` state by the matching id
-      const jobToSave = searchedJobs.find((job) => job.jobId === jobId);
-      console.log("Job to save: ", jobToSave);
-      
-      // get token
-      const token = Auth.loggedIn() ? Auth.getToken() : null;
-      if (!token) {
-        return false;
-      }
-  
-      try {
-        const { data } =  await saveJob({
-          variables: {jobData: {...jobToSave}},
-        });
-        console.log("My lovely data: ", data);
-  
-        // if book successfully saves to user's account, save book id to state
-        setSavedJobIds([...savedJobIds, jobToSave.jobId]);
-      } catch (err) {
-        console.error(err);
-      }
-    };
+      fetch(`http://api.jobs2careers.com/api/search.php?id=273&pass=HkdyhY4qQUmJXi5p&q`)
+      .then((respone) => respone.json())
+      .then((json) => setData(json));
+    }, []);
+ 
   
     return (
       <>
@@ -127,32 +66,6 @@ const Home = () => {
               : 'Search for a job to begin'}
           </h2>
           <div>{loading ? <div>Loading...</div> : <JobCard jobs={myJob} /> } </div>
-          {/* <CardColumns>
-            {searchedJobs.map((job) => {
-              return (
-                <Card key={job.jobId} border='dark'>
-                  {job.image ? (
-                    <Card.Img src={job.image} alt={`The cover for ${job.title}`} variant='top' />
-                  ) : null}
-                  <Card.Body>
-                    <Card.Title>{job.title}</Card.Title>
-                    <p className='small'>Employeers: {job.authors}</p>
-                    <Card.Text>{job.description}</Card.Text>
-                    {Auth.loggedIn() && (
-                      <Button
-                        disabled={savedJobIds?.some((savedJobId) => savedJobId === job.jobId)}
-                        className='btn-block btn-info'
-                        onClick={() => handleSaveJob(job.jobId)}>
-                        {savedJobIds?.some((savedJobId) => savedJobId === job.jobId)
-                          ? 'This job has already been saved!'
-                          : 'Save this Book!'}
-                      </Button>
-                    )}
-                  </Card.Body>
-                </Card>
-              );
-            })}
-          </CardColumns> */}
         </Container>
       </>
     );
