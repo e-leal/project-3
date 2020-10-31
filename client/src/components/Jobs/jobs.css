@@ -1,3 +1,20 @@
+:root {
+  --light-color:#ced3dc;
+  --dark-color: #4e8098;
+  --third-color: #fcf7f8;
+  --black: black;
+}
+
+html * {
+  color: var(--black);
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.navbar-text:hover{
+  opacity: .5;
+  transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+
+}
+
 .jobstats{
     float: left;
     width: 97.5%;
@@ -454,7 +471,7 @@ padding : 10px
   }
 
   .card {
-    background: #fff;
+    background: var(--third-color);
     border-radius: 2px;
     height: 150px;
     margin: 0 auto;

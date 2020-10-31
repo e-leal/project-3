@@ -9,6 +9,7 @@ import { useMutation, useQuery } from '@apollo/react-hooks';
 import { GET_ME, QUERY_JOBS } from '../../utils/queries';
 import {SAVE_JOB} from '../../utils/mutations';
 import JobCard from '../Jobs/JobCard';
+import '../../index.css'
 //import {LOGIN_USER} from '../utils/mutations';
 
 const Home = () => {
@@ -93,7 +94,7 @@ const Home = () => {
   
     return (
       <>
-        <Jumbotron fluid className='text-light center bg-dark'>
+        <Jumbotron fluid id='dark-purple' className='text-light center purple-mountain'>
           <Container>
             <h3>Find your next job</h3>
             <Form onSubmit={handleFormSubmit}>
@@ -119,7 +120,7 @@ const Home = () => {
           </Container>
         </Jumbotron>
   
-        <Container>
+        <Container id="light-purple">
           <h2>
             {searchedJobs.length
               ? `Viewing ${searchedJobs.length} results:`
