@@ -7,6 +7,8 @@ export const GET_ME = gql`
         username
         email
         employer
+        number
+        name
         createdJobs {
             _id
             company

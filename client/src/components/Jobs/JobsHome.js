@@ -89,7 +89,7 @@ const JobsHome = () => {
     <div>{loading ? <div>Loading...</div> : <JobCard jobs={myJob} /> } </div>
 
     </Jobcon>
-     )
+     );
   }
 
   
