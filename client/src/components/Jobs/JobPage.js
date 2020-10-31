@@ -35,23 +35,26 @@ const JobPage = () => {
     return (
 
         <div>
-                    <div className="card">
+                    <div className="card2">
                         <div className="content">
         <ul>
         <li>
-        <strong>Company:</strong> {myJob.company}
+        <strong>Company:</strong> {filteredJob[0].company}
         </li>
         <li>
-        <strong>Job Title:</strong> {myJob.title}
+        <strong>Job Title:</strong> {filteredJob[0].title}
         </li>
         <li>
-        <strong>Requirements:</strong> {myJob.requirements}
+        <strong>Requirements:</strong> {filteredJob[0].requirements}
         </li>
         <li>
-        <strong>Created At:</strong>{myJob.createdAt}
+        <strong>Created At:</strong>{filteredJob[0].createdAt}
         </li>
         <li>
-        <strong>Contact:</strong> {myJob.contact}
+        <strong>Contact:</strong> {filteredJob[0].contact}
+        </li>
+        <li>
+        <strong>Description:</strong> {filteredJob[0].description}
         </li>
 
         </ul>
