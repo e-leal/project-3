@@ -86,7 +86,7 @@ const Profile = () => {
                                           <label>Name</label>
                                       </div>
                                       <div className="col-md-6">
-                                          <p>Jesus Boone</p>
+                                          <p>{userData.name}</p>
                                       </div>
                                   </div>
                                   <div className="row">
@@ -125,10 +125,10 @@ const Profile = () => {
                                   </div>
                                   <div className="row">
                                       <div className="col-md-6">
-                                          <label>Hourly Rate</label>
+                                          <label>Salary</label>
                                       </div>
                                       <div className="col-md-6">
-                                          <p>10$/hr</p>
+                                          <p>89,000/yr</p>
                                       </div>
                                   </div>
                                   <div className="row">

@@ -3,7 +3,6 @@ import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/react-hooks';
 import  ApolloClient from 'apollo-boost';
-import Conduct from './components/Conduct';
 import NavBar from './components/Nav/Navbar';
 /*
 ***********
@@ -47,6 +46,7 @@ const client = new ApolloClient({
   uri: 'http://localhost:3001/graphql'
 });
 
+
 function App (){
   return (
     <ApolloProvider client={client}>
@@ -86,5 +86,6 @@ function App (){
       </ApolloProvider>
   );
 } 
+
 
 export default App;
