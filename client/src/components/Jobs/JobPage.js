@@ -3,10 +3,12 @@ import "./jobs.css";
 import { GET_ME, QUERY_JOB } from '../../utils/queries';
 import Auth from '../../utils/auth';
 import { useMutation, useQuery } from '@apollo/react-hooks';
-import { Form, Button, Alert } from 'react-bootstrap';
+import { Navbar, Nav, Container, Modal, Tab, Button } from 'react-bootstrap';
+import SubmitApplication from '../SubmitApplication';
+
 
 const JobPage = () => {
-
+  const [showModal, setShowModal] = useState(false);
     const [userJobData, setUserJobData] = useState({ company: '', createdAt: '', contact: '', description: '', requirements: '' });
 
 
@@ -65,7 +67,7 @@ const JobPage = () => {
         <div>
         <Button
           type='primary'
-          variant='success'>
+          variant='success' onClick={() => setShowModal(true)}>
           Submit Application Here!
         </Button>
         </div>
@@ -73,8 +75,24 @@ const JobPage = () => {
       
                     </div>
                 
-                    
+                {/* set modal data up */}
+      <Modal
+        size='lg'
+        show={showModal}
+        onHide={() => setShowModal(false)}
+        aria-labelledby='submitapplication-modal'>
+        {/* tab container to do either signup or login component */}
+          <Modal.Header closeButton>
+            <Modal.Title id='submitapplication-modal'>
+              Enter Resume Link
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+                <SubmitApplication handleModalClose={() => setShowModal(false)} />
+          </Modal.Body>
+      </Modal>    
         </div>
+        
     );
 
         }
