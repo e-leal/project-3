@@ -45,26 +45,22 @@ const JobPage = () => {
                           <div>
         <ul>
         <li>
-        <strong>Company:</strong> {filteredJob[0].company}
+        <strong>Company:</strong> {myJob.company}
         </li>
         <li>
-        <strong>Job Title:</strong> {filteredJob[0].title}
+        <strong>Job Title:</strong> {myJob.title}
         </li>
         <li>
-        <strong>Requirements:</strong> {filteredJob[0].requirements}
+        <strong>Requirements:</strong> {myJob.requirements}
         </li>
         <li>
-        <strong>Created At:</strong>{filteredJob[0].createdAt}
+        <strong>Created At:</strong>{myJob.createdAt}
         </li>
         <li>
-        <strong>Contact:</strong> {filteredJob[0].contact}
-        </li>
-        <li>
-        <strong>Description:</strong> {filteredJob[0].description}
+        <strong>Contact:</strong> {myJob.contact}
         </li>
 
         </ul>
-        </div>
         <div>
         <Button
           type='primary'
@@ -72,6 +68,8 @@ const JobPage = () => {
           Submit Application Here!
         </Button>
         </div>
+        </div>
+        
       </div>
       
                     </div>

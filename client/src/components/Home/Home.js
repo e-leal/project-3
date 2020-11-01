@@ -1,75 +1,112 @@
-import React, { useState, useEffect, useRef }  from "react";
-import { Jumbotron, Container, Col, Form, Button, ListGroup } from 'react-bootstrap';
+import React, { useState, useEffect }  from "react";
+import { NavLink } from "react-router-dom";
+import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
+import Auth from '../../utils/auth';
+import { searchCareerJobs } from '../../utils/API';
+import { saveJobIds, getSavedJobIds } from '../../utils/localStorage';
+//import {REMOVE_BOOK, SAVE_BOOK, ADD_USER, LOGIN_USER} from '../utils/mutations';
+import { useMutation, useQuery } from '@apollo/react-hooks';
+import { GET_ME, QUERY_JOBS } from '../../utils/queries';
+import {SAVE_JOB} from '../../utils/mutations';
+import JobCard from '../Jobs/JobCard';
 import '../../index.css'
+//import {LOGIN_USER} from '../utils/mutations';
 
 const Home = () => {
     // create state for holding returned google api data
-    const [jobs, setJobs] = useState([]);
-    const [query, setQuery] = useState('');
-    const focusSearch = useRef(null)
-
-    
-    useEffect(() => {focusSearch.current.focus()}, [])
+    const [searchedJobs, setSearchedJobs] = useState([]);
+    // create state for holding our search field data
+    const [searchInput, setSearchInput] = useState('');
 
 
-    //Fetch data from API
-    const getJobs = async (query) => {
-      const results = await fetch(`http://api.jobs2careers.com/api/search.php?id=273&pass=HkdyhY4qQUmJXi5p&q=${query}`, {
-        headers: {'accept': 'application/json'}
-    })
-    const jobData = await results.json()
-    return jobData.results
+    const {loading, data} = useQuery(GET_ME);
+    const createdJobData = data?.me || [];
+    console.log(createdJobData)
+      const myJob = createdJobData.createdJobs
 
-  }
-    //Stops the flicker has user types
-    const sleep = (ms) => {
-      return new Promise(resolve => setTimeout(resolve, ms))
-    }
-
-    // Renders when query is CHANGED
-    useEffect (() => {
-      let currentQuery = true
-      const controller = new AbortController()
-
-      const loadJobs = async () => {
-        if (!query) return setJobs([])
-
-        await sleep(350)
-        if (currentQuery) {
-          const jobs = await getJobs(query, controller)
-          setJobs(jobs)
+      
+  
+    // create state to hold saved bookId values
+    const [savedJobIds, setSavedJobIds] = useState(getSavedJobIds());
+    const [saveJob] = useMutation(SAVE_JOB);
+    // set up useEffect hook to save `savedBookIds` list to localStorage on component unmount
+    // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
+    useEffect(() => {
+      return () => saveJobIds(savedJobIds);
+    });
+  
+    // create method to search for books and set state on form submit
+    const handleFormSubmit = async (event) => {
+      event.preventDefault();
+  
+      if (!searchInput) {
+        return false;
+      }
+  
+      try {
+        const response = await searchCareerJobs(searchInput);
+  
+        if (!response.ok) {
+          throw new Error('something went wrong!');
         }
+  
+        const { items } = await response.json();
+  
+        const jobData = items.map((job) => ({
+          JobId: job._id,
+          authors: job.title || ['No author to display'],
+          company: job.company,
+          description: job.description//,
+          //image: job.volumeInfo.imageLinks?.thumbnail || '',
+        }));
+  
+        setSearchedJobs(jobData);
+        setSearchInput('');
+      } catch (err) {
+        console.error(err);
       }
-      loadJobs()
-
-      return () => {
-        currentQuery = false
-        controller.abort()
+    };
+  
+    // create function to handle saving a book to our database
+    const handleSaveJob = async (jobId) => {
+      // find the book in `searchedBooks` state by the matching id
+      const jobToSave = searchedJobs.find((job) => job.jobId === jobId);
+      console.log("Job to save: ", jobToSave);
+      
+      // get token
+      const token = Auth.loggedIn() ? Auth.getToken() : null;
+      if (!token) {
+        return false;
       }
-    }, [query])
-    //RENDER JOBS
-    let jobComponents = jobs.map((job, index) => {
-      return (
-        <ListGroup.Item key={index} action variant="secondary">
-          {job.job}
-        </ListGroup.Item>
-      )
-    })     
-    //RENDER COMPS
+  
+      try {
+        const { data } =  await saveJob({
+          variables: {jobData: {...jobToSave}},
+        });
+        console.log("My lovely data: ", data);
+  
+        // if book successfully saves to user's account, save book id to state
+        setSavedJobIds([...savedJobIds, jobToSave.jobId]);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+  
     return (
-       <>
+      <>
         <Jumbotron fluid id='dark-purple' className='text-light center purple-mountain'>
           <Container>
-            <h3>Find your next Career</h3>
-            <Form id="search-form">
+            <h3>Find your next job</h3>
+            <Form onSubmit={handleFormSubmit}>
               <Form.Row>
                 <Col xs={3} md={8}>
                   <Form.Control
                     className='center'
-                    type="text"
-                    ref={focusSearch}
-                    onChange={(e) => setQuery(e.target.value)}
-                    value ={query}
+                    name='searchInput'
+                    value={searchInput}
+                    onChange={(e) => setSearchInput(e.target.value)}
+                    type='text'
+                    size=''
                     placeholder='Search for a Job'
                   />
                 </Col>
@@ -84,12 +121,38 @@ const Home = () => {
         </Jumbotron>
   
         <Container id="light-purple">
-          <ListGroup>
           <h2>
-           {jobComponents}
+            {searchedJobs.length
+              ? `Viewing ${searchedJobs.length} results:`
+              : 'Search for a job to begin'}
           </h2>
-          </ListGroup>
-          {/* <div>{loading ? <div>Loading...</div> : <JobCard jobs={myJob} /> } </div> */}
+          <div>{loading ? <div>Loading...</div> : <JobCard jobs={myJob} /> } </div>
+          {/* <CardColumns>
+            {searchedJobs.map((job) => {
+              return (
+                <Card key={job.jobId} border='dark'>
+                  {job.image ? (
+                    <Card.Img src={job.image} alt={`The cover for ${job.title}`} variant='top' />
+                  ) : null}
+                  <Card.Body>
+                    <Card.Title>{job.title}</Card.Title>
+                    <p className='small'>Employeers: {job.authors}</p>
+                    <Card.Text>{job.description}</Card.Text>
+                    {Auth.loggedIn() && (
+                      <Button
+                        disabled={savedJobIds?.some((savedJobId) => savedJobId === job.jobId)}
+                        className='btn-block btn-info'
+                        onClick={() => handleSaveJob(job.jobId)}>
+                        {savedJobIds?.some((savedJobId) => savedJobId === job.jobId)
+                          ? 'This job has already been saved!'
+                          : 'Save this Book!'}
+                      </Button>
+                    )}
+                  </Card.Body>
+                </Card>
+              );
+            })}
+          </CardColumns> */}
         </Container>
       </>
     );
