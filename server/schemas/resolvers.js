@@ -68,7 +68,7 @@ const resolvers = {
         createdApplications: async (parent, { username }) => {
             const params = username ? { username } : {};
             return Application.find(params).populate('appliedJob').sort({ createdAt: -1 });
-        },
+        }
     },
 
     Mutation: {

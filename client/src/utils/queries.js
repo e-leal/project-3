@@ -33,11 +33,12 @@ export const GET_ME = gql`
 
 
 export const QUERY_JOBS = gql`
-{
+query jobs{
     jobs{
             _id
             company
             createdAt
+            title
             contact
             description
             requirements
@@ -69,4 +70,16 @@ export const QUERY_JOBS = gql`
       }
     }
   }
+`;
+
+export const QUERY_APP = gql`
+query receivedApps($id: ID){
+    receivedApps(id: $id){
+        _id
+        email
+        resume
+        status
+        createdAt
+    }
+}
 `;
