@@ -1,3 +1,33 @@
+:root {
+  --light-color:#947eb0;
+  --dark-color:#766c7f;
+  --third-color: #a3a5c3;
+  
+}
+
+#body {
+  background-color: var(--light-color);
+}
+
+
+.navbar-text:hover{
+  opacity: .5;
+  transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+
+}
+
+.navbar-text {
+  transition: transform .2s; /* Animation */
+  justify-content: flex-end;
+  margin: 1vw;
+  text-decoration: none;
+
+}
+
+#root {
+  background-color: var(--light-color);
+}
+
 html *
 {
   font-family: 'Libre Franklin', sans-serif;
@@ -7,6 +37,8 @@ html *
 html {
   scroll-behavior: smooth;
 }
+
+
 
 .name {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif bold;
@@ -49,7 +81,7 @@ p {
 
 
 body {
-    background-color: light;
+    background-color: var(--light-color);
 }
 
 .navbar {
@@ -833,4 +865,16 @@ div.agreement a:hover {
     padding: 20px;
     margin-bottom: 30px;
     width : 100% !important;
+}
+
+.purple-mountain {
+  background-color: #947eb0;
+}
+
+#light-purple {
+  background-color: var(--light-color)
+}
+
+#dark-purple {
+  background-color: var(--dark-color)
 }
