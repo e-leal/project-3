@@ -72,7 +72,7 @@ const typeDefs = gql`
         login(email: String!, password: String!): Auth
         addUser(username: String!, name: String, number: String, email: String!, password: String!, employer: String): Auth
         createJob(company: String!, contact: String!, title: String!, description: String!, requirements: String!): Job
-        createApplication(resume: String!, title: String!, company: String!, status: String!, jobId: ID): Application
+        createApplication(resume: String!, jobId: ID): Application
         saveJob(jobId: ID!): User
         saveApplication(applicationId: ID!): User
         removeJob(jobId: ID!): User

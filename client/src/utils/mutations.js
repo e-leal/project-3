@@ -61,8 +61,8 @@ mutation createJob($company: String!, $title: String!, $contact: String!, $descr
 `;
 
 export const CREATE_APP = gql`
-mutation createApplication($resume: String!){
-    createApplication(resume: $resume ){
+mutation createApplication($resume: String!, $jobId: ID){
+    createApplication(resume: $resume, jobId: $jobId ){
         _id
         resume
         email
