@@ -56,7 +56,7 @@ const JobPage = () => {
         <strong>Requirements:</strong> {myJob.requirements}
         </li>
         <li>
-        <strong>Created At:</strong>{myJob.createdAt}
+        <strong>Description:</strong>{myJob.description}
         </li>
         <li>
         <strong>Contact:</strong> {myJob.contact}
