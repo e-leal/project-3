@@ -5,6 +5,8 @@ import Auth from '../../utils/auth';
 import { useMutation, useQuery } from '@apollo/react-hooks';
 import { Navbar, Nav, Container, Modal, Tab, Button } from 'react-bootstrap';
 import SubmitApplication from '../SubmitApplication';
+import Jobcon from '../Jobs/Jobcon';
+import ApplicationCard from '../ApplicationCard';
 
 
 const JobPage = () => {
@@ -33,68 +35,116 @@ const JobPage = () => {
     const { loading, data } = useQuery(QUERY_JOB, {
       variables: { id: jobId }
     });
-  
+    const { loading1, data1 } = useQuery(GET_ME);
+    
+
     const myJob = data?.job || {};
+    const myself = data1?.me || {};
     // const job = myJob.filter(_id === jobId);
     //   if (!jobs.length) {
     //     return <h3>You have no posted jobs!</h3>
     //   }
-    return (
+    const isEmployersListing = (myJob.contact == myself.email && myself.employer);
+    if(!isEmployersListing){
+        return (
 
-        <div>
-                    <div className="card2">
-                        <div className="content">
-                          <div>
-        <ul>
-        <li>
-        <strong>Company:</strong> {myJob.company}
-        </li>
-        <li>
-        <strong>Job Title:</strong> {myJob.title}
-        </li>
-        <li>
-        <strong>Requirements:</strong> {myJob.requirements}
-        </li>
-        <li>
-        <strong>Created At:</strong>{myJob.createdAt}
-        </li>
-        <li>
-        <strong>Contact:</strong> {myJob.contact}
-        </li>
+            <div>
+                        <div className="card2">
+                            <div className="content">
+                              <div>
+            <ul>
+            <li>
+            <strong>Company:</strong> {myJob.company}
+            </li>
+            <li>
+            <strong>Job Title:</strong> {myJob.title}
+            </li>
+            <li>
+            <strong>Requirements:</strong> {myJob.requirements}
+            </li>
+            <li>
+            <strong>Created At:</strong>{myJob.createdAt}
+            </li>
+            <li>
+            <strong>Contact:</strong> {myJob.contact}
+            </li>
 
-        </ul>
-        </div>
-        <div>
-        <Button
-          type='primary'
-          variant='success' onClick={() => setShowModal(true)}>
-          Submit Application Here!
-        </Button>
-        </div>
-      </div>
+            </ul>
+            </div>
+            <div>
+            <Button
+              type='primary'
+              variant='success' onClick={() => setShowModal(true)}>
+              Submit Application Here!
+            </Button>
+            </div>
+          </div>
+          
+                        </div>
+                    
+                    {/* set modal data up */}
+          <Modal
+            size='lg'
+            show={showModal}
+            onHide={() => setShowModal(false)}
+            aria-labelledby='submitapplication-modal'>
+            {/* tab container to do either signup or login component */}
+              <Modal.Header closeButton>
+                <Modal.Title id='submitapplication-modal'>
+                  Enter Resume Link
+                </Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                    <SubmitApplication handleModalClose={() => setShowModal(false)} />
+              </Modal.Body>
+          </Modal>    
+            </div>
+            
+        );
+
+    }
       
-                    </div>
-                
-                {/* set modal data up */}
-      <Modal
-        size='lg'
-        show={showModal}
-        onHide={() => setShowModal(false)}
-        aria-labelledby='submitapplication-modal'>
-        {/* tab container to do either signup or login component */}
-          <Modal.Header closeButton>
-            <Modal.Title id='submitapplication-modal'>
-              Enter Resume Link
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-                <SubmitApplication handleModalClose={() => setShowModal(false)} />
-          </Modal.Body>
-      </Modal>    
-        </div>
-        
-    );
+    else {
+      return (
 
-        }
+          <div>
+            <div className="card2">
+                <div className="content">
+                  <div>
+                    <ul>
+                    <li>
+                    <strong>Company:</strong> {myJob.company}
+                    </li>
+                    <li>
+                    <strong>Job Title:</strong> {myJob.title}
+                    </li>
+                    <li>
+                    <strong>Requirements:</strong> {myJob.requirements}
+                    </li>
+                    <li>
+                    <strong>Created At:</strong>{myJob.createdAt}
+                    </li>
+                    <li>
+                    <strong>Contact:</strong> {myJob.contact}
+                    </li>
+            
+                    </ul>
+                  </div>
+                <div>
+              </div>
+            </div>
+          </div>
+        <Jobcon>
+        <section>
+            <div className="smallheading">
+			<h3 className="card-title">Applications you have received</h3>
+		    </div>
+        </section>
+    <div>{loading1 ? <div>Loading...</div> : <ApplicationCard applications={myJob.jobApplications} /> } </div>
 
+    </Jobcon>
+    </div>
+      );
+    }
+  }
     export default JobPage;
