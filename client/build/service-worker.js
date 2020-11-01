@@ -20,7 +20,7 @@ importScripts(
 const ignored = self.__WB_MANIFEST;
 
 self.addEventListener('fetch', function (e){
-  if (e.request.url.includes('/graphql/')) {
+  if (e.request.url.includes('/api/')) {
       e.respondWith(
         caches
           .open(DATA_CACHE_NAME)
