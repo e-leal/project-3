@@ -45,6 +45,9 @@ const resolvers = {
             return Job.find()
             .populate('jobApplications')
         },
+        job: async (parent, { _id }) => {
+            return Job.findOne({ _id });
+          },
         user: async (parent, { username }) => {
             return User.findOne({ username })
                 .select('-__v -password')
@@ -65,7 +68,7 @@ const resolvers = {
         createdApplications: async (parent, { username }) => {
             const params = username ? { username } : {};
             return Application.find(params).populate('appliedJob').sort({ createdAt: -1 });
-        },
+        }
     },
 
     Mutation: {
@@ -126,7 +129,7 @@ const resolvers = {
                     _id: args.jobId
                 });
                 console.log("my job: ", job)
-                const application = await Application.create({ email: context.user.email, appliedJob: [job], ...args });
+                const application = await Application.create({ email: context.user.email, status: 'Applied',  appliedJob: [job], ...args });
                 console.log(application)
                 await User.findByIdAndUpdate(
                     { _id: context.user._id },
