@@ -8,7 +8,7 @@ import { useMutation, useQuery } from '@apollo/react-hooks';
 
 const SubmitApplication = () => {
   // set initial form state
-  const [userFormData, setUserFormData] = useState({ resume: '', company: '', title: '', status: ''  });
+  const [userFormData, setUserFormData] = useState({ resume: '', jobId: ''  });
   // set state for form validation
   const [validated] = useState(false);
   // set state for alert
@@ -53,9 +53,10 @@ const SubmitApplication = () => {
     }
 
     try {
+      userFormData.jobId = jobId;
       console.log("our user form data is: ", userFormData);
       const {data} = await createApplication({
-        variables: {resume: userFormData.resume, company: myJob.company, title: myJob.title, status: 'Applied'}
+        variables: {resume: userFormData.resume, jobId: userFormData.jobId}
       });
       console.log("our data is: ", data)
       Auth.login(token);
@@ -66,9 +67,7 @@ const SubmitApplication = () => {
 
     setUserFormData({
       resume: '',
-      company: '',
-      title: '',
-      status: ''
+      jobId: ''
     });
   };
 
