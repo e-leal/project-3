@@ -1,17 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import { CREATE_APP } from '../../utils/mutations';
+import { QUERY_JOB } from '../../utils/queries';
 //import { createUser } from '../utils/API';
 import Auth from '../../utils/auth';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation, useQuery } from '@apollo/react-hooks';
 
 const SubmitApplication = () => {
   // set initial form state
-  const [userFormData, setUserFormData] = useState({ resume: '' });
+  const [userFormData, setUserFormData] = useState({ resume: '', company: '', title: '', status: ''  });
   // set state for form validation
   const [validated] = useState(false);
   // set state for alert
   const [showAlert, setShowAlert] = useState(false);
+
+  const jobId = window.location.pathname.split("/")[2];
+
+  const { loading, data } = useQuery(QUERY_JOB, {
+    variables: { id: jobId }
+  });
+
+  const myJob = data?.job || {};
 
   const [createApplication, {error}] = useMutation(CREATE_APP);
 
@@ -46,7 +55,7 @@ const SubmitApplication = () => {
     try {
       console.log("our user form data is: ", userFormData);
       const {data} = await createApplication({
-        variables: {resume: userFormData.resume}
+        variables: {resume: userFormData.resume, company: myJob.company, title: myJob.title, status: 'Applied'}
       });
       console.log("our data is: ", data)
       Auth.login(token);
@@ -56,7 +65,10 @@ const SubmitApplication = () => {
     }
 
     setUserFormData({
-      resume: ''
+      resume: '',
+      company: '',
+      title: '',
+      status: ''
     });
   };
 
