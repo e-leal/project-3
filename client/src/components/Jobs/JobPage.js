@@ -40,7 +40,7 @@ const JobPage = () => {
     return (
 
         <div>
-                    <div className="card">
+                    <div className="card2">
                         <div className="content">
                           <div>
         <ul>
