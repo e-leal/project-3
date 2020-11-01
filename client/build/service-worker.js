@@ -17,6 +17,46 @@ importScripts(
   "/precache-manifest.a7b88366b01d944e810bcaf70b0a27c9.js"
 );
 
+self.addEventListener('fetch', function (e){
+  if (e.request.url.includes('/graphql/')) {
+      e.respondWith(
+        caches
+          .open(DATA_CACHE_NAME)
+          .then(cache => {
+            return fetch(e.request)
+              .then(response => {
+                // If the response was good, clone it and store it in the cache.
+                if (response.status === 200) {
+                  cache.put(e.request.url, response.clone());
+                }
+  
+                return response;
+              })
+              .catch(err => {
+                // Network request failed, try to get it from the cache.
+                return cache.match(e.request);
+              });
+          })
+          .catch(err => console.log(err))
+      );
+  
+      return;
+    }
+  
+    e.respondWith(
+      fetch(e.request).catch(function() {
+        return caches.match(e.request).then(function(response) {
+          if (response) {
+            return response;
+          } else if (e.request.headers.get('accept').includes('text/html')) {
+            // return the cached home page for all requests for html pages
+            return caches.match('/');
+          }
+        });
+      })
+    );
+})
+
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
     self.skipWaiting();
