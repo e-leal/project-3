@@ -17,6 +17,8 @@ importScripts(
   "/precache-manifest.a7b88366b01d944e810bcaf70b0a27c9.js"
 );
 
+const ignored = self.__WB_MANIFEST;
+
 self.addEventListener('fetch', function (e){
   if (e.request.url.includes('/graphql/')) {
       e.respondWith(
@@ -72,6 +74,7 @@ workbox.core.clientsClaim();
  */
 self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
+
 
 workbox.routing.registerNavigationRoute(workbox.precaching.getCacheKeyForURL("/index.html"), {
   
