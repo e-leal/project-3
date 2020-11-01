@@ -19,10 +19,10 @@ const Home = () => {
     const [searchInput, setSearchInput] = useState('');
 
 
-    const {loading, data} = useQuery(GET_ME);
-    const createdJobData = data?.me || [];
+    const {loading, data} = useQuery(QUERY_JOBS);
+    const createdJobData = data?.jobs || [];
     console.log(createdJobData)
-      const myJob = createdJobData.createdJobs
+      //const myJob = createdJobData
 
       
   
@@ -126,7 +126,7 @@ const Home = () => {
               ? `Viewing ${searchedJobs.length} results:`
               : 'Search for a job to begin'}
           </h2>
-          <div>{loading ? <div>Loading...</div> : <JobCard jobs={myJob} /> } </div>
+          <div>{loading ? <div>Loading...</div> : <JobCard jobs={createdJobData} /> } </div>
           {/* <CardColumns>
             {searchedJobs.map((job) => {
               return (

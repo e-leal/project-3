@@ -47,6 +47,16 @@ Certainly is a Job Search tool that helps Employers and Job Seekers keep track o
   * WHEN job is posted, employees will be able to POST an application for that job
   * WHEN job is posted, employers are able to UPDATE or DELETE that job
   * WHEN job is posted, employers are able to look at the applications that was posted to that job
+
+### FUTURE UPDATES:
+
+* Employees
+  * Give employees to rate employers
+  * Supply a variety of prebuilt resume themes
+
+* Employers
+  * Give Employers ability to create their own application template for their company
+
   
 
 
@@ -114,7 +124,7 @@ This project is covered by the MIT license.
 
 * [bcrypt](https://www.npmjs.com/package/bcrypt)
 
-* []()
+* [moment.js](https://www.npmjs.com/package/moment)
 
 
 
