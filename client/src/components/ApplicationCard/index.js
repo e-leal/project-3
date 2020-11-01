@@ -24,9 +24,9 @@ const ApplicationCard = ({ applications }) => {
         <li>
         <strong>Resume Link:</strong> {application.resume}
         </li>
-        <li>
+        {/* <li>
         <strong>Status:</strong> {application.status}
-        </li>
+        </li> */}
         <li>
         <strong>Created At:</strong>{application.createdAt}
         </li>
