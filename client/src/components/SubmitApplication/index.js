@@ -72,8 +72,8 @@ const SubmitApplication = () => {
           <Form.Label htmlFor='resume'>Resume Link</Form.Label>
           <Form.Control
             type='text'
-            placeholder='Jon Smith'
-            name='tesume'
+            placeholder='https://docs.google.com/resume.doc'
+            name='resume'
             onChange={handleInputChange}
             value={userFormData.resume}
             required
