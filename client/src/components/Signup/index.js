@@ -4,10 +4,9 @@ import { ADD_USER } from '../../utils/mutations';
 //import { createUser } from '../utils/API';
 import Auth from '../../utils/auth';
 import { useMutation } from '@apollo/react-hooks';
-
 const SignupForm = () => {
   // set initial form state
-  const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '', employer: '' });
+  const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '', name: '', number: '', employer: (false) });
   // set state for form validation
   const [validated] = useState(false);
   // set state for alert
@@ -44,7 +43,7 @@ const SignupForm = () => {
     try {
       console.log("our user form data is: ", userFormData);
       const {data} = await addUser({
-        variables: {email: userFormData.email, username: userFormData.username, employer: userFormData.employer, password: userFormData.password}
+        variables: {email: userFormData.email, name: userFormData.name, number: userFormData.number, username: userFormData.username, employer: userFormData.employer, password: userFormData.password}
       });
       console.log("our data is: ", data)
       Auth.login(data.addUser.token);
@@ -57,7 +56,9 @@ const SignupForm = () => {
       username: '',
       email: '',
       password: '',
-      employer: ''
+      number: '',
+      name: '',
+      employer: false
     });
   };
 
@@ -69,6 +70,18 @@ const SignupForm = () => {
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
           Something went wrong with your signup!
         </Alert>
+        <Form.Group>
+          <Form.Label htmlFor='name'>First &amp; Last Name</Form.Label>
+          <Form.Control
+            type='name'
+            placeholder='Jon Smith'
+            name='name'
+            onChange={handleInputChange}
+            value={userFormData.name}
+            required
+          />
+          <Form.Control.Feedback type='invalid'>Phone Number is required!</Form.Control.Feedback>
+        </Form.Group>
 
         <Form.Group>
           <Form.Label htmlFor='username'>Username</Form.Label>
@@ -94,6 +107,19 @@ const SignupForm = () => {
             required
           />
           <Form.Control.Feedback type='invalid'>Email is required!</Form.Control.Feedback>
+        </Form.Group>
+
+        <Form.Group>
+          <Form.Label htmlFor='number'>Phone Number</Form.Label>
+          <Form.Control
+            type='number'
+            placeholder='xxx-xxx-xxxx'
+            name='number'
+            onChange={handleInputChange}
+            value={userFormData.number}
+            required
+          />
+          <Form.Control.Feedback type='invalid'>Phone Number is required!</Form.Control.Feedback>
         </Form.Group>
 
         <Form.Group>

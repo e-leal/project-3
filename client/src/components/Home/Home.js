@@ -9,6 +9,7 @@ import { useMutation, useQuery } from '@apollo/react-hooks';
 import { GET_ME, QUERY_JOBS } from '../../utils/queries';
 import {SAVE_JOB} from '../../utils/mutations';
 import JobCard from '../Jobs/JobCard';
+import '../../index.css'
 //import {LOGIN_USER} from '../utils/mutations';
 
 const Home = () => {
@@ -18,10 +19,10 @@ const Home = () => {
     const [searchInput, setSearchInput] = useState('');
 
 
-    const {loading, data} = useQuery(GET_ME);
-    const createdJobData = data?.me || [];
+    const {loading, data} = useQuery(QUERY_JOBS);
+    const createdJobData = data?.jobs || [];
     console.log(createdJobData)
-      const myJob = createdJobData.createdJobs
+      //const myJob = createdJobData
 
       
   
@@ -93,7 +94,7 @@ const Home = () => {
   
     return (
       <>
-        <Jumbotron fluid className='text-light center bg-dark'>
+        <Jumbotron fluid id='dark-purple' className='text-light center purple-mountain'>
           <Container>
             <h3>Find your next job</h3>
             <Form onSubmit={handleFormSubmit}>
@@ -119,13 +120,13 @@ const Home = () => {
           </Container>
         </Jumbotron>
   
-        <Container>
+        <Container id="light-purple">
           <h2>
             {searchedJobs.length
               ? `Viewing ${searchedJobs.length} results:`
               : 'Search for a job to begin'}
           </h2>
-          <div>{loading ? <div>Loading...</div> : <JobCard jobs={myJob} /> } </div>
+          <div>{loading ? <div>Loading...</div> : <JobCard jobs={createdJobData} /> } </div>
           {/* <CardColumns>
             {searchedJobs.map((job) => {
               return (

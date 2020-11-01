@@ -7,13 +7,13 @@ import { GET_ME } from '../../utils/queries';
 import { useMutation, useQuery } from '@apollo/client';
 
 const Profile = () => {
-    const [userFormData, setUserFormData] = useState({ email: '', password: '' });
+    const [userFormData, setUserFormData] = useState({ email: '', password: '', name: '', number: '' });
     const [validated] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
   
     const {loading, data} = useQuery(GET_ME);
     const userData = data?.me || {};
-
+    console.log("our current user's data is: ", userData);
 
     if(loading){
         return <h2>LOADING...</h2>;
@@ -86,7 +86,7 @@ const Profile = () => {
                                           <label>Name</label>
                                       </div>
                                       <div className="col-md-6">
-                                          <p>Kshiti Ghelani</p>
+                                          <p>{userData.name}</p>
                                       </div>
                                   </div>
                                   <div className="row">
@@ -102,7 +102,7 @@ const Profile = () => {
                                           <label>Phone</label>
                                       </div>
                                       <div className="col-md-6">
-                                          <p>123 456 7890</p>
+                                          <p>{userData.number}</p>
                                       </div>
                                   </div>
                                   <div className="row">
@@ -125,10 +125,10 @@ const Profile = () => {
                                   </div>
                                   <div className="row">
                                       <div className="col-md-6">
-                                          <label>Hourly Rate</label>
+                                          <label>Salary</label>
                                       </div>
                                       <div className="col-md-6">
-                                          <p>10$/hr</p>
+                                          <p>89,000/yr</p>
                                       </div>
                                   </div>
                                   <div className="row">
@@ -168,7 +168,6 @@ const Profile = () => {
       </form>           
   </div>
     );
-  }
-
+ };
 
 export default Profile;

@@ -3,7 +3,6 @@ import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/react-hooks';
 import  ApolloClient from 'apollo-boost';
-import Conduct from './components/Conduct';
 import NavBar from './components/Nav/Navbar';
 /*
 ***********
@@ -13,6 +12,7 @@ APP COMPONENT IMPORTS
 import HomePage from './components/Home/Home';
 // import RecruiterDashboard from "../recruiter/Dashboard/Dashboard";
 import JobsHome from "./components/Jobs/JobsHome";
+import JobPage from "./components/Jobs/JobPage";
 // import JobDetailedView from './components/Jobs/JobCard';
 // import SearchedJobs from "./pages/SearchJobs";
 import Profile from './components/profile/profile';
@@ -33,7 +33,7 @@ import PostJob from './components/PostJob/PostJob';
 // import RecruiterProfile from "../profile/RecruiterProfile";
 
 const client = new ApolloClient({
-  request: (operation) => {
+  request: operation => {
     console.log("007 operation: ", operation)
     const token = localStorage.getItem('id_token');
     console.log("our client app.js is saying our token is: ", token)
@@ -43,8 +43,9 @@ const client = new ApolloClient({
       },
     });
   },
-  uri: '/graphql'
+  uri: 'http://localhost:3001/graphql'
 });
+
 
 function App (){
   return (
@@ -55,6 +56,7 @@ function App (){
                 <Route path="/" component={HomePage} exact/>
                 {/* <Route path="/recruiter" component={RecruiterDashboard} exact/> */}
                 <Route path="/jobshome" component={JobsHome} exact />
+                <Route path="/jobpage/:id" component={JobPage} exact />
                 {/* <Route path="/jobdetailedview" component={JobDetailedView} exact /> */}
                 {/* <Route path="/postedjobs" component={ListedJobs} exact /> */}
                 <Route path="/profile" component={Profile} exact />
@@ -84,5 +86,6 @@ function App (){
       </ApolloProvider>
   );
 } 
+
 
 export default App;
