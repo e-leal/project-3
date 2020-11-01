@@ -33,11 +33,12 @@ export const GET_ME = gql`
 
 
 export const QUERY_JOBS = gql`
-{
+query jobs{
     jobs{
             _id
             company
             createdAt
+            title
             contact
             description
             requirements
