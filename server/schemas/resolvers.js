@@ -129,7 +129,7 @@ const resolvers = {
                     _id: args.jobId
                 });
                 console.log("my job: ", job)
-                const application = await Application.create({ email: context.user.email, appliedJob: [job], ...args });
+                const application = await Application.create({ email: context.user.email, status: 'Applied',  title: job.title, company: job.company, appliedJob: [job], ...args });
                 console.log(application)
                 await User.findByIdAndUpdate(
                     { _id: context.user._id },
