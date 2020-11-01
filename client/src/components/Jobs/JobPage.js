@@ -11,8 +11,8 @@ import ApplicationCard from '../ApplicationCard';
 
 const JobPage = () => {
   const [showModal, setShowModal] = useState(false);
-    const [userJobData, setUserJobData] = useState({ company: '', createdAt: '', contact: '', description: '', requirements: '' });
-
+  const [userJobData, setUserJobData] = useState({ company: '', createdAt: '', contact: '', description: '', requirements: '' });
+  const token = localStorage.getItem('id_token');
 
     // const {loading1, data1} = useQuery(MY_JOBS);
     //  const myJobData = data1?.user || {};
@@ -31,20 +31,24 @@ const JobPage = () => {
     // const filteredJob = myJob.filter((job) => job._id === jobId)
     // console.log("filtered job", filteredJob)
     const jobId = window.location.pathname.split("/")[2];
-
-    const { loading, data } = useQuery(QUERY_JOB, {
+    const { data: userData, loading:userQueryLoading } = useQuery(GET_ME);
+    const { data: jobData, loading:jobLoading } = useQuery(QUERY_JOB, {
       variables: { id: jobId }
     });
-    const { loading1, data1 } = useQuery(GET_ME);
+    
     
 
-    const myJob = data?.job || {};
-    const myself = data1?.me || {};
+    const myJob = jobData?.job || {};
+    const meData = userData?.me || {};
+
+    console.log("my job's applications are: ", myJob.jobApplications);
+    console.log("Am I an employer? ", meData);
     // const job = myJob.filter(_id === jobId);
     //   if (!jobs.length) {
     //     return <h3>You have no posted jobs!</h3>
     //   }
-    const isEmployersListing = (myJob.contact == myself.email && myself.employer);
+    const isEmployersListing = (myJob.contact == meData.email && meData.employer);
+    console.log("EMployer listing check is: ", isEmployersListing);
     if(!isEmployersListing){
         return (
 
@@ -101,7 +105,6 @@ const JobPage = () => {
             </div>
             
         );
-
     }
       
     else {
@@ -135,15 +138,16 @@ const JobPage = () => {
             </div>
           </div>
         <Jobcon>
-        <section>
-            <div className="smallheading">
-			<h3 className="card-title">Applications you have received</h3>
-		    </div>
-        </section>
-    <div>{loading1 ? <div>Loading...</div> : <ApplicationCard applications={myJob.jobApplications} /> } </div>
-
-    </Jobcon>
-    </div>
+          <section>
+              <div className="smallheading">
+                <h3 className="card-title">Applications you have received</h3>
+              </div>
+          </section>
+          <div>
+            {userQueryLoading ? <div>Loading...</div> : <ApplicationCard applications={myJob.jobApplications} /> } 
+          </div>
+        </Jobcon>
+      </div>
       );
     }
   }
