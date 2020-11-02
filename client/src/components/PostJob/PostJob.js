@@ -113,7 +113,7 @@ const PostJob = () => {
                 type="text"
                 className="form-control"
                 id="requirements"
-                placeholder="Responsibilities"
+                placeholder="Responsiablitys"
                 onChange={handleInputChange}
                 name="requirements"
               /> }

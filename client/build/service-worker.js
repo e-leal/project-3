@@ -1,39 +1,123 @@
-/**
- * Welcome to your Workbox-powered service worker!
- *
- * You'll need to register this file in your web app and you should
- * disable HTTP caching for this file too.
- * See https://goo.gl/nhQhGp
- *
- * The rest of the code is auto-generated. Please don't update this file
- * directly; instead, make changes to your Workbox build configuration
- * and re-run your build process.
- * See https://goo.gl/2aRDsh
- */
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.6.1/workbox-sw.js');
+importScripts('https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/md5.js');
+importScripts('https://cdn.jsdelivr.net/npm/idb-keyval@3/dist/idb-keyval-iife.min.js');
 
-importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+var CACHE_NAME = 'main-cache-v1';
+var urlsToCache = [
+  // '/index.html',
+];
 
-importScripts(
-  "/precache-manifest.4d81a4efbfa2bebfffa9f498cbde33de.js"
+// Init indexedDB using idb-keyval, https://github.com/jakearchibald/idb-keyval
+const store = new idbKeyval.Store('GraphQL-Cache', 'PostResponses');
+
+if (workbox) {
+  console.log(`Yay! Workbox is loaded 🎉`);
+} else {
+  console.log(`Boo! Workbox didn't load 😬`);
+}
+
+// Workbox with custom handler to use IndexedDB for cache.
+workbox.routing.registerRoute(
+  new RegExp('/graphql(/)?'),
+  // Uncomment below to see the error thrown from Cache Storage API.
+  //workbox.strategies.staleWhileRevalidate(),
+  async ({
+    event
+  }) => {
+    return staleWhileRevalidate(event);
+  },
+  'POST'
 );
 
-self.addEventListener('message', (event) => {
-  if (event.data && event.data.type === 'SKIP_WAITING') {
-    self.skipWaiting();
+/*
+// When installing SW.
+self.addEventListener('install', (event) => {
+  // Perform install steps
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+    .then((cache) => {
+      console.log('Opened cache');
+      return cache.addAll(urlsToCache);
+    })
+  );
+});
+*/
+
+// Return cached response when possible, and fetch new results from server in
+// the background and update the cache.
+self.addEventListener('fetch', async (event) => {
+  if (event.request.method === 'POST') {
+    event.respondWith(staleWhileRevalidate(event));
   }
+
+  // TODO: Handles other types of requests.
 });
 
-workbox.core.clientsClaim();
+async function staleWhileRevalidate(event) {
+  let promise = null;
+  let cachedResponse = await getCache(event.request.clone());
+  let fetchPromise = fetch(event.request.clone())
+    .then((response) => {
+      setCache(event.request.clone(), response.clone());
+      return response;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+  return cachedResponse ? Promise.resolve(cachedResponse) : fetchPromise;
+}
 
-/**
- * The workboxSW.precacheAndRoute() method efficiently caches and responds to
- * requests for URLs in the manifest.
- * See https://goo.gl/S9QRab
- */
-self.__precacheManifest = [].concat(self.__precacheManifest || []);
-workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
+async function serializeResponse(response) {
+  let serializedHeaders = {};
+  for (var entry of response.headers.entries()) {
+    serializedHeaders[entry[0]] = entry[1];
+  }
+  let serialized = {
+    headers: serializedHeaders,
+    status: response.status,
+    statusText: response.statusText
+  };
+  serialized.body = await response.json();
+  return serialized;
+}
 
-workbox.routing.registerNavigationRoute(workbox.precaching.getCacheKeyForURL("/index.html"), {
-  
-  blacklist: [/^\/_/,/\/[^/?]+\.[^/]+$/],
-});
+async function setCache(request, response) {
+  var key, data;
+  let body = await request.json();
+  let id = CryptoJS.MD5(body.query).toString();
+
+  var entry = {
+    query: body.query,
+    response: await serializeResponse(response),
+    timestamp: Date.now()
+  };
+  idbKeyval.set(id, entry, store);
+}
+
+async function getCache(request) {
+  let data;
+  try {
+    let body = await request.json();
+    let id = CryptoJS.MD5(body.query).toString();
+    data = await idbKeyval.get(id, store);
+    if (!data) return null;
+
+    // Check cache max age.
+    let cacheControl = request.headers.get('Cache-Control');
+    let maxAge = cacheControl ? parseInt(cacheControl.split('=')[1]) : 3600;
+    if (Date.now() - data.timestamp > maxAge * 1000) {
+      console.log(`Cache expired. Load from API endpoint.`);
+      return null;
+    }
+
+    console.log(`Load response from cache.`);
+    return new Response(JSON.stringify(data.response.body), data.response);
+  } catch (err) {
+    return null;
+  }
+}
+
+async function getPostKey(request) {
+  let body = await request.json();
+  return JSON.stringify(body);
+}
