@@ -1,141 +1,123 @@
-// This optional code is used to register a service worker.
-// register() is not called by default.
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.6.1/workbox-sw.js');
+importScripts('https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/md5.js');
+importScripts('https://cdn.jsdelivr.net/npm/idb-keyval@3/dist/idb-keyval-iife.min.js');
 
-// This lets the app load faster on subsequent visits in production, and gives
-// it offline capabilities. However, it also means that developers (and users)
-// will only see deployed updates on subsequent visits to a page, after all the
-// existing tabs open on the page have been closed, since previously cached
-// resources are updated in the background.
+var CACHE_NAME = 'main-cache-v1';
+var urlsToCache = [
+  // '/index.html',
+];
 
-// To learn more about the benefits of this model and instructions on how to
-// opt-in, read https://bit.ly/CRA-PWA
+// Init indexedDB using idb-keyval, https://github.com/jakearchibald/idb-keyval
+const store = new idbKeyval.Store('GraphQL-Cache', 'PostResponses');
 
-const isLocalhost = Boolean(
-  window.location.hostname === 'localhost' ||
-    // [::1] is the IPv6 localhost address.
-    window.location.hostname === '[::1]' ||
-    // 127.0.0.0/8 are considered localhost for IPv4.
-    window.location.hostname.match(
-      /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
-    )
+if (workbox) {
+  console.log(`Yay! Workbox is loaded 🎉`);
+} else {
+  console.log(`Boo! Workbox didn't load 😬`);
+}
+
+// Workbox with custom handler to use IndexedDB for cache.
+workbox.routing.registerRoute(
+  new RegExp('/graphql(/)?'),
+  // Uncomment below to see the error thrown from Cache Storage API.
+  //workbox.strategies.staleWhileRevalidate(),
+  async ({
+    event
+  }) => {
+    return staleWhileRevalidate(event);
+  },
+  'POST'
 );
 
-export function register(config) {
-  if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
-    // The URL constructor is available in all browsers that support SW.
-    const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
-    if (publicUrl.origin !== window.location.origin) {
-      // Our service worker won't work if PUBLIC_URL is on a different origin
-      // from what our page is served on. This might happen if a CDN is used to
-      // serve assets; see https://github.com/facebook/create-react-app/issues/2374
-      return;
+/*
+// When installing SW.
+self.addEventListener('install', (event) => {
+  // Perform install steps
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+    .then((cache) => {
+      console.log('Opened cache');
+      return cache.addAll(urlsToCache);
+    })
+  );
+});
+*/
+
+// Return cached response when possible, and fetch new results from server in
+// the background and update the cache.
+self.addEventListener('fetch', async (event) => {
+  if (event.request.method === 'POST') {
+    event.respondWith(staleWhileRevalidate(event));
+  }
+
+  // TODO: Handles other types of requests.
+});
+
+async function staleWhileRevalidate(event) {
+  let promise = null;
+  let cachedResponse = await getCache(event.request.clone());
+  let fetchPromise = fetch(event.request.clone())
+    .then((response) => {
+      setCache(event.request.clone(), response.clone());
+      return response;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+  return cachedResponse ? Promise.resolve(cachedResponse) : fetchPromise;
+}
+
+async function serializeResponse(response) {
+  let serializedHeaders = {};
+  for (var entry of response.headers.entries()) {
+    serializedHeaders[entry[0]] = entry[1];
+  }
+  let serialized = {
+    headers: serializedHeaders,
+    status: response.status,
+    statusText: response.statusText
+  };
+  serialized.body = await response.json();
+  return serialized;
+}
+
+async function setCache(request, response) {
+  var key, data;
+  let body = await request.json();
+  let id = CryptoJS.MD5(body.query).toString();
+
+  var entry = {
+    query: body.query,
+    response: await serializeResponse(response),
+    timestamp: Date.now()
+  };
+  idbKeyval.set(id, entry, store);
+}
+
+async function getCache(request) {
+  let data;
+  try {
+    let body = await request.json();
+    let id = CryptoJS.MD5(body.query).toString();
+    data = await idbKeyval.get(id, store);
+    if (!data) return null;
+
+    // Check cache max age.
+    let cacheControl = request.headers.get('Cache-Control');
+    let maxAge = cacheControl ? parseInt(cacheControl.split('=')[1]) : 3600;
+    if (Date.now() - data.timestamp > maxAge * 1000) {
+      console.log(`Cache expired. Load from API endpoint.`);
+      return null;
     }
 
-    window.addEventListener('load', () => {
-      const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
-
-      if (isLocalhost) {
-        // This is running on localhost. Let's check if a service worker still exists or not.
-        checkValidServiceWorker(swUrl, config);
-
-        // Add some additional logging to localhost, pointing developers to the
-        // service worker/PWA documentation.
-        navigator.serviceWorker.ready.then(() => {
-          console.log(
-            'This web app is being served cache-first by a service ' +
-              'worker. To learn more, visit https://bit.ly/CRA-PWA'
-          );
-        });
-      } else {
-        // Is not localhost. Just register service worker
-        registerValidSW(swUrl, config);
-      }
-    });
+    console.log(`Load response from cache.`);
+    return new Response(JSON.stringify(data.response.body), data.response);
+  } catch (err) {
+    return null;
   }
 }
 
-function registerValidSW(swUrl, config) {
-  navigator.serviceWorker
-    .register(swUrl)
-    .then(registration => {
-      registration.onupdatefound = () => {
-        const installingWorker = registration.installing;
-        if (installingWorker == null) {
-          return;
-        }
-        installingWorker.onstatechange = () => {
-          if (installingWorker.state === 'installed') {
-            if (navigator.serviceWorker.controller) {
-              // At this point, the updated precached content has been fetched,
-              // but the previous service worker will still serve the older
-              // content until all client tabs are closed.
-              console.log(
-                'New content is available and will be used when all ' +
-                  'tabs for this page are closed. See https://bit.ly/CRA-PWA.'
-              );
-
-              // Execute callback
-              if (config && config.onUpdate) {
-                config.onUpdate(registration);
-              }
-            } else {
-              // At this point, everything has been precached.
-              // It's the perfect time to display a
-              // "Content is cached for offline use." message.
-              console.log('Content is cached for offline use.');
-
-              // Execute callback
-              if (config && config.onSuccess) {
-                config.onSuccess(registration);
-              }
-            }
-          }
-        };
-      };
-    })
-    .catch(error => {
-      console.error('Error during service worker registration:', error);
-    });
-}
-
-function checkValidServiceWorker(swUrl, config) {
-  // Check if the service worker can be found. If it can't reload the page.
-  fetch(swUrl, {
-    headers: { 'Service-Worker': 'script' },
-  })
-    .then(response => {
-      // Ensure service worker exists, and that we really are getting a JS file.
-      const contentType = response.headers.get('content-type');
-      if (
-        response.status === 404 ||
-        (contentType != null && contentType.indexOf('javascript') === -1)
-      ) {
-        // No service worker found. Probably a different app. Reload the page.
-        navigator.serviceWorker.ready.then(registration => {
-          registration.unregister().then(() => {
-            window.location.reload();
-          });
-        });
-      } else {
-        // Service worker found. Proceed as normal.
-        registerValidSW(swUrl, config);
-      }
-    })
-    .catch(() => {
-      console.log(
-        'No internet connection found. App is running in offline mode.'
-      );
-    });
-}
-
-export function unregister() {
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.ready
-      .then(registration => {
-        registration.unregister();
-      })
-      .catch(error => {
-        console.error(error.message);
-      });
-  }
+async function getPostKey(request) {
+  let body = await request.json();
+  return JSON.stringify(body);
 }
