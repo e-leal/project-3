@@ -19,6 +19,30 @@ importScripts(
 
 const ignored = self.__WB_MANIFEST;
 
+self.addEventListener('install', function (e){
+  e.waitUntil(
+      caches.open(CACHE_NAME).then(function (cache){
+          console.log('installing cache : ' + CACHE_NAME)
+          return cache.addAll(FILES_TO_CACHE)
+      })
+  )
+})
+
+self.addEventListener('activate', function (e){
+  e.waitUntil(
+      caches.keys().then(keyList => {
+          return Promise.all(
+              keyList.map(key => {
+                  if(key !== CACHE_NAME && key !== DATA_CACHE_NAME){
+                      console.log('Removing old cache data', key);
+                      return caches.delete(key);
+                  }
+              })
+          );
+      })
+  )
+})
+
 self.addEventListener('fetch', function (e){
   if (e.request.url.includes('/api/')) {
       e.respondWith(
@@ -58,6 +82,8 @@ self.addEventListener('fetch', function (e){
       })
     );
 })
+
+
 
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
