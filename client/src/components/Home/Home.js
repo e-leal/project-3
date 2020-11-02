@@ -44,19 +44,17 @@ const Home = () => {
       }
   
       try {
-        const response = await searchCareerJobs(searchInput);
+        const newList = createdJobData.filter(job => job.title === searchInput);
+
+        
   
-        if (!response.ok) {
-          throw new Error('something went wrong!');
-        }
   
-        const { items } = await response.json();
-  
-        const jobData = items.map((job) => ({
-          JobId: job._id,
-          authors: job.title || ['No author to display'],
+        const jobData = newList.map((job) => ({
+          requirements: job.requirements,
+          title: job.title || ['No author to display'],
           company: job.company,
-          description: job.description//,
+          description: job.description,
+          createdAt: job.createdAt//,
           //image: job.volumeInfo.imageLinks?.thumbnail || '',
         }));
   
