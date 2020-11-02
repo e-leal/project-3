@@ -126,13 +126,6 @@ This project is covered by the MIT license.
 
 * [moment.js](https://www.npmjs.com/package/moment)
 
-
-
-
-
-## Contribution
-
-
 ## Questions
 
 If you want us to answer any of your questions, follow our Githubs:
@@ -142,31 +135,4 @@ If you want us to answer any of your questions, follow our Githubs:
 [Ceven8498](https://github.com/Ceven8498)
 [ctyrone123](https://github.com/ctyrone123)
 [Ottiemobile](https://github.com/Ottiemobile)
------------------------------------------------------------------------------------------------------
 
-mutation addUser($username: String!, $email: String!, $password: String!, $employer: Boolean!) {
-  addUser(username: $username, email: $email, password: $password, employer: $employer) {
-    token
-    user {
-      _id
-    }
-  }
-}
-
-mutation login($email: String!, $password: String!) {
-  login(email: $email, password: $password) {
-    token
-    user {
-      _id
-    }
-  }
-}
-
-mutation createJob($company: String!, $contact: String!, $description: String!, $requirements: String!) {
-  createJob(company: $company, contact: $contact, description: $description, requirements: $requirements) {
-    	company
-    	contact
-    	description
-    	requirements
-    }
-}
